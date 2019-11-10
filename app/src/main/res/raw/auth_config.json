@@ -1,0 +1,14 @@
+{
+  "client_id" : "b4665d63-90e7-4b1a-a593-ac1116734f9e",
+  "authorization_user_agent" : "DEFAULT",
+  "redirect_uri" : "msauth://com.example.findthetime/Bmce%2B9aHdOoVtE7fS3B07tfj7Bc%3D",
+  "authorities" : [
+    {
+      "type": "AAD",
+      "audience": {
+        "type": "AzureADandPersonalMicrosoftAccount",
+        "tenant_id": "common"
+      }
+    }
+  ]
+}
