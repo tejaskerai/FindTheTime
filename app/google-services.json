@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "419233817007",
+    "firebase_url": "https://findthetime-688f7.firebaseio.com",
+    "project_id": "findthetime-688f7",
+    "storage_bucket": "findthetime-688f7.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:419233817007:android:a8b24dbe93580187e2cf5a",
+        "android_client_info": {
+          "package_name": "com.example.findthetime"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "419233817007-k9tjjnkgj0r2ljnckkkprk6sa1ft2ku4.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.findthetime",
+            "certificate_hash": "425e946d7b71d45e5863fd304ba3c0784676a01e"
+          }
+        },
+        {
+          "client_id": "419233817007-le0a444ato8q41cl4ofb2mr45c44476k.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBa0jCRNrr5CKrMngG4k01MBI-bG7oa6JI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "419233817007-le0a444ato8q41cl4ofb2mr45c44476k.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
