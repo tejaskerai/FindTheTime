@@ -19,23 +19,23 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <!--Intent filter to catch Microsoft's callback after Sign In-->
         <activity android:name="com.microsoft.identity.client.BrowserTabActivity">
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
-
                 <category android:name="android.intent.category.DEFAULT" />
                 <category android:name="android.intent.category.BROWSABLE" />
-
                 <!--
                     Add in your scheme/host from registered redirect URI
                     note that the leading "/" is required for android:path
                 -->
                 <data
-                    android:host="com.azuresamples.msalandroidapp"
-                    android:path="/1wIqXSqBj7w+h11ZifsnqwgyKrY="
-                    android:scheme="msauth" />
+                    android:host="com.example.findthetime"
+                    android:path="/Bmce+9aHdOoVtE7fS3B07tfj7Bc="
+                    android:scheme= "msauth" />
             </intent-filter>
         </activity>
+
     </application>
 
 </manifest>

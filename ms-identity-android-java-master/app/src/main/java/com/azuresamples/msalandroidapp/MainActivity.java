@@ -97,13 +97,13 @@ public class MainActivity extends AppCompatActivity
                     setCurrentFragment(AppFragment.SingleAccount);
                 }
 
-                if (id == R.id.nav_multiple_account) {
-                    setCurrentFragment(AppFragment.MultipleAccount);
-                }
-
-                if (id == R.id.nav_b2c) {
-                    setCurrentFragment(AppFragment.B2C);
-                }
+//                if (id == R.id.nav_multiple_account) {
+//                    setCurrentFragment(AppFragment.MultipleAccount);
+//                }
+//
+//                if (id == R.id.nav_b2c) {
+//                    setCurrentFragment(AppFragment.B2C);
+//                }
 
                 drawer.removeDrawerListener(this);
             }
