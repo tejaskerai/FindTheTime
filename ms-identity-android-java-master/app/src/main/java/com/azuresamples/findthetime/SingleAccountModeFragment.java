@@ -133,9 +133,7 @@ public class SingleAccountModeFragment extends Fragment {
                 }
 
                 mSingleAccountApp.signIn(getActivity(), null, getScopes(), getAuthInteractiveCallback());
-                System.out.println("Signed in and can go to next page");
-                Intent in = new Intent(v.getContext(), Homepage.class);
-                startActivity(in);
+                openHomepage(v);
             }
             //
 
@@ -202,10 +200,10 @@ public class SingleAccountModeFragment extends Fragment {
 
     }
 
-//    public void openHomepage(){
-//        Intent intent = new Intent(this, HomePage.class);
-//        startActivity(intent);
-//    }
+    public void openHomepage(View v){
+        Intent homePage = new Intent(v.getContext(), Homepage.class);
+        startActivity(homePage);
+    }
 
     @Override
     public void onResume() {
