@@ -21,8 +21,9 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 
-package com.azuresamples.msalandroidapp;
+package com.azuresamples.findthetime;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -132,7 +133,11 @@ public class SingleAccountModeFragment extends Fragment {
                 }
 
                 mSingleAccountApp.signIn(getActivity(), null, getScopes(), getAuthInteractiveCallback());
+                openHomepage(v);
             }
+            //
+
+
         });
 
         signOutButton.setOnClickListener(new View.OnClickListener() {
@@ -193,6 +198,11 @@ public class SingleAccountModeFragment extends Fragment {
             }
         });
 
+    }
+
+    public void openHomepage(View v){
+        Intent homePage = new Intent(v.getContext(), Homepage.class);
+        startActivity(homePage);
     }
 
     @Override
