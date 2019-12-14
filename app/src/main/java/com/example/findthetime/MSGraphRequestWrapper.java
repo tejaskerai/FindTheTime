@@ -21,7 +21,7 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 
-package com.azuresamples.findthetime;
+package com.example.findthetime;
 
 import android.content.Context;
 import android.util.Log;

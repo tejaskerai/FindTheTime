@@ -1,4 +1,4 @@
-package com.azuresamples.findthetime;
+package com.example.findthetime;
 
 import androidx.appcompat.app.AppCompatActivity;
 
