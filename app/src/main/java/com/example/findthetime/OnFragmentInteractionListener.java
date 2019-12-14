@@ -21,7 +21,7 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 
-package com.azuresamples.findthetime;
+package com.example.findthetime;
 
 /**
  * This interface must be implemented by activities that contain this
