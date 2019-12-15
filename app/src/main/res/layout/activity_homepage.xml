@@ -21,7 +21,7 @@
         android:background="@drawable/custom_button"
         android:text="Create new activity"
         android:textColor="#FFFFFF"
-        android:textSize="25dp"
+        android:textSize="23sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
