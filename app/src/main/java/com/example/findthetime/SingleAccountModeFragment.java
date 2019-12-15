@@ -134,7 +134,6 @@ public class SingleAccountModeFragment extends Fragment {
                 }
 
                 mSingleAccountApp.signIn(getActivity(), null, getScopes(), getAuthInteractiveCallback());
-                //openHomepage(v);
             }
             //
 
@@ -204,10 +203,8 @@ public class SingleAccountModeFragment extends Fragment {
 
     }
 
-    public void openHomepage(View v){
-
-
-        Intent homePage = new Intent(v.getContext(), Homepage.class);
+    public void openHomepage(){
+        Intent homePage = new Intent(getContext(), Homepage.class);
         startActivity(homePage);
     }
 
@@ -398,13 +395,13 @@ public class SingleAccountModeFragment extends Fragment {
      */
     private void updateUI(@Nullable final IAccount account) {
         if (account != null) {
+            openHomepage();
             signInButton.setEnabled(false);
             signOutButton.setEnabled(true);
             callGraphApiInteractiveButton.setEnabled(true);
             callGraphApiSilentButton.setEnabled(true);
             currentUserTextView.setText(account.getUsername());
-            Intent homePage = new Intent(getContext(), Homepage.class);
-            startActivity(homePage);
+
             System.out.println("Account has been loaded");
         } else {
             signInButton.setEnabled(true);
