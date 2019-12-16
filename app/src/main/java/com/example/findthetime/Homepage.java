@@ -28,16 +28,25 @@ public class Homepage extends AppCompatActivity {
 
 
         signOutButton = findViewById(R.id.btn_signOut);
-        // TODO: Add sign out function from SingleAccount mode
+        // TODO: Add sign out function from main activity
+        // Use mSingleAccountApp.signOut() to sign the user out
+        // You may also be required to redirect user back to the signin page manually
+        // Call mSingleAccountApp.signOut() from a separate thread
+    
 
-        signOutButton.setOnClickListener(new View.OnClickListener() {
-            public void onClick(final View v) {
-                System.out.println("Sign out clicked");
-//                Intent signOut = new Intent(v.getContext(), SingleAccountModeFragment.class);
-//                startActivity(signOut);
-            }
-        });
+    }
 
+    /**
+     * Display the error message
+     */
+    private void displayError(@NonNull final Exception exception) {
+        System.out.println("Error occurred in sign out");
+    }
 
+    private void SignOut() {
+
+    }
+    public void update(){
+        System.out.println("sign out from update");
     }
 }
