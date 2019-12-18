@@ -1,168 +1,222 @@
-// Copyright (c) Microsoft Corporation.
-// All rights reserved.
-//
-// This code is licensed under the MIT License.
-//
-// Permission is hereby granted, free of charge, to any person obtaining a copy
-// of this software and associated documentation files(the "Software"), to deal
-// in the Software without restriction, including without limitation the rights
-// to use, copy, modify, merge, publish, distribute, sublicense, and / or sell
-// copies of the Software, and to permit persons to whom the Software is
-// furnished to do so, subject to the following conditions :
-//
-// The above copyright notice and this permission notice shall be included in
-// all copies or substantial portions of the Software.
-//
-// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-// IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-// FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-// AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-// LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-// OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
-// THE SOFTWARE.
-
 package com.example.findthetime;
 
+import androidx.appcompat.app.AppCompatActivity;
+
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.ActionBarDrawerToggle;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
-import androidx.constraintlayout.widget.ConstraintLayout;
-import androidx.core.view.GravityCompat;
+import androidx.annotation.Nullable;
 
-import android.view.MenuItem;
+import android.util.Log;
 import android.view.View;
+import android.widget.Button;
+import android.widget.Toast;
 
-import androidx.drawerlayout.widget.DrawerLayout;
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentTransaction;
+import com.microsoft.identity.client.AuthenticationCallback;
+import com.microsoft.identity.client.IAccount;
+import com.microsoft.identity.client.IAuthenticationResult;
+import com.microsoft.identity.client.IPublicClientApplication;
+import com.microsoft.identity.client.ISingleAccountPublicClientApplication;
+import com.microsoft.identity.client.PublicClientApplication;
+import com.microsoft.identity.client.exception.MsalClientException;
+import com.microsoft.identity.client.exception.MsalException;
+import com.microsoft.identity.client.exception.MsalServiceException;
+
+public class MainActivity extends AppCompatActivity {
 
 
-import com.google.android.material.navigation.NavigationView;
+    private static final String TAG = MainActivity.class.getSimpleName();
 
-public class MainActivity extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener,
-        OnFragmentInteractionListener{
+    /* Azure AD v2 Configs */
+    final static String AUTHORITY = "https://login.microsoftonline.com/common";
 
-    enum AppFragment {
-        SingleAccount,
-        MultipleAccount,
-        B2C
-    }
 
-    private AppFragment mCurrentFragment;
+    /* UI & Debugging Variables */
+    Button signInButton;
 
-    private ConstraintLayout mContentMain;
+    /* Azure AD Variables */
+    private ISingleAccountPublicClientApplication mSingleAccountApp;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        System.out.println("In main actvity");
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_login);
+        initializeUI();
 
-        mContentMain = findViewById(R.id.content_main);
+        // Creates a PublicClientApplication object with res/raw/auth_config_single_account.json
+        PublicClientApplication.createSingleAccountPublicClientApplication(MainActivity.this,
+                R.raw.auth_config_single_account,
+                new IPublicClientApplication.ISingleAccountApplicationCreatedListener() {
+                    @Override
+                    public void onCreated(ISingleAccountPublicClientApplication application) {
+                        /**
+                         * This test app assumes that the app is only going to support one account.
+                         * This requires "account_mode" : "SINGLE" in the config json file.
+                         **/
+                        mSingleAccountApp = application;
+                        System.out.println("loading account");
+                        //loadAccount();
+                        signOut();
+                    }
 
-        Toolbar toolbar = findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
-        DrawerLayout drawer = findViewById(R.id.drawer_layout);
-        NavigationView navigationView = findViewById(R.id.nav_view);
-        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
-                this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
-        drawer.addDrawerListener(toggle);
-        toggle.syncState();
-        navigationView.setNavigationItemSelectedListener(this);
-
-        //Set default fragment
-        navigationView.setCheckedItem(R.id.nav_single_account);
-        setCurrentFragment(AppFragment.SingleAccount);
+                    @Override
+                    public void onError(MsalException exception) {
+                        displayError(exception);
+                    }
+                });
     }
 
-    @Override
-    public boolean onNavigationItemSelected(final MenuItem item) {
-        final DrawerLayout drawer = findViewById(R.id.drawer_layout);
-        drawer.addDrawerListener(new DrawerLayout.DrawerListener() {
-            @Override
-            public void onDrawerSlide(@NonNull View drawerView, float slideOffset) { }
-
-            @Override
-            public void onDrawerOpened(@NonNull View drawerView) { }
-
-            @Override
-            public void onDrawerClosed(@NonNull View drawerView) {
-                // Handle navigation view item clicks here.
-                int id = item.getItemId();
-
-                if (id == R.id.nav_single_account) {
-                    setCurrentFragment(AppFragment.SingleAccount);
+    private void initializeUI() {
+        signInButton = findViewById(R.id.btn_signIn);
+        signInButton.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                if (mSingleAccountApp == null) {
+                    return;
                 }
 
-//                if (id == R.id.nav_multiple_account) {
-//                    setCurrentFragment(AppFragment.MultipleAccount);
-//                }
-//
-//                if (id == R.id.nav_b2c) {
-//                    setCurrentFragment(AppFragment.B2C);
-//                }
-
-                drawer.removeDrawerListener(this);
+                mSingleAccountApp.signIn(MainActivity.this, null, getScopes(), getAuthInteractiveCallback());
             }
 
-            @Override
-            public void onDrawerStateChanged(int newState) { }
         });
-
-        drawer.closeDrawer(GravityCompat.START);
-        return true;
     }
 
-    private void setCurrentFragment(final AppFragment newFragment){
-        if (newFragment == mCurrentFragment) {
+    private void displayError(@NonNull final Exception exception) {
+        System.out.println("An error occurred on log in");
+    }
+
+    /**
+     * Load the currently signed-in account, if there's any.
+     */
+    private void loadAccount() {
+        if (mSingleAccountApp == null) {
             return;
         }
 
-        mCurrentFragment = newFragment;
-        setHeaderString(mCurrentFragment);
-        displayFragment(mCurrentFragment);
+        mSingleAccountApp.getCurrentAccountAsync(new ISingleAccountPublicClientApplication.CurrentAccountCallback() {
+            @Override
+            public void onAccountLoaded(@Nullable IAccount activeAccount) {
+                // You can use the account data to update your UI or your app database.
+                updateUI(activeAccount);
+
+            }
+
+            @Override
+            public void onAccountChanged(@Nullable IAccount priorAccount, @Nullable IAccount currentAccount) {
+                if (currentAccount == null) {
+                    // Perform a cleanup task as the signed-in account changed.
+                    performOperationOnSignOut();
+                }
+            }
+
+            @Override
+            public void onError(@NonNull MsalException exception) {
+                displayError(exception);
+            }
+        });
     }
 
-    private void setHeaderString(final AppFragment fragment){
-        switch (fragment) {
-            case SingleAccount:
-                getSupportActionBar().setTitle("Single Account Mode");
-                return;
+    /**
+     * Updates UI based on the current account.
+     */
+    private void updateUI(@Nullable final IAccount account) {
+        if (account != null) {
+            openHomepage();
+            System.out.println("Account has been loaded");
+        } else {
+            signInButton.setEnabled(true);
 
-            case MultipleAccount:
-                getSupportActionBar().setTitle("Multiple Account Mode");
-                return;
-
-            case B2C:
-                getSupportActionBar().setTitle("B2C Mode");
-                return;
         }
     }
 
-    private void displayFragment(final AppFragment fragment){
-        switch (fragment) {
-            case SingleAccount:
-                attachFragment(new SingleAccountModeFragment());
-                return;
+    public void openHomepage(){
+        Intent homePage = new Intent(MainActivity.this, Homepage.class);
+        startActivity(homePage);
+    }
 
-            case MultipleAccount:
-                attachFragment(new MultipleAccountModeFragment());
-                return;
 
-            case B2C:
-                attachFragment(new B2CModeFragment());
-                return;
+
+    /**
+     * Extracts a scope array from a text field,
+     * i.e. from "User.Read User.ReadWrite" to ["user.read", "user.readwrite"]
+     */
+    private String[] getScopes() {
+        return "user.read".split(" ");
+    }
+
+    /**
+     * Callback used for interactive request.
+     * If succeeds we use the access token to call the Microsoft Graph.
+     * Does not check cache.
+     */
+    private AuthenticationCallback getAuthInteractiveCallback() {
+        return new AuthenticationCallback() {
+
+            @Override
+            public void onSuccess(IAuthenticationResult authenticationResult) {
+                /* Successfully got a token, use it to call a protected resource - MSGraph */
+                Log.d(TAG, "Successfully authenticated");
+                Log.d(TAG, "ID Token: " + authenticationResult.getAccount().getClaims().get("id_token"));
+
+                /* Update account */
+                updateUI(authenticationResult.getAccount());
+
+                /* call graph */
+                //callGraphAPI(authenticationResult);
+            }
+
+            @Override
+            public void onError(MsalException exception) {
+                /* Failed to acquireToken */
+                Log.d(TAG, "Authentication failed: " + exception.toString());
+                displayError(exception);
+
+                if (exception instanceof MsalClientException) {
+                    /* Exception inside MSAL, more info inside MsalError.java */
+                } else if (exception instanceof MsalServiceException) {
+                    /* Exception when communicating with the STS, likely config issue */
+                }
+            }
+
+            @Override
+            public void onCancel() {
+                /* User canceled the authentication */
+                Log.d(TAG, "User cancelled login.");
+            }
+        };
+    }
+
+    private void performOperationOnSignOut() {
+        final String signOutText = "Signed Out.";
+        Toast.makeText(MainActivity.this, signOutText, Toast.LENGTH_SHORT)
+                .show();
+    }
+
+    public void signOut() {
+
+        if (mSingleAccountApp == null) {
+            System.out.println("account is null");
+            return;
         }
+
+        /**
+         * Removes the signed-in account and cached tokens from this app (or device, if the device is in shared mode).
+         */
+        mSingleAccountApp.signOut(new ISingleAccountPublicClientApplication.SignOutCallback() {
+            @Override
+            public void onSignOut() {
+                updateUI(null);
+                //nothing
+                System.out.println("reached here");
+                System.out.println("user has successfully logged out");
+            }
+
+            @Override
+            public void onError(@NonNull MsalException exception) {
+                displayError(exception);
+            }
+        });
     }
 
-    private void attachFragment(final Fragment fragment) {
-        getSupportFragmentManager()
-                .beginTransaction()
-                .setTransitionStyle(FragmentTransaction.TRANSIT_FRAGMENT_FADE)
-                .replace(mContentMain.getId(),fragment)
-                .commit();
-    }
 }
