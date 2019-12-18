@@ -4,11 +4,12 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/background_home"
     tools:context="com.example.findthetime.Homepage">
 
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/btn_create_activity"
         android:layout_width="347dp"
         android:layout_height="135dp"
         android:layout_marginStart="8dp"
@@ -20,10 +21,31 @@
         android:background="@drawable/custom_button"
         android:text="Create new activity"
         android:textColor="#FFFFFF"
-        android:textSize="30dp"
+        android:textSize="23sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.125" />
+        app:layout_constraintVertical_bias="0.013" />
+
+    <Button
+        android:id="@+id/btn_signOut"
+        android:layout_width="277dp"
+        android:layout_height="107dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginBottom="8dp"
+        android:background="@drawable/custom_button"
+        android:text="Sign out"
+        android:textColor="#FFFFFF"
+        android:textSize="23sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.299" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

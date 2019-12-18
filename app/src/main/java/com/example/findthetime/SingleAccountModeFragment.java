@@ -52,6 +52,7 @@ import com.microsoft.identity.client.exception.MsalException;
 import com.microsoft.identity.client.exception.MsalServiceException;
 import com.microsoft.identity.client.exception.MsalUiRequiredException;
 
+import org.json.JSONException;
 import org.json.JSONObject;
 
 /**
@@ -133,7 +134,6 @@ public class SingleAccountModeFragment extends Fragment {
                 }
 
                 mSingleAccountApp.signIn(getActivity(), null, getScopes(), getAuthInteractiveCallback());
-                openHomepage(v);
             }
             //
 
@@ -154,6 +154,8 @@ public class SingleAccountModeFragment extends Fragment {
                     public void onSignOut() {
                         updateUI(null);
                         performOperationOnSignOut();
+
+
                     }
 
                     @Override
@@ -195,13 +197,14 @@ public class SingleAccountModeFragment extends Fragment {
                  * you can perform acquireTokenSilent to obtain resources without interrupting the user.
                  */
                 mSingleAccountApp.acquireTokenSilentAsync(getScopes(), AUTHORITY, getAuthSilentCallback());
+
             }
         });
 
     }
 
-    public void openHomepage(View v){
-        Intent homePage = new Intent(v.getContext(), Homepage.class);
+    public void openHomepage(){
+        Intent homePage = new Intent(getContext(), Homepage.class);
         startActivity(homePage);
     }
 
@@ -237,6 +240,7 @@ public class SingleAccountModeFragment extends Fragment {
             public void onAccountLoaded(@Nullable IAccount activeAccount) {
                 // You can use the account data to update your UI or your app database.
                 updateUI(activeAccount);
+
             }
 
             @Override
@@ -330,7 +334,7 @@ public class SingleAccountModeFragment extends Fragment {
     /**
      * Make an HTTP request to obtain MSGraph data
      */
-    private void callGraphAPI(final IAuthenticationResult authenticationResult) {
+    private void callGraphAPI(final IAuthenticationResult authenticationResult)  {
         MSGraphRequestWrapper.callGraphAPIUsingVolley(
                 getContext(),
                 graphResourceTextView.getText().toString(),
@@ -341,6 +345,17 @@ public class SingleAccountModeFragment extends Fragment {
                         /* Successfully called graph, process data and send to UI */
                         Log.d(TAG, "Response: " + response.toString());
                         displayGraphResult(response);
+                        System.out.println(response);
+                        try {
+                            String name = response.getString("displayName");
+                            String email = response.getString("userPrincipalName");
+
+                            System.out.println(name);
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+
+
                     }
                 },
                 new Response.ErrorListener() {
@@ -380,11 +395,14 @@ public class SingleAccountModeFragment extends Fragment {
      */
     private void updateUI(@Nullable final IAccount account) {
         if (account != null) {
+            openHomepage();
             signInButton.setEnabled(false);
             signOutButton.setEnabled(true);
             callGraphApiInteractiveButton.setEnabled(true);
             callGraphApiSilentButton.setEnabled(true);
             currentUserTextView.setText(account.getUsername());
+
+            System.out.println("Account has been loaded");
         } else {
             signInButton.setEnabled(true);
             signOutButton.setEnabled(false);
@@ -402,5 +420,13 @@ public class SingleAccountModeFragment extends Fragment {
         currentUserTextView.setText("");
         Toast.makeText(getContext(), signOutText, Toast.LENGTH_SHORT)
                 .show();
+        logTextView.setText("Output goes here...");
     }
+
+    private void parseJson(){
+
+    }
+
+
+
 }
