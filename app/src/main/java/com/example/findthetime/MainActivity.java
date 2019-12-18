@@ -36,7 +36,7 @@ public class MainActivity extends AppCompatActivity {
     Button signInButton;
 
     /* Azure AD Variables */
-    public ISingleAccountPublicClientApplication mSingleAccountApp;
+    private ISingleAccountPublicClientApplication mSingleAccountApp;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,7 +56,9 @@ public class MainActivity extends AppCompatActivity {
                          * This requires "account_mode" : "SINGLE" in the config json file.
                          **/
                         mSingleAccountApp = application;
-                        loadAccount();
+                        System.out.println("loading account");
+                        //loadAccount();
+                        signOut();
                     }
 
                     @Override
@@ -76,8 +78,6 @@ public class MainActivity extends AppCompatActivity {
 
                 mSingleAccountApp.signIn(MainActivity.this, null, getScopes(), getAuthInteractiveCallback());
             }
-            //
-
 
         });
     }
@@ -126,6 +126,7 @@ public class MainActivity extends AppCompatActivity {
             System.out.println("Account has been loaded");
         } else {
             signInButton.setEnabled(true);
+
         }
     }
 
@@ -190,6 +191,32 @@ public class MainActivity extends AppCompatActivity {
         final String signOutText = "Signed Out.";
         Toast.makeText(MainActivity.this, signOutText, Toast.LENGTH_SHORT)
                 .show();
+    }
+
+    public void signOut() {
+
+        if (mSingleAccountApp == null) {
+            System.out.println("account is null");
+            return;
+        }
+
+        /**
+         * Removes the signed-in account and cached tokens from this app (or device, if the device is in shared mode).
+         */
+        mSingleAccountApp.signOut(new ISingleAccountPublicClientApplication.SignOutCallback() {
+            @Override
+            public void onSignOut() {
+                updateUI(null);
+                //nothing
+                System.out.println("reached here");
+                System.out.println("user has successfully logged out");
+            }
+
+            @Override
+            public void onError(@NonNull MsalException exception) {
+                displayError(exception);
+            }
+        });
     }
 
 }

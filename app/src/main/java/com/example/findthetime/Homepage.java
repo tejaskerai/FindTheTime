@@ -32,7 +32,22 @@ public class Homepage extends AppCompatActivity {
         // Use mSingleAccountApp.signOut() to sign the user out
         // You may also be required to redirect user back to the signin page manually
         // Call mSingleAccountApp.signOut() from a separate thread
-    
+
+        final MainActivity mainActivity = new MainActivity();
+        signOutButton.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                System.out.println("sign out clicked");
+
+
+
+                Intent login = new Intent(Homepage.this, MainActivity.class);
+                startActivity(login);
+
+            }
+            //
+
+        });
+
 
     }
 
