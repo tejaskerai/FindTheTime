@@ -13,6 +13,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
 import com.microsoft.identity.client.AuthenticationCallback;
 import com.microsoft.identity.client.IAccount;
 import com.microsoft.identity.client.IAuthenticationResult;
@@ -23,10 +25,19 @@ import com.microsoft.identity.client.exception.MsalClientException;
 import com.microsoft.identity.client.exception.MsalException;
 import com.microsoft.identity.client.exception.MsalServiceException;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import JSONService.CalendarJSON;
+
 public class MainActivity extends AppCompatActivity {
 
 
     private static final String TAG = MainActivity.class.getSimpleName();
+    public static final String NAME = "com.example.findthetime.NAME";
+    public static final String EMAIL = "com.example.findthetime.EMAIL";
+    CalendarJSON calendar = new CalendarJSON();
+
 
     /* Azure AD v2 Configs */
     final static String AUTHORITY = "https://login.microsoftonline.com/common";
@@ -77,6 +88,7 @@ public class MainActivity extends AppCompatActivity {
                 }
 
                 mSingleAccountApp.signIn(MainActivity.this, null, getScopes(), getAuthInteractiveCallback());
+
             }
 
         });
@@ -132,6 +144,9 @@ public class MainActivity extends AppCompatActivity {
 
     public void openHomepage(){
         Intent homePage = new Intent(MainActivity.this, Homepage.class);
+        System.out.println("Name:  " + calendar.getName());
+
+        //homePage.putExtra(NAME, "tejas");
         startActivity(homePage);
     }
 
@@ -159,11 +174,18 @@ public class MainActivity extends AppCompatActivity {
                 Log.d(TAG, "Successfully authenticated");
                 Log.d(TAG, "ID Token: " + authenticationResult.getAccount().getClaims().get("id_token"));
 
+                System.out.println("1 graph");
+                /* call graph */
+                callGraphAPI(authenticationResult);
+                
+
+                System.out.println("finish graph");
+                System.out.println("2 update");
                 /* Update account */
                 updateUI(authenticationResult.getAccount());
+                System.out.println("finish update");
 
-                /* call graph */
-                //callGraphAPI(authenticationResult);
+
             }
 
             @Override
@@ -218,5 +240,34 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
+
+    /**
+     * Make an HTTP request to obtain MSGraph data
+     */
+    private void callGraphAPI(final IAuthenticationResult authenticationResult)  {
+        MSGraphRequestWrapper.callGraphAPIUsingVolley(
+                MainActivity.this,
+//                graphResourceTextView.getText().toString()
+                "https://graph.microsoft.com/v1.0/me",
+                authenticationResult.getAccessToken(),
+                new Response.Listener<JSONObject>() {
+                    @Override
+                    public void onResponse(JSONObject response) {
+
+                        /* Successfully called graph, process data and send to UI */
+                        calendar.parseName(response);
+                        calendar.parseEmail(response);
+                        System.out.println("name from call: " + calendar.getName());
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        Log.d(TAG, "Error: " + error.toString());
+                        displayError(error);
+                    }
+                });
+    }
+
 
 }
