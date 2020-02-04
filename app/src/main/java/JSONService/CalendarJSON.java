@@ -1,53 +1,81 @@
 package JSONService;
 
+
 import androidx.annotation.NonNull;
 
+
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 public class CalendarJSON {
 
-    private static String name;
+    private static String subject;
 
-    public String getEmail() {
-        return email;
+    public String getSubject() {
+        return subject;
     }
 
-    public String getName() {
-        return name;
+    public String getStartTime() {
+        return startTime;
     }
 
-    private static String email;
-
-    public static void setName(String name) {
-        CalendarJSON.name = name;
+    public static void setStartTime(String startTime) {
+        CalendarJSON.startTime = startTime;
     }
 
-    public static void setEmail(String email) {
-        CalendarJSON.email = email;
+    private static String startTime;
+
+    public String getEndTime() {
+        return endTime;
     }
 
-    /**
-     * Parse JSON response from from calendar
-     */
-    public void parseName(@NonNull final JSONObject graphResponse) {
+    public static void setEndTime(String endTime) {
+        CalendarJSON.endTime = endTime;
+    }
+
+    private static String endTime;
+
+    public static void setSubject(String name) {
+        CalendarJSON.subject = subject;
+    }
+
+    public void parseSubject(@NonNull final JSONObject graphResponse) {
         try {
-            name = graphResponse.getString("displayName");
+            JSONArray obj_Value = graphResponse.getJSONArray("value");
+
+            JSONObject obj_ValueIndex = obj_Value.getJSONObject(1);
+            subject = obj_ValueIndex.getString("subject");
         } catch (JSONException e) {
             e.printStackTrace();
         }
-        setName(name);
+        setSubject(subject);
     }
 
-
-    public void parseEmail(@NonNull final JSONObject graphResponse) {
+    public void parseStart(@NonNull final JSONObject graphResponse) {
         try {
-            email = graphResponse.getString("userPrincipalName");
+            JSONArray obj_Value = graphResponse.getJSONArray("value");
+
+            JSONObject obj_ValueIndex = obj_Value.getJSONObject(1);
+            JSONObject obj_ValueStart = obj_ValueIndex.getJSONObject("start");
+            startTime = obj_ValueStart.getString("dateTime");
         } catch (JSONException e) {
             e.printStackTrace();
         }
-        setEmail(email);
+        setStartTime(startTime);
     }
 
+    public void parseEnd(@NonNull final JSONObject graphResponse) {
+        try {
+            JSONArray obj_Value = graphResponse.getJSONArray("value");
+
+            JSONObject obj_ValueIndex = obj_Value.getJSONObject(1);
+            JSONObject obj_ValueEnd = obj_ValueIndex.getJSONObject("end");
+            startTime = obj_ValueEnd.getString("dateTime");
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        setEndTime(endTime);
+    }
 
 }
