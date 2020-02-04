@@ -177,7 +177,7 @@ public class MainActivity extends AppCompatActivity {
                 System.out.println("1 graph");
                 /* call graph */
                 callGraphAPI(authenticationResult);
-                
+
 
                 System.out.println("finish graph");
                 System.out.println("2 update");
