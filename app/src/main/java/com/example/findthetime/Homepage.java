@@ -26,7 +26,6 @@ public class Homepage extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_homepage);
 
-
         signOutButton = findViewById(R.id.btn_signOut);
         // TODO: Add sign out function from main activity
         // Use mSingleAccountApp.signOut() to sign the user out

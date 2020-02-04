@@ -13,6 +13,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
+import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.microsoft.identity.client.AuthenticationCallback;
@@ -25,10 +26,14 @@ import com.microsoft.identity.client.exception.MsalClientException;
 import com.microsoft.identity.client.exception.MsalException;
 import com.microsoft.identity.client.exception.MsalServiceException;
 
-import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.net.HttpURLConnection;
+import java.net.URL;
+
 import JSONService.CalendarJSON;
+import JSONService.UserDetailJSON;
+
 
 public class MainActivity extends AppCompatActivity {
 
@@ -36,7 +41,8 @@ public class MainActivity extends AppCompatActivity {
     private static final String TAG = MainActivity.class.getSimpleName();
     public static final String NAME = "com.example.findthetime.NAME";
     public static final String EMAIL = "com.example.findthetime.EMAIL";
-    CalendarJSON calendar = new CalendarJSON();
+    UserDetailJSON userDetails = new UserDetailJSON();
+    CalendarJSON calendarDetails = new CalendarJSON();
 
 
     /* Azure AD v2 Configs */
@@ -51,7 +57,7 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        System.out.println("In main actvity");
+        System.out.println("In main activity");
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
         initializeUI();
@@ -144,10 +150,16 @@ public class MainActivity extends AppCompatActivity {
 
     public void openHomepage(){
         Intent homePage = new Intent(MainActivity.this, Homepage.class);
-        System.out.println("Name:  " + calendar.getName());
+        System.out.println("Name:  " + userDetails.getName());
 
         //homePage.putExtra(NAME, "tejas");
         startActivity(homePage);
+
+
+
+
+
+
     }
 
 
@@ -176,7 +188,8 @@ public class MainActivity extends AppCompatActivity {
 
                 System.out.println("1 graph");
                 /* call graph */
-                callGraphAPI(authenticationResult);
+                callGraphAPI(authenticationResult, "https://graph.microsoft.com/v1.0/me");
+                callGraphCalendarAPI(authenticationResult, "https://graph.microsoft.com/v1.0/me/events?$select=subject,organizer,start,end");
 
 
                 System.out.println("finish graph");
@@ -244,20 +257,49 @@ public class MainActivity extends AppCompatActivity {
     /**
      * Make an HTTP request to obtain MSGraph data
      */
-    private void callGraphAPI(final IAuthenticationResult authenticationResult)  {
+    private void callGraphAPI(final IAuthenticationResult authenticationResult, String url)  {
         MSGraphRequestWrapper.callGraphAPIUsingVolley(
                 MainActivity.this,
 //                graphResourceTextView.getText().toString()
-                "https://graph.microsoft.com/v1.0/me",
+                url,
                 authenticationResult.getAccessToken(),
                 new Response.Listener<JSONObject>() {
                     @Override
                     public void onResponse(JSONObject response) {
 
                         /* Successfully called graph, process data and send to UI */
-                        calendar.parseName(response);
-                        calendar.parseEmail(response);
-                        System.out.println("name from call: " + calendar.getName());
+                        userDetails.parseName(response);
+                        userDetails.parseEmail(response);
+                        System.out.println("name from call: " + userDetails.getName());
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        Log.d(TAG, "Error: " + error.toString());
+                        displayError(error);
+                    }
+                });
+    }
+
+
+    private void callGraphCalendarAPI(final IAuthenticationResult authenticationResult, String url)  {
+        MSGraphRequestWrapper.callGraphAPIUsingVolley(
+                MainActivity.this,
+//                graphResourceTextView.getText().toString()
+                url,
+                authenticationResult.getAccessToken(),
+                new Response.Listener<JSONObject>() {
+                    @Override
+                    public void onResponse(JSONObject response) {
+
+                        /* Successfully called graph, process data and send to UI */
+                        calendarDetails.parseSubject(response);
+                        calendarDetails.parseStart(response);
+                        calendarDetails.parseEnd(response);
+                        System.out.println("Subject: " + calendarDetails.getSubject());
+                        System.out.println("Start: " + calendarDetails.getStartTime());
+                        System.out.println("End: " + calendarDetails.getEndTime());
                     }
                 },
                 new Response.ErrorListener() {
