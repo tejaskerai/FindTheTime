@@ -13,9 +13,14 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
+import com.android.volley.AuthFailureError;
+import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.Volley;
+import com.google.gson.JsonObject;
 import com.microsoft.identity.client.AuthenticationCallback;
 import com.microsoft.identity.client.IAccount;
 import com.microsoft.identity.client.IAuthenticationResult;
@@ -26,10 +31,13 @@ import com.microsoft.identity.client.exception.MsalClientException;
 import com.microsoft.identity.client.exception.MsalException;
 import com.microsoft.identity.client.exception.MsalServiceException;
 
+import org.json.JSONArray;
+import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.net.HttpURLConnection;
-import java.net.URL;
+
+import java.util.HashMap;
+import java.util.Map;
 
 import JSONService.CalendarJSON;
 import JSONService.UserDetailJSON;
@@ -55,11 +63,15 @@ public class MainActivity extends AppCompatActivity {
     /* Azure AD Variables */
     private ISingleAccountPublicClientApplication mSingleAccountApp;
 
+
+    private RequestQueue mQueue;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         System.out.println("In main activity");
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+        mQueue = Volley.newRequestQueue(this);
         initializeUI();
 
         // Creates a PublicClientApplication object with res/raw/auth_config_single_account.json
@@ -155,9 +167,37 @@ public class MainActivity extends AppCompatActivity {
         //homePage.putExtra(NAME, "tejas");
         startActivity(homePage);
 
+        String url = "https://developers.zomato.com/api/v2.1/cuisines?lat=51.600941&lon=-0.285640";
+        JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, url, null,
+                new Response.Listener<JSONObject>() {
+                    @Override
+                    public void onResponse(JSONObject response) {
+                        try {
+                            JSONArray jsonArray = response.getJSONArray("cuisines");
+                            JSONObject obj = jsonArray.getJSONObject(1);
+                            JSONObject obj2 = obj.getJSONObject("cuisine_name");
+                            String cuisine = obj2.getString("cuisine_name");
+                            System.out.println(cuisine);
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                }, new Response.ErrorListener() {
 
-
-
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                error.printStackTrace();
+            }
+        }) {
+            @Override
+            public Map getHeaders() throws AuthFailureError {
+                HashMap headers = new HashMap();
+                headers.put("Content-Type", "application/json");
+                headers.put("Authorization", "dded01546e797abd601af8f21c95e218");
+                return headers;
+            }
+        };
+        mQueue.add(request);
 
 
     }
