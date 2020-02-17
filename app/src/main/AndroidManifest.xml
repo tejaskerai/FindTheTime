@@ -9,15 +9,19 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".RestaurantDetails"></activity>
+        <activity
+            android:name=".RestaurantDetails"
+            android:label="RestaurantDetails"
+            />
+        <activity android:name=".RestaurantList" />
         <activity
             android:name=".CreateRestaurantActivity"
             android:label="@string/title_activity_create_restaurant"
-            android:theme="@style/AppTheme.NoActionBar" />
+             />
         <activity
             android:name=".CreateNewActivity"
             android:label="@string/title_activity_create_new_activity"
-            android:theme="@style/AppTheme.NoActionBar" />
+             />
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
