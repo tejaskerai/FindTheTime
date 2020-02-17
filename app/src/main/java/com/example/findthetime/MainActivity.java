@@ -2,7 +2,6 @@ package com.example.findthetime;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 
@@ -14,17 +13,9 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
-import com.android.volley.AuthFailureError;
-import com.android.volley.Request;
-import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
-import com.android.volley.toolbox.JsonObjectRequest;
-import com.android.volley.toolbox.Volley;
 import com.backendless.Backendless;
-import com.backendless.async.callback.AsyncCallback;
-import com.backendless.exceptions.BackendlessFault;
-import com.google.gson.JsonObject;
 import com.microsoft.identity.client.AuthenticationCallback;
 import com.microsoft.identity.client.IAccount;
 import com.microsoft.identity.client.IAuthenticationResult;
@@ -35,15 +26,9 @@ import com.microsoft.identity.client.exception.MsalClientException;
 import com.microsoft.identity.client.exception.MsalException;
 import com.microsoft.identity.client.exception.MsalServiceException;
 
-import org.json.JSONArray;
-import org.json.JSONException;
 import org.json.JSONObject;
 
 
-import java.util.HashMap;
-import java.util.Map;
-
-import DataObjects.User;
 import JSONService.CalendarJSON;
 import JSONService.UserDetailJSON;
 import configurations.BackendlessConfig;
@@ -70,36 +55,37 @@ public class MainActivity extends AppCompatActivity {
     private ISingleAccountPublicClientApplication mSingleAccountApp;
 
 
-    private RequestQueue mQueue;
+    //private RequestQueue mQueue;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         System.out.println("In main activity");
 
         /// Backless Initialisation (move this away afterwards)
+
         Backendless.initApp(this, BackendlessConfig.APPLICATION_ID, BackendlessConfig.API_KEY);
 
-        User user = new User();
-        user.name = "mitch";
-        user.email = "boi@hotmail.com";
-//        Backendless.Data.of(User.class).save(user);
-        Backendless.Data.of( User.class ).save( user, new AsyncCallback<User>() {
-            public void handleResponse( User response )
-            {
-                // new Contact instance has been saved
-                System.out.println("User has been saved");
-            }
-
-            public void handleFault( BackendlessFault fault )
-            {
-                System.out.println("User could not be saved, see the error below");
-                System.out.println(fault.toString());
-                // an error has occurred, the error code can be retrieved with fault.getCode()
-            }});
+//        User user = new User();
+//        user.name = "mitch";
+//        user.email = "boi@hotmail.com";
+//
+//        Backendless.Data.of( User.class ).save( user, new AsyncCallback<User>() {
+//            public void handleResponse( User response )
+//            {
+//                // new Contact instance has been saved
+//                System.out.println("User has been saved");
+//            }
+//
+//            public void handleFault( BackendlessFault fault )
+//            {
+//                System.out.println("User could not be saved, see the error below");
+//                System.out.println(fault.toString());
+//                // an error has occurred, the error code can be retrieved with fault.getCode()
+//            }});
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-        mQueue = Volley.newRequestQueue(this);
+        //mQueue = Volley.newRequestQueue(this);
         initializeUI();
 
         // Creates a PublicClientApplication object with res/raw/auth_config_single_account.json
@@ -194,38 +180,12 @@ public class MainActivity extends AppCompatActivity {
 
         //homePage.putExtra(NAME, "tejas");
         startActivity(homePage);
-
-        String url = "https://developers.zomato.com/api/v2.1/cuisines?lat=51.600941&lon=-0.285640";
-        JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, url, null,
-                new Response.Listener<JSONObject>() {
-                    @Override
-                    public void onResponse(JSONObject response) {
-                        try {
-                            JSONArray jsonArray = response.getJSONArray("cuisines");
-                            JSONObject obj = jsonArray.getJSONObject(1);
-                            JSONObject obj2 = obj.getJSONObject("cuisine");
-                            String cuisine = obj2.getString("cuisine_name");
-                            System.out.println(cuisine);
-                        } catch (JSONException e) {
-                            e.printStackTrace();
-                        }
-                    }
-                }, new Response.ErrorListener() {
-
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                error.printStackTrace();
-            }
-        }) {
-            @Override
-            public Map getHeaders() throws AuthFailureError {
-                HashMap headers = new HashMap();
-                headers.put("Content-Type", "application/json");
-                headers.put("user-key", "dded01546e797abd601af8f21c95e218");
-                return headers;
-            }
-        };
-        mQueue.add(request);
+//
+//        ZomatoAPI zomatoAPI = new ZomatoAPI();
+//
+//        String url = "https://developers.zomato.com/api/v2.1/cuisines?lat=51.600941&lon=-0.285640";
+//
+//        MySingleton.getInstance(this).addToRequestQueue(zomatoAPI.getCuisine(url));
 
 
     }
