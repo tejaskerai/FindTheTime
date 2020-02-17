@@ -10,7 +10,19 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".MainActivity">
+            android:name=".RestaurantDetails"
+            android:label="RestaurantDetails"
+            />
+        <activity android:name=".RestaurantList" />
+        <activity
+            android:name=".CreateRestaurantActivity"
+            android:label="@string/title_activity_create_restaurant"
+             />
+        <activity
+            android:name=".CreateNewActivity"
+            android:label="@string/title_activity_create_new_activity"
+             />
+        <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -21,9 +33,7 @@
         <activity
             android:name=".MainActivity1"
             android:label="@string/app_name"
-            android:theme="@style/AppTheme.NoActionBar">
-
-        </activity> <!-- Intent filter to catch Microsoft's callback after Sign In -->
+            android:theme="@style/AppTheme.NoActionBar" /> <!-- Intent filter to catch Microsoft's callback after Sign In -->
         <activity android:name="com.microsoft.identity.client.BrowserTabActivity">
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />

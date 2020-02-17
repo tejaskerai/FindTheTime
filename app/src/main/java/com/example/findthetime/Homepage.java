@@ -18,7 +18,12 @@ import com.microsoft.identity.client.exception.MsalException;
 public class Homepage extends AppCompatActivity {
 
     private ISingleAccountPublicClientApplication mSingleAccountApp;
+
+
+    /* UI & Debugging Variables */
     Button signOutButton;
+    Button createActivity;
+
 
 
     @Override
@@ -26,29 +31,38 @@ public class Homepage extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_homepage);
 
-
         signOutButton = findViewById(R.id.btn_signOut);
         // TODO: Add sign out function from main activity
         // Use mSingleAccountApp.signOut() to sign the user out
         // You may also be required to redirect user back to the signin page manually
         // Call mSingleAccountApp.signOut() from a separate thread
 
-        final MainActivity mainActivity = new MainActivity();
+        initializeUI();
+
+
+    }
+
+    private void initializeUI(){
+        createActivity = findViewById(R.id.btn_create_activity);
+        createActivity.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Intent newActivity = new Intent(Homepage.this, CreateNewActivity.class);
+                startActivity(newActivity);
+            }
+        });
+
+
         signOutButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 System.out.println("sign out clicked");
-
-
 
                 Intent login = new Intent(Homepage.this, MainActivity.class);
                 startActivity(login);
 
             }
-            //
-
         });
-
-
     }
 
     /**
