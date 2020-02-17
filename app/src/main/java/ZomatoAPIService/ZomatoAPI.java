@@ -9,7 +9,14 @@ import com.android.volley.toolbox.JsonObjectRequest;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+import org.json.JSONTokener;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -22,15 +29,6 @@ public class ZomatoAPI {
 
     // static variable single_instance of type Singleton
     private static ZomatoAPI single_instance = null;
-
-    // static method to create instance of Singleton class
-    public static ZomatoAPI getInstance()
-    {
-        if (single_instance == null)
-            single_instance = new ZomatoAPI();
-
-        return single_instance;
-    }
 
 
     private String apiKey = "dded01546e797abd601af8f21c95e218";
@@ -130,43 +128,100 @@ public class ZomatoAPI {
 //    }
 
 
-    public JsonObjectRequest getRestaurants(String id, final String url){
-        final List<Restaurant> restaurants = new ArrayList<Restaurant>();
-        JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, url, null,
-                new Response.Listener<JSONObject>() {
-                    @Override
-                    public void onResponse(JSONObject object) {
-                            try {
-                                JSONArray restaurantsJson = object.getJSONArray("restaurants");
-                                for (int i=0; i<restaurantsJson.length(); i++){
+    public List<Restaurant> getRestaurants(String id, final String url){
+        JSONArray restaurants = MakeRequest(url);
+        List<Restaurant> restaurantList = new ArrayList<Restaurant>();
 
-                                    JSONObject element = restaurantsJson.getJSONObject(i);
-                                    JSONObject restaurantJson = element.getJSONObject("restaurant");
-                                    restaurants.add(new Restaurant(restaurantJson.getString("name"),
-                                            restaurantJson.getString("url"),
-                                            restaurantJson.getString("timings"),
-                                            restaurantJson.getString("phone_numbers"),
-                                            restaurantJson.getJSONObject("location").getString("address")));
-                                }
-                            } catch (JSONException e) {
-                                e.printStackTrace();
-                            }
-                        }
-                }, new Response.ErrorListener() {
+        try {
+            for (int i=0; i<restaurants.length(); i++){
 
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                error.printStackTrace();
+                JSONObject element = restaurants.getJSONObject(i);
+                JSONObject restaurantJson = element.getJSONObject("restaurant");
+                restaurantList.add(new Restaurant(restaurantJson.getString("name"),
+                        restaurantJson.getString("url"),
+                        restaurantJson.getString("timings"),
+                        restaurantJson.getString("phone_numbers"),
+                        restaurantJson.getJSONObject("location").getString("address")));
             }
-        }) {
-            @Override
-            public Map getHeaders() throws AuthFailureError {
-                HashMap headers = new HashMap();
-                headers.put("Content-Type", "application/json");
-                headers.put("user-key", apiKey);
-                return headers;
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        return restaurantList;
+
+//        final List<Restaurant> restaurants = new ArrayList<Restaurant>();
+//        JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, url, null,
+//                new Response.Listener<JSONObject>() {
+//                    @Override
+//                    public void onResponse(JSONObject object) {
+//                            try {
+//                                JSONArray restaurantsJson = object.getJSONArray("restaurants");
+//                                for (int i=0; i<restaurantsJson.length(); i++){
+//
+//                                    JSONObject element = restaurantsJson.getJSONObject(i);
+//                                    JSONObject restaurantJson = element.getJSONObject("restaurant");
+//                                    restaurants.add(new Restaurant(restaurantJson.getString("name"),
+//                                            restaurantJson.getString("url"),
+//                                            restaurantJson.getString("timings"),
+//                                            restaurantJson.getString("phone_numbers"),
+//                                            restaurantJson.getJSONObject("location").getString("address")));
+//                                }
+//                            } catch (JSONException e) {
+//                                e.printStackTrace();
+//                            }
+//                        }
+//                }, new Response.ErrorListener() {
+//
+//            @Override
+//            public void onErrorResponse(VolleyError error) {
+//                error.printStackTrace();
+//            }
+//        }) {
+//            @Override
+//            public Map getHeaders() throws AuthFailureError {
+//                HashMap headers = new HashMap();
+//                headers.put("Content-Type", "application/json");
+//                headers.put("user-key", apiKey);
+//                return headers;
+//            }
+//        };
+//        return request;
+    }
+
+    private JSONArray MakeRequest(String url) {
+        HttpURLConnection urlConnection = null;
+        URL url1 = null;
+        JSONArray object = null;
+        InputStream inStream = null;
+        try {
+            url1 = new URL(url.toString());
+            urlConnection = (HttpURLConnection) url1.openConnection();
+            urlConnection.setRequestMethod("GET");
+            urlConnection.setDoOutput(true);
+            urlConnection.setRequestProperty("Content-Type", "application/json");
+            urlConnection.setRequestProperty("user-key", apiKey);
+            urlConnection.setDoInput(true);
+            urlConnection.connect();
+            inStream = urlConnection.getInputStream();
+            BufferedReader bReader = new BufferedReader(new InputStreamReader(inStream));
+            String temp, response = "";
+            while ((temp = bReader.readLine()) != null) {
+                response += temp;
             }
-        };
-        return request;
+            object = (JSONArray) new JSONTokener(response).nextValue();
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            if (inStream != null) {
+                try {
+                    // this will close the bReader as well
+                    inStream.close();
+                } catch (IOException ignored) {
+                }
+            }
+            if (urlConnection != null) {
+                urlConnection.disconnect();
+            }
+        }
+        return object;
     }
 }

@@ -1,46 +1,31 @@
 package com.example.findthetime;
 
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.os.Bundle;
 
-import com.android.volley.AuthFailureError;
-import com.android.volley.Request;
-import com.android.volley.RequestQueue;
-import com.android.volley.Response;
-import com.android.volley.VolleyError;
-import com.android.volley.toolbox.JsonObjectRequest;
-import com.android.volley.toolbox.Volley;
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.google.android.material.snackbar.Snackbar;
-
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
 
 import android.view.View;
 import android.widget.Button;
 
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
+import java.net.MalformedURLException;
+import java.net.URL;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.concurrent.ExecutionException;
 
-import java.sql.SQLOutput;
-import java.util.HashMap;
-import java.util.Map;
-
-import ZomatoAPIService.ZomatoAPI;
+import JSONService.ZomatoService;
+import Requests.ZomatoAPIRequest;
+import Models.Domain.Restaurant;
 
 public class CreateRestaurantActivity extends AppCompatActivity {
 
 
-    public String restName;
-    public String timings;
-    public String phoneNumbers;
-    public String urlVal;
-    public String address;
 
-    /* Location details*/
-    String lat = "51.600941";
-    String lon = "-0.285640";
+    public static final String id = "id";
+
+
 
     /* UI & Debugging Variables */
     Button italian;
@@ -53,6 +38,7 @@ public class CreateRestaurantActivity extends AppCompatActivity {
     Button greek;
     Button french;
     Button streetFood;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -70,34 +56,152 @@ public class CreateRestaurantActivity extends AppCompatActivity {
         italian.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                //List<Restaurant> restaurantList = zomatoService.getRestaurants(55, lat, lon);
+                //printRest(restaurantList);
 
-                ZomatoAPI zomatoAPI = new ZomatoAPI();
+                Intent intent = new Intent(CreateRestaurantActivity.this, RestaurantList.class);
 
-                String italianRestId = "55";
-
-                String url = "https://developers.zomato.com/api/v2.1/search?entity_type=zone&lat=" + lat + "&lon=" + lon + "&cuisines=" + italianRestId + "&sort=real_distance";
-
-                MySingleton.getInstance(CreateRestaurantActivity.this).addToRequestQueue(zomatoAPI.getRestaurants(italianRestId, url));
-
-
+                int number = 55;
+                intent.putExtra("id", number);
+                startActivity(intent);
 
 
-                System.out.println("From create activity: " + restName);
 
-                Intent italianRest = new Intent(CreateRestaurantActivity.this, RestaurantDetails.class);
+            }
+        });
 
-                italianRest.putExtra("restName", restName);
-                italianRest.putExtra("urlVal", urlVal);
-                italianRest.putExtra("phoneNumbers", phoneNumbers);
-                italianRest.putExtra("timings", timings);
-                italianRest.putExtra("address", address);
+        chinese = findViewById(R.id.btn_chinese);
+        chinese.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
 
-                startActivity(italianRest);
+                Intent intent = new Intent(CreateRestaurantActivity.this, RestaurantList.class);
 
+                int number = 25;
+                intent.putExtra("id", number);
+                startActivity(intent);
+            }
+        });
+        
+
+        mexican = findViewById(R.id.btn_mexican);
+        mexican.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+//                List<Restaurant> restaurantList = zomatoService.getRestaurants(73, lat, lon);
+//                printRest(restaurantList);
+
+                Intent intent = new Intent(CreateRestaurantActivity.this, RestaurantList.class);
+
+                int number = 73;
+                intent.putExtra("id", number);
+                startActivity(intent);
+            }
+        });
+
+        american = findViewById(R.id.btn_american);
+        american.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                
+                Intent intent = new Intent(CreateRestaurantActivity.this, RestaurantList.class);
+
+                int number = 1;
+                intent.putExtra("id", number);
+                startActivity(intent);
+            }
+        });
+
+
+        japanese = findViewById(R.id.btn_japanese);
+        japanese.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+               
+                Intent intent = new Intent(CreateRestaurantActivity.this, RestaurantList.class);
+
+                int number = 25;
+                intent.putExtra("id", number);
+                startActivity(intent);
+            }
+        });
+
+        indian = findViewById(R.id.btn_indian);
+        indian.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+               
+                Intent intent = new Intent(CreateRestaurantActivity.this, RestaurantList.class);
+
+                int number = 148;
+                intent.putExtra("id", number);
+                startActivity(intent);
+            }
+        });
+
+        breakfast = findViewById(R.id.btn_breakfast);
+        breakfast.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+               
+                Intent intent = new Intent(CreateRestaurantActivity.this, RestaurantList.class);
+
+                int number = 182;
+                intent.putExtra("id", number);
+                startActivity(intent);
+            }
+        });
+
+        greek = findViewById(R.id.btn_greek);
+        greek.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                
+                Intent intent = new Intent(CreateRestaurantActivity.this, RestaurantList.class);
+
+                int number = 156;
+                intent.putExtra("id", number);
+                startActivity(intent);
+            }
+        });
+
+        french = findViewById(R.id.btn_french);
+        french.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+              
+                Intent intent = new Intent(CreateRestaurantActivity.this, RestaurantList.class);
+
+                int number = 45;
+                intent.putExtra("id", number);
+                startActivity(intent);
+            }
+        });
+
+        streetFood = findViewById(R.id.btn_street_food);
+        streetFood.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                
+                Intent intent = new Intent(CreateRestaurantActivity.this, RestaurantList.class);
+
+                int number = 90;
+                intent.putExtra("id", number);
+                startActivity(intent);
             }
         });
 
 
     }
+
+    private void printRest(List<Restaurant> restaurants) {
+        for (int i = 0; i < restaurants.size(); i++) {
+            System.out.println(restaurants.get(i).getName());
+            System.out.println(restaurants.get(i).getAddress());
+            System.out.println(restaurants.get(i).getPhoneNumbers());
+            System.out.println(restaurants.get(i).getTimings());
+        }
+    }
+
 
 }

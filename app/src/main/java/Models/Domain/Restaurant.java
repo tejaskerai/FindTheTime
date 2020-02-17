@@ -13,6 +13,27 @@ public class Restaurant {
     String name;
     String url;
     String timings;
+
+    public String getName() {
+        return name;
+    }
+
+    public String getUrl() {
+        return url;
+    }
+
+    public String getTimings() {
+        return timings;
+    }
+
+    public String getPhoneNumbers() {
+        return phoneNumbers;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
     String phoneNumbers;
     String address;
 
