@@ -2,7 +2,6 @@ package Requests;
 
 import android.os.AsyncTask;
 
-import com.google.gson.JsonObject;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -21,6 +20,8 @@ import java.util.List;
 import Models.Domain.Restaurant;
 
 public class ZomatoAPIRequest extends AsyncTask<URL, Long, List<Restaurant>> {
+
+
     @Override
     protected List<Restaurant> doInBackground(URL... urls) {
         HttpURLConnection urlConnection = null;
