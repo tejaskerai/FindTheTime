@@ -15,6 +15,10 @@ import com.microsoft.identity.client.ISingleAccountPublicClientApplication;
 import com.microsoft.identity.client.PublicClientApplication;
 import com.microsoft.identity.client.exception.MsalException;
 
+import java.util.List;
+
+import JSONService.OpenCageService;
+
 public class Homepage extends AppCompatActivity {
 
     private ISingleAccountPublicClientApplication mSingleAccountApp;
@@ -36,6 +40,12 @@ public class Homepage extends AppCompatActivity {
         // Use mSingleAccountApp.signOut() to sign the user out
         // You may also be required to redirect user back to the signin page manually
         // Call mSingleAccountApp.signOut() from a separate thread
+
+
+        OpenCageService openCageService = new OpenCageService();
+        List<Double> longLat = openCageService.getLongLat("ha86ds");
+        System.out.println("lat and lon: " + longLat);
+
 
         initializeUI();
 

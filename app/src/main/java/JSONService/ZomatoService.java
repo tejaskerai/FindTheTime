@@ -28,9 +28,9 @@ public class ZomatoService {
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-        for (int i = 0; i < restaurantList.size(); i++) {
-            System.out.println(restaurantList.get(i).getName());
-        }
+//        for (int i = 0; i < restaurantList.size(); i++) {
+//            System.out.println(restaurantList.get(i).getName());
+//        }
         return restaurantList;
     }
 }
