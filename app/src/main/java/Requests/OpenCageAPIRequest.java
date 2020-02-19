@@ -17,9 +17,10 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 
+import Models.Domain.Location;
 import Models.Domain.Restaurant;
 
-public class OpenCageAPIRequest extends AsyncTask<URL, Long, List<Double>> {
+public class OpenCageAPIRequest extends AsyncTask<URL, Long, List<Location>> {
 
     private static HttpURLConnection connection;
 
@@ -28,7 +29,7 @@ public class OpenCageAPIRequest extends AsyncTask<URL, Long, List<Double>> {
     StringBuffer responseContent = new StringBuffer();
 
     @Override
-    protected List<Double> doInBackground(URL... urls) {
+    protected List<Location> doInBackground(URL... urls) {
 
         URL url = null;
 
@@ -71,7 +72,7 @@ public class OpenCageAPIRequest extends AsyncTask<URL, Long, List<Double>> {
             e.printStackTrace();
         }
 
-        List<Double> longLat = getLongLat(object);
+        List<Location> longLat = getLongLat(object);
 
 
        // List<Restaurant> restaurantList = getRestaurants(array);
@@ -79,7 +80,7 @@ public class OpenCageAPIRequest extends AsyncTask<URL, Long, List<Double>> {
         return longLat;
     }
 
-    private List<Double> getLongLat(JSONObject object) {
+    private List<Location> getLongLat(JSONObject object) {
 
 
         JSONArray resultsArr = null;
@@ -91,7 +92,7 @@ public class OpenCageAPIRequest extends AsyncTask<URL, Long, List<Double>> {
 
         //for (int i = 0; i < restaurants.length(); i++) {
 
-        List<Double> longLat = new ArrayList<Double>();
+        List<Location> longLat = new ArrayList<Location>();
 
         try {
 
@@ -100,12 +101,7 @@ public class OpenCageAPIRequest extends AsyncTask<URL, Long, List<Double>> {
             Double lon = geometry.getDouble("lng");
             Double lat = geometry.getDouble("lat");
 
-
-            longLat.add(lon);
-            longLat.add(lat);
-
-            System.out.println("lat: " + lat );
-            System.out.println("long: " + lon);
+            longLat.add(new Location(lon,lat));
 
 
         } catch (JSONException e) {

@@ -6,11 +6,21 @@ import android.os.Bundle;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
+import android.widget.Toast;
+
+import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
+import JSONService.OpenCageService;
+import Models.Domain.Location;
 
 
 public class CreateNewActivity extends AppCompatActivity {
@@ -28,20 +38,76 @@ public class CreateNewActivity extends AppCompatActivity {
         initializeUI();
 
 
+
     }
 
     private void initializeUI(){
+
         createRestaurantActivity = findViewById(R.id.btn_restaurant_activity);
         createRestaurantActivity.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
-                Intent restaurantActivity = new Intent(CreateNewActivity.this, CreateRestaurantActivity.class);
-                startActivity(restaurantActivity);
+                AlertDialog.Builder mbuilder = new AlertDialog.Builder(CreateNewActivity.this);
+                View mView = getLayoutInflater().inflate(R.layout.dialog_postcode, null);
+                final EditText mPostcode = (EditText) mView.findViewById(R.id.postcode);
+                Button mDone = (Button) mView.findViewById(R.id.btn_done);
+                mDone.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        if((!mPostcode.getText().toString().isEmpty()) && (postcodeChecker(mPostcode.getText().toString()))){
+                            Toast.makeText(CreateNewActivity.this,
+                                    "successful",
+                                    Toast.LENGTH_SHORT).show();
+
+                            String normalisedPC = mPostcode.getText().toString().replaceAll("\\s", "").toLowerCase();
+
+                            Location location = (Location) getApplicationContext();
+
+
+                            OpenCageService openCageService = new OpenCageService();
+                            List<Location> longLat = openCageService.getLongLat(normalisedPC);
+
+                            Double lat = longLat.get(0).getLat();
+                            Double lon = longLat.get(0).getLon();
+
+                            location.setLat(lat);
+                            location.setLon(lon);
+
+                            Intent restaurantActivity = new Intent(CreateNewActivity.this, CreateRestaurantActivity.class);
+                            startActivity(restaurantActivity);
+
+                        }else{
+                            Toast.makeText(CreateNewActivity.this,
+                                    "Postcode is empty or is invalid",
+                                    Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                });
+                mbuilder.setView(mView);
+                AlertDialog dialog = mbuilder.create();
+                dialog.show();
+
             }
         });
 
+    }
 
+    public boolean postcodeChecker(String postcode){
+
+        String normalisedPC = postcode.replaceAll("\\s", "").toLowerCase();
+        //System.out.println("Normalised PC: " + normalisedPC);
+
+
+        String regex = "^[a-z]{1,2}[0-9R][0-9a-z]?[0-9][abd-hjlnp-uw-z]{2}$";
+
+
+
+        Pattern pattern = Pattern.compile(regex);
+
+        Matcher matcher = pattern.matcher(normalisedPC);
+        //System.out.println(matcher.matches());
+        return matcher.matches();
     }
 
 }

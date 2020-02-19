@@ -15,6 +15,7 @@ import java.net.URL;
 import java.util.List;
 import java.util.concurrent.ExecutionException;
 
+import Models.Domain.Location;
 import Requests.OpenCageAPIRequest;
 
 public class OpenCageService {
@@ -22,7 +23,7 @@ public class OpenCageService {
     private String apiKey = "e877f67eae5f42bb829f22a90ab730b3";
 
 
-    public List<Double> getLongLat(String placename) {
+    public List<Location> getLongLat(String placename) {
         //String url = "https://api.opencagedata.com/geocode/v1/json?q=" + placename + "&key=" + apiKey;
         //URL url1 = null;
 
@@ -36,8 +37,8 @@ public class OpenCageService {
             e.printStackTrace();
         }
 
-        AsyncTask<URL, Long, List<Double>> result = new OpenCageAPIRequest().execute(url);
-        List<Double> longLat = null;
+        AsyncTask<URL, Long, List<Location>> result = new OpenCageAPIRequest().execute(url);
+        List<Location> longLat = null;
 
         try {
             longLat = result.get();
@@ -46,9 +47,7 @@ public class OpenCageService {
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-
         return longLat;
-
     }
 
 }

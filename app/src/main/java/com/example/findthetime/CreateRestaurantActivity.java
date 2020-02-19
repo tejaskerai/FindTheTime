@@ -65,8 +65,6 @@ public class CreateRestaurantActivity extends AppCompatActivity {
                 intent.putExtra("id", number);
                 startActivity(intent);
 
-
-
             }
         });
 
