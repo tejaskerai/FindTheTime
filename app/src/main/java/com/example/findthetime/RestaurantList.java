@@ -11,7 +11,9 @@ import android.widget.LinearLayout;
 
 import java.util.List;
 
+import JSONService.OpenCageService;
 import JSONService.ZomatoService;
+import Models.Domain.Location;
 import Models.Domain.Restaurant;
 
 public class RestaurantList extends AppCompatActivity {
@@ -29,10 +31,18 @@ public class RestaurantList extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_restaurant_list);
 
-
         int cuisineId = getIntent().getIntExtra("id", 0);
+
+
+        Location location = (Location) getApplicationContext();
+
+        String lat = location.getLat().toString();
+        String lon = location.getLon().toString();
+
         ZomatoService zomatoService = new ZomatoService();
+
         List<Restaurant> restaurants = zomatoService.getRestaurants(cuisineId, lat, lon);
+
 
 
         initializeUI(restaurants);

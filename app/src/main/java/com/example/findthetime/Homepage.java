@@ -42,11 +42,6 @@ public class Homepage extends AppCompatActivity {
         // Call mSingleAccountApp.signOut() from a separate thread
 
 
-        OpenCageService openCageService = new OpenCageService();
-        List<Double> longLat = openCageService.getLongLat("ha86ds");
-        System.out.println("lat and lon: " + longLat);
-
-
         initializeUI();
 
 
