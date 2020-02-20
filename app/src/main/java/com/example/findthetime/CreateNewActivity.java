@@ -15,12 +15,19 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import JSONService.MovieJSON;
 import JSONService.OpenCageService;
 import Models.Domain.Location;
+import Models.Domain.Movie;
 
 
 public class CreateNewActivity extends AppCompatActivity {
@@ -64,7 +71,6 @@ public class CreateNewActivity extends AppCompatActivity {
 
                             Location location = (Location) getApplicationContext();
 
-
                             OpenCageService openCageService = new OpenCageService();
                             List<Location> longLat = openCageService.getLongLat(normalisedPC);
 
@@ -90,6 +96,21 @@ public class CreateNewActivity extends AppCompatActivity {
 
             }
         });
+
+        createMovieActivity = findViewById(R.id.btn_movie_activity);
+        createMovieActivity.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+
+
+                Intent movies = new Intent(CreateNewActivity.this, CreateMovieActivity.class);
+//                int number = 55;
+//                movies.putExtra("id", number);
+                startActivity(movies);
+            }
+        });
+
 
     }
 

@@ -1,0 +1,93 @@
+{
+  "film_id": 285242,
+  "imdb_id": 8579674,
+  "film_name": "1917 ",
+  "cinemas": [
+    {
+      "cinema_id": 8938,
+      "cinema_name": "Vue - Harrow",
+      "address": "St George's Shopping & Leisure Centre",
+      "address2": "St Anne's Road",
+      "city": "Harrow",
+      "county": "Greater London",
+      "postcode": "HA1 1HS",
+      "lat": 51.581509,
+      "lng": -0.33804,
+      "distance": 2.6197076210827,
+      "logo_url": "https://assets.movieglu.com/chain_logos/uk/UK-712-sq.jpg",
+      "date": "2020-02-21",
+      "time": "19:25"
+    },
+    {
+      "cinema_id": 9489,
+      "cinema_name": "Reel Cinemas - Borehamwood",
+      "address": "Metropolis Centre",
+      "address2": "84 Shenley Road",
+      "city": "Borehamwood",
+      "county": "Hertfordshire",
+      "postcode": "WD6 1EH",
+      "lat": 51.655491,
+      "lng": -0.27525,
+      "distance": 3.7955195868926,
+      "logo_url": "https://assets.movieglu.com/chain_logos/uk/UK-1260-sq.jpg",
+      "date": "2020-02-19",
+      "time": "20:15"
+    },
+    {
+      "cinema_id": 8927,
+      "cinema_name": "Vue - North Finchley",
+      "address": "Great North Leisure Park",
+      "address2": "Chaplin Square - Finchley",
+      "city": "London",
+      "county": "Greater London",
+      "postcode": "N12 0GL",
+      "lat": 51.603889,
+      "lng": -0.17328,
+      "distance": 4.8265148131482,
+      "logo_url": "https://assets.movieglu.com/chain_logos/uk/UK-712-sq.jpg",
+      "date": "2020-02-19",
+      "time": "16:55"
+    },
+    {
+      "cinema_id": 8919,
+      "cinema_name": "Vue - Acton",
+      "address": "Royale Leisure Park, Kendal Avenue",
+      "address2": "Park Royal South",
+      "city": "London",
+      "county": "Greater London",
+      "postcode": "W3 0PA",
+      "lat": 51.525768,
+      "lng": -0.28097,
+      "distance": 5.1981253948946,
+      "logo_url": "https://assets.movieglu.com/chain_logos/uk/UK-712-sq.jpg",
+      "date": "2020-02-19",
+      "time": "17:30"
+    },
+    {
+      "cinema_id": 8802,
+      "cinema_name": "Everyman Barnet",
+      "address": "Great North Road",
+      "address2": "",
+      "city": "Barnet",
+      "county": "Hertfordshire",
+      "postcode": "EN5 1AB",
+      "lat": 51.6465,
+      "lng": -0.18767,
+      "distance": 5.2509206957999,
+      "logo_url": "https://assets.movieglu.com/chain_logos/uk/UK-1077-sq.jpg",
+      "date": "2020-02-19",
+      "time": "16:30"
+    }
+  ],
+  "status": {
+    "count": 5,
+    "state": "OK",
+    "method": "closestShowing",
+    "message": null,
+    "request_method": "GET",
+    "version": "TEJA_0v200",
+    "territory": "UK",
+    "device_datetime_sent": "2020-02-18T08:30:17.360Z",
+    "device_datetime_used": "2020-02-18 08:30:17"
+  }
+}
