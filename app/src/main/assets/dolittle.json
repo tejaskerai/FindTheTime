@@ -1,0 +1,93 @@
+{
+  "film_id": 248984,
+  "imdb_id": 6673612,
+  "film_name": "Dolittle",
+  "cinemas": [
+    {
+      "cinema_id": 8938,
+      "cinema_name": "Vue - Harrow",
+      "address": "St George's Shopping & Leisure Centre",
+      "address2": "St Anne's Road",
+      "city": "Harrow",
+      "county": "Greater London",
+      "postcode": "HA1 1HS",
+      "lat": 51.581509,
+      "lng": -0.33804,
+      "distance": 2.6197076210827,
+      "logo_url": "https://assets.movieglu.com/chain_logos/uk/UK-712-sq.jpg",
+      "date": "2020-02-19",
+      "time": "13:40"
+    },
+    {
+      "cinema_id": 37270,
+      "cinema_name": "Cineworld Cinema - Wembley",
+      "address": "107 London Designer Outlet",
+      "address2": "Wembley Park Boulevard",
+      "city": "Wembley",
+      "county": "Greater London",
+      "postcode": "HA9 0FD",
+      "lat": 51.556049,
+      "lng": -0.28323,
+      "distance": 3.1036305726377,
+      "logo_url": "https://assets.movieglu.com/chain_logos/uk/UK-868-sq.jpg",
+      "date": "2020-02-19",
+      "time": "10:40"
+    },
+    {
+      "cinema_id": 9489,
+      "cinema_name": "Reel Cinemas - Borehamwood",
+      "address": "Metropolis Centre",
+      "address2": "84 Shenley Road",
+      "city": "Borehamwood",
+      "county": "Hertfordshire",
+      "postcode": "WD6 1EH",
+      "lat": 51.655491,
+      "lng": -0.27525,
+      "distance": 3.7955195868926,
+      "logo_url": "https://assets.movieglu.com/chain_logos/uk/UK-1260-sq.jpg",
+      "date": "2020-02-19",
+      "time": "13:00"
+    },
+    {
+      "cinema_id": 8927,
+      "cinema_name": "Vue - North Finchley",
+      "address": "Great North Leisure Park",
+      "address2": "Chaplin Square - Finchley",
+      "city": "London",
+      "county": "Greater London",
+      "postcode": "N12 0GL",
+      "lat": 51.603889,
+      "lng": -0.17328,
+      "distance": 4.8265148131482,
+      "logo_url": "https://assets.movieglu.com/chain_logos/uk/UK-712-sq.jpg",
+      "date": "2020-02-19",
+      "time": "11:45"
+    },
+    {
+      "cinema_id": 12336,
+      "cinema_name": "The Lexi Cinema",
+      "address": "194b Chamberlayne Road",
+      "address2": "",
+      "city": "London",
+      "county": "Greater London",
+      "postcode": "NW10 3JU",
+      "lat": 51.537628,
+      "lng": -0.22248,
+      "distance": 5.1475248116315,
+      "logo_url": "https://assets.movieglu.com/chain_logos/uk/UK-0-sq.jpg",
+      "date": "2020-02-19",
+      "time": "15:00"
+    }
+  ],
+  "status": {
+    "count": 5,
+    "state": "OK",
+    "method": "closestShowing",
+    "message": null,
+    "request_method": "GET",
+    "version": "TEJA_0v200",
+    "territory": "UK",
+    "device_datetime_sent": "2020-02-18T08:30:17.360Z",
+    "device_datetime_used": "2020-02-18 08:30:17"
+  }
+}

@@ -43,17 +43,14 @@ public class RestaurantList extends AppCompatActivity {
 
         List<Restaurant> restaurants = zomatoService.getRestaurants(cuisineId, lat, lon);
 
-
-
         initializeUI(restaurants);
 //        for (int i = 0; i < restaurants.size(); i++) {
 //            System.out.println(restaurants.get(i).getName());
-//            System.out.println(restaurants.get(i).getAddress());
-//            System.out.println(restaurants.get(i).getPhoneNumbers());
-//            System.out.println(restaurants.get(i).getTimings());
-//            System.out.println(restaurants.get(i).getUrl());
+////            System.out.println(restaurants.get(i).getAddress());
+////            System.out.println(restaurants.get(i).getPhoneNumbers());
+////            System.out.println(restaurants.get(i).getTimings());
+////            System.out.println(restaurants.get(i).getUrl());
 //        }
-
     }
 
 
