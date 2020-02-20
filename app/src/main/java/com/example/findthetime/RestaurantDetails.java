@@ -13,13 +13,16 @@ import android.view.View;
 import java.util.List;
 
 import JSONService.ZomatoService;
+import Models.Domain.Location;
 import Models.Domain.Restaurant;
 
 public class RestaurantDetails extends AppCompatActivity {
 
-    /* Location details*/
-    String lat = "51.600941";
-    String lon = "-0.285640";
+
+    Location location = (Location) getApplicationContext();
+
+    String lat = location.getLat().toString();
+    String lon = location.getLon().toString();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
