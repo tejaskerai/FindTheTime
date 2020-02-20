@@ -59,7 +59,7 @@ public class CreateRestaurantActivity extends AppCompatActivity {
                 //List<Restaurant> restaurantList = zomatoService.getRestaurants(55, lat, lon);
                 //printRest(restaurantList);
 
-                Intent intent = new Intent(CreateRestaurantActivity.this, RestaurantList.class);
+                Intent intent = new Intent(CreateRestaurantActivity.this, RestaurantList2.class);
 
                 int number = 55;
                 intent.putExtra("id", number);
