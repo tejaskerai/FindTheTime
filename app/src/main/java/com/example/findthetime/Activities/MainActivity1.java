@@ -21,7 +21,7 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 
-package com.example.findthetime;
+package com.example.findthetime.Activities;
 
 import android.os.Bundle;
 
@@ -40,6 +40,7 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
 
+import com.example.findthetime.R;
 import com.google.android.material.navigation.NavigationView;
 
 public class MainActivity1 extends AppCompatActivity{

@@ -1,13 +1,13 @@
-package com.example.findthetime;
+package com.example.findthetime.Activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
-import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
+
+import com.example.findthetime.R;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -19,9 +19,10 @@ import java.util.List;
 import JSONService.MovieJSON;
 import Models.Domain.Movie;
 
-public class CreateMovieActivity extends AppCompatActivity {
+public class MovieList extends AppCompatActivity {
 
-    Button newbtn;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,22 +45,22 @@ public class CreateMovieActivity extends AppCompatActivity {
 
             System.out.println("Count: " + count);
 
-            newbtn = new Button(CreateMovieActivity.this);
-            newbtn.setId(i+1);
-            newbtn.setText(movies.get(i).getFilmName());
-            newbtn.setTextSize(23);
-            int textColor = Color.parseColor("#FFFFFF");
-            newbtn.setTextColor(textColor);
-            newbtn.setWidth(1000);
-            newbtn.setHeight(350);
-            newbtn.setBackgroundResource(R.drawable.custom_button);
-
-            LinearLayout.LayoutParams buttonLayoutParams = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
-            buttonLayoutParams.setMargins(8, 20, 8, 20);
-            newbtn.setLayoutParams(buttonLayoutParams);
-
-            //newbtn(newbtn, i);
-            layout.addView(newbtn);
+//            newbtn = new Button(MovieList.this);
+//            newbtn.setId(i+1);
+//            newbtn.setText(movies.get(i).getFilmName());
+//            newbtn.setTextSize(23);
+//            int textColor = Color.parseColor("#FFFFFF");
+//            newbtn.setTextColor(textColor);
+//            newbtn.setWidth(1000);
+//            newbtn.setHeight(350);
+//            newbtn.setBackgroundResource(R.drawable.custom_button);
+//
+//            LinearLayout.LayoutParams buttonLayoutParams = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+//            buttonLayoutParams.setMargins(8, 20, 8, 20);
+//            newbtn.setLayoutParams(buttonLayoutParams);
+//
+//            //newbtn(newbtn, i);
+//            layout.addView(newbtn);
         }
 
     }

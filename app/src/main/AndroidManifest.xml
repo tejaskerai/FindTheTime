@@ -10,30 +10,29 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".RestaurantList2"></activity>
+        <activity android:name=".Activities.RestaurantList"></activity>
         <activity
-            android:name=".CreateMovieActivity"
+            android:name=".Activities.MovieList"
             android:label="@string/activity_create_movie_activity" />
         <activity
-            android:name=".RestaurantDetails"
+            android:name=".Activities.RestaurantDetails"
             android:label="RestaurantDetails" />
-        <activity android:name=".RestaurantList" />
         <activity
-            android:name=".CreateRestaurantActivity"
+            android:name=".Activities.CreateRestaurantActivity"
             android:label="@string/title_activity_create_restaurant" />
         <activity
-            android:name=".CreateNewActivity"
+            android:name=".Activities.CreateNewActivity"
             android:label="@string/title_activity_create_new_activity" />
-        <activity android:name=".MainActivity">
+        <activity android:name=".Activities.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".Homepage" />
+        <activity android:name=".Activities.Homepage" />
         <activity
-            android:name=".MainActivity1"
+            android:name=".Activities.MainActivity1"
             android:label="@string/app_name"
             android:theme="@style/AppTheme.NoActionBar" /> <!-- Intent filter to catch Microsoft's callback after Sign In -->
         <activity android:name="com.microsoft.identity.client.BrowserTabActivity">
