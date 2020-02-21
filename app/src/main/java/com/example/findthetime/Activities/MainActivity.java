@@ -1,4 +1,4 @@
-package com.example.findthetime;
+package com.example.findthetime.Activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -16,6 +16,7 @@ import android.widget.Toast;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.backendless.Backendless;
+import com.example.findthetime.R;
 import com.microsoft.identity.client.AuthenticationCallback;
 import com.microsoft.identity.client.IAccount;
 import com.microsoft.identity.client.IAuthenticationResult;
@@ -29,8 +30,11 @@ import com.microsoft.identity.client.exception.MsalServiceException;
 import org.json.JSONObject;
 
 
+import java.util.List;
+
 import JSONService.CalendarJSON;
-import JSONService.UserDetailJSON;
+import JSONService.UserService;
+import Models.Database.User;
 import configurations.BackendlessConfig;
 
 
@@ -40,7 +44,6 @@ public class MainActivity extends AppCompatActivity {
     private static final String TAG = MainActivity.class.getSimpleName();
     public static final String NAME = "com.example.findthetime.NAME";
     public static final String EMAIL = "com.example.findthetime.EMAIL";
-    UserDetailJSON userDetails = new UserDetailJSON();
     CalendarJSON calendarDetails = new CalendarJSON();
 
 
@@ -176,7 +179,6 @@ public class MainActivity extends AppCompatActivity {
 
     public void openHomepage(){
         Intent homePage = new Intent(MainActivity.this, Homepage.class);
-        System.out.println("Name:  " + userDetails.getName());
 
         //homePage.putExtra(NAME, "tejas");
         startActivity(homePage);
@@ -285,7 +287,7 @@ public class MainActivity extends AppCompatActivity {
     /**
      * Make an HTTP request to obtain MSGraph data
      */
-    private void callGraphAPI(final IAuthenticationResult authenticationResult, String url)  {
+    private void callGraphAPI(final IAuthenticationResult authenticationResult, final String url)  {
         MSGraphRequestWrapper.callGraphAPIUsingVolley(
                 MainActivity.this,
 //                graphResourceTextView.getText().toString()
@@ -296,9 +298,16 @@ public class MainActivity extends AppCompatActivity {
                     public void onResponse(JSONObject response) {
 
                         /* Successfully called graph, process data and send to UI */
-                        userDetails.parseName(response);
-                        userDetails.parseEmail(response);
-                        System.out.println("name from call: " + userDetails.getName());
+
+                        UserService userService = new UserService();
+                        List<User> user = userService.getUser(response);
+                        String name = user.get(0).getName();
+                        String email = user.get(0).getEmail();
+
+//                        userDetails.parseName(response);
+//                        userDetails.parseEmail(response);
+                        System.out.println("name: " + name);
+                        System.out.println("email: " + email);
                     }
                 },
                 new Response.ErrorListener() {
