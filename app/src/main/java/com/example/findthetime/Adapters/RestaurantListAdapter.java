@@ -1,4 +1,4 @@
-package com.example.findthetime;
+package com.example.findthetime.Adapters;
 
 import android.content.Context;
 import android.content.Intent;
@@ -11,27 +11,24 @@ import androidx.annotation.NonNull;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.findthetime.R;
+import com.example.findthetime.Activities.RestaurantDetails;
+
 import java.util.List;
 
-import JSONService.ZomatoService;
-import Models.Domain.Location;
 import Models.Domain.Restaurant;
 
 public class RestaurantListAdapter extends RecyclerView.Adapter<RestaurantListAdapter.MyViewHolder> {
 
-    List<String> restaurantName;
+    List<Restaurant> restaurants;
     Context context;
 
-
-
-//    ZomatoService zomatoService = new ZomatoService();
-//
-//    List<Restaurant> restaurants = zomatoService.getRestaurants(cuisineId, lat, lon);
-
-    public RestaurantListAdapter(Context ct, List<String> restName){
+    public RestaurantListAdapter(Context ct, List<Restaurant> restaurantsList) {
 
         context = ct;
-        restaurantName = restName;
+
+        restaurants = restaurantsList;
+
 
     }
 
@@ -47,19 +44,28 @@ public class RestaurantListAdapter extends RecyclerView.Adapter<RestaurantListAd
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, final int position) {
 
-        holder.restName.setText(restaurantName.get(position));
+        holder.restName.setText(restaurants.get(position).getName());
+
+
 
         holder.mainLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(context, RestaurantDetails.class);
+
+                intent.putExtra("restName", restaurants.get(position).getName());
+                intent.putExtra("restAddress", restaurants.get(position).getAddress());
+                intent.putExtra("restPhoneNumber", restaurants.get(position).getPhoneNumbers());
+                intent.putExtra("restTimings", restaurants.get(position).getTimings());
+                intent.putExtra("restURL", restaurants.get(position).getUrl());
+                context.startActivity(intent);
             }
         });
     }
 
     @Override
     public int getItemCount() {
-        return restaurantName.size();
+        return restaurants.size();
     }
 
     public class MyViewHolder extends RecyclerView.ViewHolder{
@@ -69,7 +75,7 @@ public class RestaurantListAdapter extends RecyclerView.Adapter<RestaurantListAd
 
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
-            restName = itemView.findViewById(R.id.restName);
+            restName = itemView.findViewById(R.id.restNameRow);
             mainLayout = itemView.findViewById(R.id.mainLayout);
 
         }

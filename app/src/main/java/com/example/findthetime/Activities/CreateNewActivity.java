@@ -1,33 +1,24 @@
-package com.example.findthetime;
+package com.example.findthetime.Activities;
 
 import android.content.Intent;
 import android.os.Bundle;
 
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.google.android.material.snackbar.Snackbar;
+import com.example.findthetime.R;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
 
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import org.json.JSONException;
-import org.json.JSONObject;
-
-import java.io.IOException;
-import java.io.InputStream;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import JSONService.MovieJSON;
 import JSONService.OpenCageService;
 import Models.Domain.Location;
-import Models.Domain.Movie;
 
 
 public class CreateNewActivity extends AppCompatActivity {
@@ -104,7 +95,7 @@ public class CreateNewActivity extends AppCompatActivity {
 
 
 
-                Intent movies = new Intent(CreateNewActivity.this, CreateMovieActivity.class);
+                Intent movies = new Intent(CreateNewActivity.this, MovieList.class);
 //                int number = 55;
 //                movies.putExtra("id", number);
                 startActivity(movies);

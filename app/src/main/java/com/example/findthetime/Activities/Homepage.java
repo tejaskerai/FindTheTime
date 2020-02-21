@@ -1,23 +1,15 @@
-package com.example.findthetime;
+package com.example.findthetime.Activities;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
-import com.microsoft.identity.client.IPublicClientApplication;
+import com.example.findthetime.R;
 import com.microsoft.identity.client.ISingleAccountPublicClientApplication;
-import com.microsoft.identity.client.PublicClientApplication;
-import com.microsoft.identity.client.exception.MsalException;
-
-import java.util.List;
-
-import JSONService.OpenCageService;
 
 public class Homepage extends AppCompatActivity {
 
