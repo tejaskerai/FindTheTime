@@ -12,6 +12,7 @@ public class UserService {
 
     String name;
     String email;
+    String id;
 
     public List<User> getUser(JSONObject response){
 
@@ -21,13 +22,13 @@ public class UserService {
         try {
             name = response.getString("displayName");
             email = response.getString("userPrincipalName");
+            id = response.getString("id");
 
-            userDetail.add(new User(name, email));
+            userDetail.add(new User(name, email, id));
 
         } catch (JSONException e) {
             e.printStackTrace();
         }
-
         return userDetail;
     }
 

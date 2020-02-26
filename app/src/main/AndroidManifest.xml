@@ -10,9 +10,11 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".Activities.RestaurantList"></activity>
+        <activity android:name=".Activities.TimesList"></activity>
+        <activity android:name=".Activities.CinemaList" />
+        <activity android:name=".Activities.RestaurantList" />
         <activity
-            android:name=".Activities.MovieList"
+            android:name=".Activities.CreateMovieActivity"
             android:label="@string/activity_create_movie_activity" />
         <activity
             android:name=".Activities.RestaurantDetails"

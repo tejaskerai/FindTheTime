@@ -95,7 +95,7 @@ public class CreateNewActivity extends AppCompatActivity {
 
 
 
-                Intent movies = new Intent(CreateNewActivity.this, MovieList.class);
+                Intent movies = new Intent(CreateNewActivity.this, CreateMovieActivity.class);
 //                int number = 55;
 //                movies.putExtra("id", number);
                 startActivity(movies);
@@ -110,10 +110,7 @@ public class CreateNewActivity extends AppCompatActivity {
         String normalisedPC = postcode.replaceAll("\\s", "").toLowerCase();
         //System.out.println("Normalised PC: " + normalisedPC);
 
-
         String regex = "^[a-z]{1,2}[0-9R][0-9a-z]?[0-9][abd-hjlnp-uw-z]{2}$";
-
-
 
         Pattern pattern = Pattern.compile(regex);
 

@@ -87,49 +87,6 @@
             }
         },
         {
-            "film_id": 296785,
-            "imdb_id": 9214832,
-            "film_name": "Emma.",
-            "release_dates": [
-                {
-                    "release_date": "2020-02-14",
-                    "notes": "GBR"
-                }
-            ],
-            "age_rating": [
-                {
-                    "rating": "U ",
-                    "age_rating_image": "https://assets.movieglu.com/age_rating_logos/uk/u.png",
-                    "age_advisory": "brief natural nudity"
-                }
-            ],
-            "film_trailer": "https://trailer.movieglu.com/296785_uk_high.mp4",
-            "synopsis_long": "Jane Austen's beloved comedy about finding your equal and earning your happy ending, is reimagined in this delicious new film adaptation of EMMA. Handsome, clever, and rich, Emma Woodhouse is a restless queen bee without rivals in her sleepy little town. In this glittering satire of social class and the pain of growing up, Emma must adventure through misguided matches and romantic missteps to find the love that has been there all along.",
-            "images": {
-                "poster": {
-                    "1": {
-                        "image_orientation": "portrait",
-                        "region": "UK",
-                        "medium": {
-                            "film_image": "https://image.movieglu.com/296785/GBR_296785h0.jpg",
-                            "width": 202,
-                            "height": 300
-                        }
-                    }
-                },
-                "still": {
-                    "1": {
-                        "image_orientation": "landscape",
-                        "medium": {
-                            "film_image": "https://image.movieglu.com/296785/296785h2.jpg",
-                            "width": 300,
-                            "height": 200
-                        }
-                    }
-                }
-            }
-        },
-        {
             "film_id": 285305,
             "imdb_id": 7713068,
             "film_name": "Birds of Prey",
@@ -175,7 +132,7 @@
         {
             "film_id": 285242,
             "imdb_id": 8579674,
-            "film_name": "1917 ",
+            "film_name": "1917",
             "release_dates": [
                 {
                     "release_date": "2020-01-10",
@@ -304,7 +261,7 @@
         {
             "film_id": 275172,
             "imdb_id": 7975244,
-            "film_name": "Jumanji: The Next Level",
+            "film_name": "Jumanji The Next Level",
             "release_dates": [
                 {
                     "release_date": "2019-12-13",
@@ -347,7 +304,7 @@
         {
             "film_id": 296732,
             "imdb_id": 11015752,
-            "film_name": "Paw Patrol: Ready Race Rescue",
+            "film_name": "Paw Patrol Ready Race Rescue",
             "release_dates": [
                 {
                     "release_date": "2020-01-24",

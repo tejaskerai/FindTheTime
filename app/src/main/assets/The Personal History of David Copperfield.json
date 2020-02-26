@@ -1,0 +1,251 @@
+{
+  "film": {
+    "film_id": 297614,
+    "imdb_id": 6439020,
+    "film_name": "The Personal History of David Copperfield",
+    "version_type": "Standard",
+    "age_rating": [
+      {
+        "rating": "PG ",
+        "age_rating_image": "https://assets.movieglu.com/age_rating_logos/uk/pg.png",
+        "age_advisory": "mild violence, threat, brief bloody images"
+      }
+    ],
+    "images": {
+      "poster": {
+        "1": {
+          "image_orientation": "portrait",
+          "region": "UK",
+          "medium": {
+            "film_image": "https://image.movieglu.com/297614/GBR_297614h0.jpg",
+            "width": 202,
+            "height": 300
+          }
+        }
+      },
+      "still": {
+        "1": {
+          "image_orientation": "landscape",
+          "medium": {
+            "film_image": "https://image.movieglu.com/297614/297614h2.jpg",
+            "width": 300,
+            "height": 200
+          }
+        }
+      }
+    }
+  },
+  "cinemas": [
+    {
+      "cinema_id": 8938,
+      "cinema_name": "Vue - Harrow",
+      "distance": 2.6197076210827,
+      "logo_url": "https://assets.movieglu.com/chain_logos/uk/UK-712-sq.jpg",
+      "showings": {
+        "Standard": {
+          "film_id": 297614,
+          "film_name": "The Personal History of David Copperfield",
+          "times": [
+            {
+              "start_time": "10:30",
+              "end_time": "12:51"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "cinema_id": 8919,
+      "cinema_name": "Vue - Acton",
+      "distance": 5.1981253948946,
+      "logo_url": "https://assets.movieglu.com/chain_logos/uk/UK-712-sq.jpg",
+      "showings": {
+        "Standard": {
+          "film_id": 297614,
+          "film_name": "The Personal History of David Copperfield",
+          "times": [
+            {
+              "start_time": "16:00",
+              "end_time": "18:21"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "cinema_id": 8802,
+      "cinema_name": "Everyman Barnet",
+      "distance": 5.2509206957999,
+      "logo_url": "https://assets.movieglu.com/chain_logos/uk/UK-1077-sq.jpg",
+      "showings": {
+        "Standard": {
+          "film_id": 297614,
+          "film_name": "The Personal History of David Copperfield",
+          "times": [
+            {
+              "start_time": "10:15",
+              "end_time": "12:36"
+            },
+            {
+              "start_time": "18:30",
+              "end_time": "20:51"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "cinema_id": 8928,
+      "cinema_name": "Vue - Finchley Road / 02 Centre",
+      "distance": 5.7428370911295,
+      "logo_url": "https://assets.movieglu.com/chain_logos/uk/UK-712-sq.jpg",
+      "showings": {
+        "Standard": {
+          "film_id": 297614,
+          "film_name": "The Personal History of David Copperfield",
+          "times": [
+            {
+              "start_time": "15:40",
+              "end_time": "18:01"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "cinema_id": 8798,
+      "cinema_name": "ODEON Swiss Cottage",
+      "distance": 6.235828600044,
+      "logo_url": "https://assets.movieglu.com/chain_logos/uk/UK-614-sq.jpg",
+      "showings": {
+        "Standard": {
+          "film_id": 297614,
+          "film_name": "The Personal History of David Copperfield",
+          "times": [
+            {
+              "start_time": "13:00",
+              "end_time": "15:21"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "cinema_id": 8922,
+      "cinema_name": "Vue - Shepherds Bush",
+      "distance": 6.9554421329098,
+      "logo_url": "https://assets.movieglu.com/chain_logos/uk/UK-712-sq.jpg",
+      "showings": {
+        "Standard": {
+          "film_id": 297614,
+          "film_name": "The Personal History of David Copperfield",
+          "times": [
+            {
+              "start_time": "13:55",
+              "end_time": "16:16"
+            },
+            {
+              "start_time": "17:50",
+              "end_time": "20:11"
+            },
+            {
+              "start_time": "21:35",
+              "end_time": "23:56"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "cinema_id": 23530,
+      "cinema_name": "Vue - Westfield",
+      "distance": 7.013430174023,
+      "logo_url": "https://assets.movieglu.com/chain_logos/uk/UK-712-sq.jpg",
+      "showings": {
+        "Standard": {
+          "film_id": 297614,
+          "film_name": "The Personal History of David Copperfield",
+          "times": [
+            {
+              "start_time": "23:40",
+              "end_time": "02:01"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "cinema_id": 42570,
+      "cinema_name": "Crouch End Picturehouse",
+      "distance": 7.1965209200153,
+      "logo_url": "https://assets.movieglu.com/chain_logos/uk/UK-1100-sq.jpg",
+      "showings": {
+        "Standard": {
+          "film_id": 297614,
+          "film_name": "The Personal History of David Copperfield",
+          "times": [
+            {
+              "start_time": "11:30",
+              "end_time": "13:51"
+            },
+            {
+              "start_time": "14:30",
+              "end_time": "16:51"
+            },
+            {
+              "start_time": "16:30",
+              "end_time": "18:51"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "cinema_id": 8791,
+      "cinema_name": "ODEON Camden Town",
+      "distance": 7.4607356657679,
+      "logo_url": "https://assets.movieglu.com/chain_logos/uk/UK-614-sq.jpg",
+      "showings": {
+        "Standard": {
+          "film_id": 297614,
+          "film_name": "The Personal History of David Copperfield",
+          "times": [
+            {
+              "start_time": "12:30",
+              "end_time": "14:51"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "cinema_id": 8944,
+      "cinema_name": "Vue - Watford",
+      "distance": 7.8788397787859,
+      "logo_url": "https://assets.movieglu.com/chain_logos/uk/UK-712-sq.jpg",
+      "showings": {
+        "Standard": {
+          "film_id": 297614,
+          "film_name": "The Personal History of David Copperfield",
+          "times": [
+            {
+              "start_time": "20:00",
+              "end_time": "22:21"
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "status": {
+    "count": 10,
+    "state": "OK",
+    "method": "filmShowTimes",
+    "message": null,
+    "request_method": "GET",
+    "version": "TEJA_0v200",
+    "territory": "UK",
+    "device_datetime_sent": "2020-02-25T19:32:16.465Z",
+    "device_datetime_used": "2020-02-25 19:32:16"
+  }
+}

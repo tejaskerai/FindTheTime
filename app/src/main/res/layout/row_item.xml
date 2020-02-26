@@ -7,7 +7,6 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_margin="15dp"
-    tools:context="com.example.findthetime.Activities.RestaurantList"
     android:id="@+id/mainLayout">
 
 
@@ -29,7 +28,7 @@
 
 
             <TextView
-                android:id="@+id/restNameRow"
+                android:id="@+id/rowName"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Restaurant name"
