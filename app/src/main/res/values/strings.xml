@@ -18,7 +18,8 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="title_activity_single_account">SingleAccountActivity</string>
     <string name="title_activity_home_page">HomePage</string>
-    <string name="title_activity_create_new_activity">create_new_activity</string>
-    <string name="title_activity_create_restaurant">CreateRestaurantActivity</string>
+    <string name="title_activity_create_new_activity">Pick an Activity</string>
+    <string name="title_activity_create_restaurant">Cuisines</string>
     <string name="title_activity_restaurant_details">RestaurantDetails</string>
+    <string name="activity_create_movie_activity">Movies</string>
 </resources>

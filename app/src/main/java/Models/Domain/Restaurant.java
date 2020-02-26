@@ -13,6 +13,8 @@ public class Restaurant {
     String name;
     String url;
     String timings;
+    String phoneNumbers;
+    String address;
 
     public String getName() {
         return name;
@@ -34,7 +36,5 @@ public class Restaurant {
         return address;
     }
 
-    String phoneNumbers;
-    String address;
 
 }

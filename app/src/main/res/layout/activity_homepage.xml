@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/background_home"
-    tools:context="com.example.findthetime.Homepage">
+    tools:context="com.example.findthetime.Activities.Homepage">
 
 
     <Button
@@ -32,7 +32,7 @@
     <Button
         android:id="@+id/btn_view_activities"
         android:layout_width="346dp"
-        android:layout_height="115dp"
+        android:layout_height="135dp"
         android:layout_marginStart="8dp"
         android:layout_marginLeft="8dp"
         android:layout_marginEnd="8dp"

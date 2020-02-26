@@ -3,35 +3,38 @@
     package="com.example.findthetime">
 
     <application
+        android:name="Models.Domain.Location"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity android:name=".Activities.TimesList"></activity>
+        <activity android:name=".Activities.CinemaList" />
+        <activity android:name=".Activities.RestaurantList" />
         <activity
-            android:name=".RestaurantDetails"
-            android:label="RestaurantDetails"
-            />
-        <activity android:name=".RestaurantList" />
+            android:name=".Activities.CreateMovieActivity"
+            android:label="@string/activity_create_movie_activity" />
         <activity
-            android:name=".CreateRestaurantActivity"
-            android:label="@string/title_activity_create_restaurant"
-             />
+            android:name=".Activities.RestaurantDetails"
+            android:label="RestaurantDetails" />
         <activity
-            android:name=".CreateNewActivity"
-            android:label="@string/title_activity_create_new_activity"
-             />
-        <activity android:name=".MainActivity">
+            android:name=".Activities.CreateRestaurantActivity"
+            android:label="@string/title_activity_create_restaurant" />
+        <activity
+            android:name=".Activities.CreateNewActivity"
+            android:label="@string/title_activity_create_new_activity" />
+        <activity android:name=".Activities.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".Homepage" />
+        <activity android:name=".Activities.Homepage" />
         <activity
-            android:name=".MainActivity1"
+            android:name=".Activities.MainActivity1"
             android:label="@string/app_name"
             android:theme="@style/AppTheme.NoActionBar" /> <!-- Intent filter to catch Microsoft's callback after Sign In -->
         <activity android:name="com.microsoft.identity.client.BrowserTabActivity">

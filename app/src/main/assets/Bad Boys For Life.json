@@ -1,0 +1,263 @@
+{
+  "film": {
+    "film_id": 215330,
+    "imdb_id": 1502397,
+    "film_name": "Bad Boys For Life",
+    "version_type": "Standard",
+    "age_rating": [
+      {
+        "rating": "15 ",
+        "age_rating_image": "https://assets.movieglu.com/age_rating_logos/uk/15.png",
+        "age_advisory": "strong bloody violence, language, crude humour"
+      }
+    ],
+    "images": {
+      "poster": {
+        "1": {
+          "image_orientation": "portrait",
+          "region": "UK",
+          "medium": {
+            "film_image": "https://image.movieglu.com/215330/GBR_215330h0.jpg",
+            "width": 202,
+            "height": 300
+          }
+        }
+      },
+      "still": {
+        "1": {
+          "image_orientation": "landscape",
+          "medium": {
+            "film_image": "https://image.movieglu.com/215330/215330h2.jpg",
+            "width": 300,
+            "height": 200
+          }
+        }
+      }
+    }
+  },
+  "cinemas": [
+    {
+      "cinema_id": 8938,
+      "cinema_name": "Vue - Harrow",
+      "distance": 2.6197076210827,
+      "logo_url": "https://assets.movieglu.com/chain_logos/uk/UK-712-sq.jpg",
+      "showings": {
+        "Standard": {
+          "film_id": 215330,
+          "film_name": "Bad Boys For Life",
+          "times": [
+            {
+              "start_time": "21:30",
+              "end_time": "23:58"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "cinema_id": 37270,
+      "cinema_name": "Cineworld Cinema - Wembley",
+      "distance": 3.1036305726377,
+      "logo_url": "https://assets.movieglu.com/chain_logos/uk/UK-868-sq.jpg",
+      "showings": {
+        "Standard": {
+          "film_id": 215330,
+          "film_name": "Bad Boys For Life",
+          "times": [
+            {
+              "start_time": "20:30",
+              "end_time": "22:58"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "cinema_id": 9489,
+      "cinema_name": "Reel Cinemas - Borehamwood",
+      "distance": 3.7955195868926,
+      "logo_url": "https://assets.movieglu.com/chain_logos/uk/UK-1260-sq.jpg",
+      "showings": {
+        "Standard": {
+          "film_id": 215330,
+          "film_name": "Bad Boys For Life",
+          "times": [
+            {
+              "start_time": "20:00",
+              "end_time": "22:28"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "cinema_id": 8927,
+      "cinema_name": "Vue - North Finchley",
+      "distance": 4.8265148131482,
+      "logo_url": "https://assets.movieglu.com/chain_logos/uk/UK-712-sq.jpg",
+      "showings": {
+        "Standard": {
+          "film_id": 215330,
+          "film_name": "Bad Boys For Life",
+          "times": [
+            {
+              "start_time": "20:05",
+              "end_time": "22:33"
+            },
+            {
+              "start_time": "21:00",
+              "end_time": "23:28"
+            },
+            {
+              "start_time": "23:10",
+              "end_time": "01:38"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "cinema_id": 8919,
+      "cinema_name": "Vue - Acton",
+      "distance": 5.1981253948946,
+      "logo_url": "https://assets.movieglu.com/chain_logos/uk/UK-712-sq.jpg",
+      "showings": {
+        "Standard": {
+          "film_id": 215330,
+          "film_name": "Bad Boys For Life",
+          "times": [
+            {
+              "start_time": "20:10",
+              "end_time": "22:38"
+            },
+            {
+              "start_time": "22:30",
+              "end_time": "00:58"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "cinema_id": 8928,
+      "cinema_name": "Vue - Finchley Road / 02 Centre",
+      "distance": 5.7428370911295,
+      "logo_url": "https://assets.movieglu.com/chain_logos/uk/UK-712-sq.jpg",
+      "showings": {
+        "Standard": {
+          "film_id": 215330,
+          "film_name": "Bad Boys For Life",
+          "times": [
+            {
+              "start_time": "21:30",
+              "end_time": "23:58"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "cinema_id": 8922,
+      "cinema_name": "Vue - Shepherds Bush",
+      "distance": 6.9554421329098,
+      "logo_url": "https://assets.movieglu.com/chain_logos/uk/UK-712-sq.jpg",
+      "showings": {
+        "Standard": {
+          "film_id": 215330,
+          "film_name": "Bad Boys For Life",
+          "times": [
+            {
+              "start_time": "21:00",
+              "end_time": "23:28"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "cinema_id": 23530,
+      "cinema_name": "Vue - Westfield",
+      "distance": 7.013430174023,
+      "logo_url": "https://assets.movieglu.com/chain_logos/uk/UK-712-sq.jpg",
+      "showings": {
+        "Standard": {
+          "film_id": 215330,
+          "film_name": "Bad Boys For Life",
+          "times": [
+            {
+              "start_time": "15:00",
+              "end_time": "17:28"
+            },
+            {
+              "start_time": "21:05",
+              "end_time": "23:33"
+            },
+            {
+              "start_time": "23:10",
+              "end_time": "01:38"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "cinema_id": 8486,
+      "cinema_name": "Vue - Wood Green",
+      "distance": 7.6193969894778,
+      "logo_url": "https://assets.movieglu.com/chain_logos/uk/UK-712-sq.jpg",
+      "showings": {
+        "Standard": {
+          "film_id": 215330,
+          "film_name": "Bad Boys For Life",
+          "times": [
+            {
+              "start_time": "21:30",
+              "end_time": "23:58"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "cinema_id": 8992,
+      "cinema_name": "Cineworld Cinema - Wood Green",
+      "distance": 7.6200831195766,
+      "logo_url": "https://assets.movieglu.com/chain_logos/uk/UK-868-sq.jpg",
+      "showings": {
+        "Standard": {
+          "film_id": 215330,
+          "film_name": "Bad Boys For Life",
+          "times": [
+            {
+              "start_time": "12:20",
+              "end_time": "14:48"
+            },
+            {
+              "start_time": "14:00",
+              "end_time": "16:28"
+            },
+            {
+              "start_time": "16:50",
+              "end_time": "19:18"
+            },
+            {
+              "start_time": "20:30",
+              "end_time": "22:58"
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "status": {
+    "count": 10,
+    "state": "OK",
+    "method": "filmShowTimes",
+    "message": null,
+    "request_method": "GET",
+    "version": "TEJA_0v200",
+    "territory": "UK",
+    "device_datetime_sent": "2020-02-25T19:31:12.687Z",
+    "device_datetime_used": "2020-02-25 19:31:12"
+  }
+}

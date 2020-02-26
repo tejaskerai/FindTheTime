@@ -1,0 +1,283 @@
+{
+  "film": {
+    "film_id": 248984,
+    "imdb_id": 6673612,
+    "film_name": "Dolittle",
+    "version_type": "Standard",
+    "age_rating": [
+      {
+        "rating": "PG ",
+        "age_rating_image": "https://assets.movieglu.com/age_rating_logos/uk/pg.png",
+        "age_advisory": "mild threat, rude humour"
+      }
+    ],
+    "images": {
+      "poster": {
+        "1": {
+          "image_orientation": "portrait",
+          "region": "UK",
+          "medium": {
+            "film_image": "https://image.movieglu.com/248984/GBR_248984h0.jpg",
+            "width": 189,
+            "height": 300
+          }
+        }
+      },
+      "still": {
+        "1": {
+          "image_orientation": "landscape",
+          "medium": {
+            "film_image": "https://image.movieglu.com/248984/248984h2.jpg",
+            "width": 300,
+            "height": 200
+          }
+        }
+      }
+    }
+  },
+  "cinemas": [
+    {
+      "cinema_id": 8938,
+      "cinema_name": "Vue - Harrow",
+      "distance": 2.6197076210827,
+      "logo_url": "https://assets.movieglu.com/chain_logos/uk/UK-712-sq.jpg",
+      "showings": {
+        "Standard": {
+          "film_id": 248984,
+          "film_name": "Dolittle",
+          "times": [
+            {
+              "start_time": "10:30",
+              "end_time": "12:36"
+            },
+            {
+              "start_time": "14:15",
+              "end_time": "16:21"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "cinema_id": 37270,
+      "cinema_name": "Cineworld Cinema - Wembley",
+      "distance": 3.1036305726377,
+      "logo_url": "https://assets.movieglu.com/chain_logos/uk/UK-868-sq.jpg",
+      "showings": {
+        "Standard": {
+          "film_id": 248984,
+          "film_name": "Dolittle",
+          "times": [
+            {
+              "start_time": "15:20",
+              "end_time": "17:26"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "cinema_id": 9489,
+      "cinema_name": "Reel Cinemas - Borehamwood",
+      "distance": 3.7955195868926,
+      "logo_url": "https://assets.movieglu.com/chain_logos/uk/UK-1260-sq.jpg",
+      "showings": {
+        "Standard": {
+          "film_id": 248984,
+          "film_name": "Dolittle",
+          "times": [
+            {
+              "start_time": "15:20",
+              "end_time": "17:26"
+            },
+            {
+              "start_time": "17:40",
+              "end_time": "19:46"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "cinema_id": 8927,
+      "cinema_name": "Vue - North Finchley",
+      "distance": 4.8265148131482,
+      "logo_url": "https://assets.movieglu.com/chain_logos/uk/UK-712-sq.jpg",
+      "showings": {
+        "Standard": {
+          "film_id": 248984,
+          "film_name": "Dolittle",
+          "times": [
+            {
+              "start_time": "11:30",
+              "end_time": "13:36"
+            },
+            {
+              "start_time": "14:00",
+              "end_time": "16:06"
+            },
+            {
+              "start_time": "16:00",
+              "end_time": "18:06"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "cinema_id": 8919,
+      "cinema_name": "Vue - Acton",
+      "distance": 5.1981253948946,
+      "logo_url": "https://assets.movieglu.com/chain_logos/uk/UK-712-sq.jpg",
+      "showings": {
+        "Standard": {
+          "film_id": 248984,
+          "film_name": "Dolittle",
+          "times": [
+            {
+              "start_time": "17:15",
+              "end_time": "19:21"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "cinema_id": 8802,
+      "cinema_name": "Everyman Barnet",
+      "distance": 5.2509206957999,
+      "logo_url": "https://assets.movieglu.com/chain_logos/uk/UK-1077-sq.jpg",
+      "showings": {
+        "Standard": {
+          "film_id": 248984,
+          "film_name": "Dolittle",
+          "times": [
+            {
+              "start_time": "12:15",
+              "end_time": "14:21"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "cinema_id": 44358,
+      "cinema_name": "Cineworld Cinema - South Ruislip",
+      "distance": 5.7063131444255,
+      "logo_url": "https://assets.movieglu.com/chain_logos/uk/UK-868-sq.jpg",
+      "showings": {
+        "Standard": {
+          "film_id": 248984,
+          "film_name": "Dolittle",
+          "times": [
+            {
+              "start_time": "13:20",
+              "end_time": "15:26"
+            },
+            {
+              "start_time": "15:50",
+              "end_time": "17:56"
+            },
+            {
+              "start_time": "18:20",
+              "end_time": "20:26"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "cinema_id": 8928,
+      "cinema_name": "Vue - Finchley Road / 02 Centre",
+      "distance": 5.7428370911295,
+      "logo_url": "https://assets.movieglu.com/chain_logos/uk/UK-712-sq.jpg",
+      "showings": {
+        "Standard": {
+          "film_id": 248984,
+          "film_name": "Dolittle",
+          "times": [
+            {
+              "start_time": "09:15",
+              "end_time": "11:21"
+            },
+            {
+              "start_time": "11:20",
+              "end_time": "13:26"
+            },
+            {
+              "start_time": "13:25",
+              "end_time": "15:31"
+            },
+            {
+              "start_time": "16:30",
+              "end_time": "18:36"
+            },
+            {
+              "start_time": "18:40",
+              "end_time": "20:46"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "cinema_id": 48431,
+      "cinema_name": "Cineworld London - Watford",
+      "distance": 5.9040535706546,
+      "logo_url": "https://assets.movieglu.com/chain_logos/uk/UK-868-sq.jpg",
+      "showings": {
+        "Standard": {
+          "film_id": 248984,
+          "film_name": "Dolittle",
+          "times": [
+            {
+              "start_time": "12:50",
+              "end_time": "14:56"
+            },
+            {
+              "start_time": "15:20",
+              "end_time": "17:26"
+            },
+            {
+              "start_time": "17:50",
+              "end_time": "19:56"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "cinema_id": 8807,
+      "cinema_name": "Everyman Muswell Hill",
+      "distance": 6.0510478773816,
+      "logo_url": "https://assets.movieglu.com/chain_logos/uk/UK-1077-sq.jpg",
+      "showings": {
+        "Standard": {
+          "film_id": 248984,
+          "film_name": "Dolittle",
+          "times": [
+            {
+              "start_time": "12:30",
+              "end_time": "14:36"
+            },
+            {
+              "start_time": "15:15",
+              "end_time": "17:21"
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "status": {
+    "count": 10,
+    "state": "OK",
+    "method": "filmShowTimes",
+    "message": null,
+    "request_method": "GET",
+    "version": "TEJA_0v200",
+    "territory": "UK",
+    "device_datetime_sent": "2020-02-25T19:32:44.062Z",
+    "device_datetime_used": "2020-02-25 19:32:44"
+  }
+}

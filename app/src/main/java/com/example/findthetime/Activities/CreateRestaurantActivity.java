@@ -1,7 +1,6 @@
-package com.example.findthetime;
+package com.example.findthetime.Activities;
 
 import android.content.Intent;
-import android.os.AsyncTask;
 import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -9,14 +8,10 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 
-import java.net.MalformedURLException;
-import java.net.URL;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.concurrent.ExecutionException;
+import com.example.findthetime.R;
 
-import JSONService.ZomatoService;
-import Requests.ZomatoAPIRequest;
+import java.util.List;
+
 import Models.Domain.Restaurant;
 
 public class CreateRestaurantActivity extends AppCompatActivity {
@@ -64,8 +59,6 @@ public class CreateRestaurantActivity extends AppCompatActivity {
                 int number = 55;
                 intent.putExtra("id", number);
                 startActivity(intent);
-
-
 
             }
         });

@@ -1,0 +1,221 @@
+{
+  "film": {
+    "film_id": 296732,
+    "imdb_id": 11015752,
+    "film_name": "Paw Patrol: Ready Race Rescue",
+    "version_type": "Standard",
+    "age_rating": [
+      {
+        "rating": "U ",
+        "age_rating_image": "https://assets.movieglu.com/age_rating_logos/uk/u.png",
+        "age_advisory": "very mild threat"
+      }
+    ],
+    "images": {
+      "poster": {
+        "1": {
+          "image_orientation": "portrait",
+          "region": "UK",
+          "medium": {
+            "film_image": "https://image.movieglu.com/296732/GBR_296732h0.jpg",
+            "width": 202,
+            "height": 300
+          }
+        }
+      }
+    }
+  },
+  "cinemas": [
+    {
+      "cinema_id": 8927,
+      "cinema_name": "Vue - North Finchley",
+      "distance": 4.8265148131482,
+      "logo_url": "https://assets.movieglu.com/chain_logos/uk/UK-712-sq.jpg",
+      "showings": {
+        "Standard": {
+          "film_id": 296732,
+          "film_name": "Paw Patrol: Ready Race Rescue",
+          "times": [
+            {
+              "start_time": "09:50",
+              "end_time": "11:40"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "cinema_id": 8928,
+      "cinema_name": "Vue - Finchley Road / 02 Centre",
+      "distance": 5.7428370911295,
+      "logo_url": "https://assets.movieglu.com/chain_logos/uk/UK-712-sq.jpg",
+      "showings": {
+        "Standard": {
+          "film_id": 296732,
+          "film_name": "Paw Patrol: Ready Race Rescue",
+          "times": [
+            {
+              "start_time": "09:40",
+              "end_time": "11:30"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "cinema_id": 23530,
+      "cinema_name": "Vue - Westfield",
+      "distance": 7.013430174023,
+      "logo_url": "https://assets.movieglu.com/chain_logos/uk/UK-712-sq.jpg",
+      "showings": {
+        "Standard": {
+          "film_id": 296732,
+          "film_name": "Paw Patrol: Ready Race Rescue",
+          "times": [
+            {
+              "start_time": "09:45",
+              "end_time": "11:35"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "cinema_id": 8944,
+      "cinema_name": "Vue - Watford",
+      "distance": 7.8788397787859,
+      "logo_url": "https://assets.movieglu.com/chain_logos/uk/UK-712-sq.jpg",
+      "showings": {
+        "Standard": {
+          "film_id": 296732,
+          "film_name": "Paw Patrol: Ready Race Rescue",
+          "times": [
+            {
+              "start_time": "09:35",
+              "end_time": "11:25"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "cinema_id": 8921,
+      "cinema_name": "Vue - Islington",
+      "distance": 8.9762809676112,
+      "logo_url": "https://assets.movieglu.com/chain_logos/uk/UK-712-sq.jpg",
+      "showings": {
+        "Standard": {
+          "film_id": 296732,
+          "film_name": "Paw Patrol: Ready Race Rescue",
+          "times": [
+            {
+              "start_time": "09:40",
+              "end_time": "11:30"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "cinema_id": 8811,
+      "cinema_name": "ODEON Uxbridge the Chimes",
+      "distance": 9.0551208707367,
+      "logo_url": "https://assets.movieglu.com/chain_logos/uk/UK-614-sq.jpg",
+      "showings": {
+        "Standard": {
+          "film_id": 296732,
+          "film_name": "Paw Patrol: Ready Race Rescue",
+          "times": [
+            {
+              "start_time": "12:30",
+              "end_time": "14:20"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "cinema_id": 29287,
+      "cinema_name": "Vue - Westfield Stratford City",
+      "distance": 12.596826390412,
+      "logo_url": "https://assets.movieglu.com/chain_logos/uk/UK-712-sq.jpg",
+      "showings": {
+        "Standard": {
+          "film_id": 296732,
+          "film_name": "Paw Patrol: Ready Race Rescue",
+          "times": [
+            {
+              "start_time": "09:00",
+              "end_time": "10:50"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "cinema_id": 8904,
+      "cinema_name": "ODEON Surrey Quays",
+      "distance": 12.647526596176,
+      "logo_url": "https://assets.movieglu.com/chain_logos/uk/UK-614-sq.jpg",
+      "showings": {
+        "Standard": {
+          "film_id": 296732,
+          "film_name": "Paw Patrol: Ready Race Rescue",
+          "times": [
+            {
+              "start_time": "14:30",
+              "end_time": "16:20"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "cinema_id": 8812,
+      "cinema_name": "ODEON Wimbledon",
+      "distance": 12.984916566026,
+      "logo_url": "https://assets.movieglu.com/chain_logos/uk/UK-614-sq.jpg",
+      "showings": {
+        "Standard": {
+          "film_id": 296732,
+          "film_name": "Paw Patrol: Ready Race Rescue",
+          "times": [
+            {
+              "start_time": "11:30",
+              "end_time": "13:20"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "cinema_id": 9014,
+      "cinema_name": "Greenwich Picturehouse",
+      "distance": 14.522933626361,
+      "logo_url": "https://assets.movieglu.com/chain_logos/uk/UK-1100-sq.jpg",
+      "showings": {
+        "Standard": {
+          "film_id": 296732,
+          "film_name": "Paw Patrol: Ready Race Rescue",
+          "times": [
+            {
+              "start_time": "10:50",
+              "end_time": "12:40"
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "status": {
+    "count": 10,
+    "state": "OK",
+    "method": "filmShowTimes",
+    "message": null,
+    "request_method": "GET",
+    "version": "TEJA_0v200",
+    "territory": "UK",
+    "device_datetime_sent": "2020-02-25T19:33:52.108Z",
+    "device_datetime_used": "2020-02-25 19:33:52"
+  }
+}

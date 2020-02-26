@@ -1,0 +1,392 @@
+{
+    "films": [
+        {
+            "film_id": 242898,
+            "imdb_id": 3794354,
+            "film_name": "Sonic the Hedgehog",
+            "release_dates": [
+                {
+                    "release_date": "2020-02-14",
+                    "notes": "GBR"
+                }
+            ],
+            "age_rating": [
+                {
+                    "rating": "PG ",
+                    "age_rating_image": "https://assets.movieglu.com/age_rating_logos/uk/pg.png",
+                    "age_advisory": "mild violence, threat, rude humour"
+                }
+            ],
+            "film_trailer": "https://trailer.movieglu.com/242898_uk_high.mp4",
+            "synopsis_long": "SONIC THE HEDGEHOG is a live-action adventure comedy based on the global blockbuster videogame franchise from Sega that centers on the infamously brash bright blue hedgehog. The film follows the (mis)adventures of Sonic as he navigates the complexities of life on Earth with his newfound - human - best friend Tom Wachowski (James Marsden). Sonic and Tom join forces to try and stop the villainous Dr. Robotnik (Jim Carrey) from capturing Sonic and using his immense powers for world domination. The film also stars Tika Sumpter and Ben Schwartz as the voice of Sonic.",
+            "images": {
+                "poster": {
+                    "1": {
+                        "image_orientation": "portrait",
+                        "region": "UK",
+                        "medium": {
+                            "film_image": "https://image.movieglu.com/242898/GBR_242898h0.jpg",
+                            "width": 199,
+                            "height": 300
+                        }
+                    }
+                },
+                "still": {
+                    "1": {
+                        "image_orientation": "landscape",
+                        "medium": {
+                            "film_image": "https://image.movieglu.com/242898/242898h2.jpg",
+                            "width": 300,
+                            "height": 200
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "film_id": 248984,
+            "imdb_id": 6673612,
+            "film_name": "Dolittle",
+            "release_dates": [
+                {
+                    "release_date": "2020-02-07",
+                    "notes": "GBR"
+                }
+            ],
+            "age_rating": [
+                {
+                    "rating": "PG ",
+                    "age_rating_image": "https://assets.movieglu.com/age_rating_logos/uk/pg.png",
+                    "age_advisory": "mild threat, rude humour"
+                }
+            ],
+            "film_trailer": "https://trailer.movieglu.com/248984_uk_high.mp4",
+            "synopsis_long": "After losing his wife seven years earlier, the eccentric Dr. John Dolittle, famed doctor and veterinarian of Queen Victoria's England, hermits himself away behind the high walls of Dolittle Manor with only his menagerie of exotic animals for company. But when the young queen falls gravely ill, a reluctant Dolittle is forced to set sail on an epic adventure to a mythical island in search of a cure, regaining his wit and courage as he crosses old adversaries and discovers wondrous creatures.",
+            "images": {
+                "poster": {
+                    "1": {
+                        "image_orientation": "portrait",
+                        "region": "UK",
+                        "medium": {
+                            "film_image": "https://image.movieglu.com/248984/GBR_248984h0.jpg",
+                            "width": 189,
+                            "height": 300
+                        }
+                    }
+                },
+                "still": {
+                    "1": {
+                        "image_orientation": "landscape",
+                        "medium": {
+                            "film_image": "https://image.movieglu.com/248984/248984h2.jpg",
+                            "width": 300,
+                            "height": 200
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "film_id": 285305,
+            "imdb_id": 7713068,
+            "film_name": "Birds of Prey",
+            "release_dates": [
+                {
+                    "release_date": "2020-02-07",
+                    "notes": "GBR"
+                }
+            ],
+            "age_rating": [
+                {
+                    "rating": "15 ",
+                    "age_rating_image": "https://assets.movieglu.com/age_rating_logos/uk/15.png",
+                    "age_advisory": "strong violence, injury detail, language, sexual threat"
+                }
+            ],
+            "film_trailer": "https://trailer.movieglu.com/285305_uk_high.mp4",
+            "synopsis_long": "You ever hear the one about the cop, the songbird, the psycho and the mafia princess? \"Birds of Prey (And the Fantabulous Emancipation of One Harley Quinn)\" is a twisted tale told by Harley herself, as only Harley can tell it. When Gotham's most nefariously narcissistic villain, Roman Sionis, and his zealous right-hand, Zsasz, put a target on a young girl named Cass, the city is turned upside down looking for her. Harley, Huntress, Black Canary and Renee Montoya's paths collide, and the unlikely foursome has no choice but to team up to take Roman down.",
+            "images": {
+                "poster": {
+                    "1": {
+                        "image_orientation": "portrait",
+                        "region": "UK",
+                        "medium": {
+                            "film_image": "https://image.movieglu.com/285305/GBR_285305h0.jpg",
+                            "width": 202,
+                            "height": 300
+                        }
+                    }
+                },
+                "still": {
+                    "1": {
+                        "image_orientation": "landscape",
+                        "medium": {
+                            "film_image": "https://image.movieglu.com/285305/285305h2.jpg",
+                            "width": 300,
+                            "height": 200
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "film_id": 285242,
+            "imdb_id": 8579674,
+            "film_name": "1917",
+            "release_dates": [
+                {
+                    "release_date": "2020-01-10",
+                    "notes": "GBR"
+                }
+            ],
+            "age_rating": [
+                {
+                    "rating": "15 ",
+                    "age_rating_image": "https://assets.movieglu.com/age_rating_logos/uk/15.png",
+                    "age_advisory": "strong injury detail, language"
+                }
+            ],
+            "film_trailer": "https://trailer.movieglu.com/285242_uk_high.mp4",
+            "synopsis_long": "At the height of the First World War, two young British soldiers, Schofield (Captain Fantastic's George MacKay) and Blake (Game of Thrones' Dean-Charles Chapman) are given a seemingly impossible mission. In a race against time, they must cross enemy territory and deliver a message that will stop a deadly attack on hundreds of soldiers - Blake's own brother among them.",
+            "images": {
+                "poster": {
+                    "1": {
+                        "image_orientation": "portrait",
+                        "region": "UK",
+                        "medium": {
+                            "film_image": "https://image.movieglu.com/285242/GBR_285242h0.jpg",
+                            "width": 202,
+                            "height": 300
+                        }
+                    }
+                },
+                "still": {
+                    "1": {
+                        "image_orientation": "landscape",
+                        "medium": {
+                            "film_image": "https://image.movieglu.com/285242/285242h2.jpg",
+                            "width": 300,
+                            "height": 200
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "film_id": 291495,
+            "imdb_id": 6751668,
+            "film_name": "Parasite",
+            "release_dates": [
+                {
+                    "release_date": "2020-02-07",
+                    "notes": "GBR"
+                }
+            ],
+            "age_rating": [
+                {
+                    "rating": "15 ",
+                    "age_rating_image": "https://assets.movieglu.com/age_rating_logos/uk/15.png",
+                    "age_advisory": "strong bloody violence, language, sex, sex references"
+                }
+            ],
+            "film_trailer": "https://trailer.movieglu.com/291495_uk_high.mp4",
+            "synopsis_long": "Meet the Park Family: the picture of aspirational wealth. And the Kim Family, rich in street smarts but not much else. Be it chance or fate, these two houses are brought together and the Kims sense a golden opportunity. Masterminded by college-aged Ki-woo, the Kim children expediently install themselves as tutor and art therapist to the Parks. Soon, a symbiotic relationship forms between the two families. The Kims provide indispensable luxury services while the Parks give the Kims a way out of their shabby circumstances. But this new ecosystem is fragile, and soon enough greed and class prejudice threaten to upend the Kims' newfound comfort.",
+            "images": {
+                "poster": {
+                    "1": {
+                        "image_orientation": "portrait",
+                        "region": "global",
+                        "medium": {
+                            "film_image": "https://image.movieglu.com/291495/AUS_291495h0.jpg",
+                            "width": 210,
+                            "height": 300
+                        }
+                    }
+                },
+                "still": {
+                    "1": {
+                        "image_orientation": "landscape",
+                        "medium": {
+                            "film_image": "https://image.movieglu.com/291495/291495h2.jpg",
+                            "width": 300,
+                            "height": 199
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "film_id": 215330,
+            "imdb_id": 1502397,
+            "film_name": "Bad Boys For Life",
+            "release_dates": [
+                {
+                    "release_date": "2020-01-17",
+                    "notes": "GBR"
+                }
+            ],
+            "age_rating": [
+                {
+                    "rating": "15 ",
+                    "age_rating_image": "https://assets.movieglu.com/age_rating_logos/uk/15.png",
+                    "age_advisory": "strong bloody violence, language, crude humour"
+                }
+            ],
+            "film_trailer": "https://trailer.movieglu.com/215330_uk_high_V2.mp4",
+            "synopsis_long": "The Bad Boys Mike Lowrey (Will Smith) and Marcus Burnett (Martin Lawrence) are back together for one last ride in the highly anticipated Bad Boys for Life.",
+            "images": {
+                "poster": {
+                    "1": {
+                        "image_orientation": "portrait",
+                        "region": "UK",
+                        "medium": {
+                            "film_image": "https://image.movieglu.com/215330/GBR_215330h0.jpg",
+                            "width": 202,
+                            "height": 300
+                        }
+                    }
+                },
+                "still": {
+                    "1": {
+                        "image_orientation": "landscape",
+                        "medium": {
+                            "film_image": "https://image.movieglu.com/215330/215330h2.jpg",
+                            "width": 300,
+                            "height": 200
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "film_id": 275172,
+            "imdb_id": 7975244,
+            "film_name": "Jumanji The Next Level",
+            "release_dates": [
+                {
+                    "release_date": "2019-12-13",
+                    "notes": "GBR"
+                }
+            ],
+            "age_rating": [
+                {
+                    "rating": "12A ",
+                    "age_rating_image": "https://assets.movieglu.com/age_rating_logos/uk/12a.png",
+                    "age_advisory": "moderate violence"
+                }
+            ],
+            "film_trailer": "https://trailer.movieglu.com/275172_uk_high_V2.mp4",
+            "synopsis_long": "In Jumanji: The Next Level, the gang is back but the game has changed. As they return to Jumanji to rescue one of their own, they discover that nothing is as they expect. The players will have to brave parts unknown and unexplored, from the arid deserts to the snowy mountains, in order to escape the world's most dangerous game.",
+            "images": {
+                "poster": {
+                    "1": {
+                        "image_orientation": "portrait",
+                        "region": "UK",
+                        "medium": {
+                            "film_image": "https://image.movieglu.com/275172/GBR_275172h0.jpg",
+                            "width": 240,
+                            "height": 300
+                        }
+                    }
+                },
+                "still": {
+                    "1": {
+                        "image_orientation": "landscape",
+                        "medium": {
+                            "film_image": "https://image.movieglu.com/275172/275172h2.jpg",
+                            "width": 300,
+                            "height": 200
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "film_id": 296732,
+            "imdb_id": 11015752,
+            "film_name": "Paw Patrol Ready Race Rescue",
+            "release_dates": [
+                {
+                    "release_date": "2020-01-24",
+                    "notes": "GBR"
+                }
+            ],
+            "age_rating": [
+                {
+                    "rating": "U ",
+                    "age_rating_image": "https://assets.movieglu.com/age_rating_logos/uk/u.png",
+                    "age_advisory": "very mild threat"
+                }
+            ],
+            "film_trailer": "https://trailer.movieglu.com/296732_uk_high.mp4",
+            "synopsis_long": "It's the ADVENTURE BAY 500! The pups have built an awesome race track and are ready to be the pit crew for their race hero, THE WHOOSH! But when the legendary racer is unable to drive in the championship race, he calls on his biggest fan-pup Marshall to take the wheel and race in his place!",
+            "images": {
+                "poster": {
+                    "1": {
+                        "image_orientation": "portrait",
+                        "region": "UK",
+                        "medium": {
+                            "film_image": "https://image.movieglu.com/296732/GBR_296732h0.jpg",
+                            "width": 202,
+                            "height": 300
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "film_id": 297614,
+            "imdb_id": 6439020,
+            "film_name": "The Personal History of David Copperfield",
+            "release_dates": [
+                {
+                    "release_date": "2020-01-24",
+                    "notes": "GBR"
+                }
+            ],
+            "age_rating": [
+                {
+                    "rating": "PG ",
+                    "age_rating_image": "https://assets.movieglu.com/age_rating_logos/uk/pg.png",
+                    "age_advisory": "mild violence, threat, brief bloody images"
+                }
+            ],
+            "film_trailer": "https://trailer.movieglu.com/297614_uk_high.mp4",
+            "synopsis_long": "From birth to infancy, from adolescence to adulthood, the good-hearted David Copperfield is surrounded by kindness, wickedness, poverty and wealth, as he meets an array of remarkable characters in Victorian England. As David sets out to be a writer, in his quest for family, friendship, romance and status, the story of his life is the most seductive tale of all.",
+            "images": {
+                "poster": {
+                    "1": {
+                        "image_orientation": "portrait",
+                        "region": "UK",
+                        "medium": {
+                            "film_image": "https://image.movieglu.com/297614/GBR_297614h0.jpg",
+                            "width": 202,
+                            "height": 300
+                        }
+                    }
+                },
+                "still": {
+                    "1": {
+                        "image_orientation": "landscape",
+                        "medium": {
+                            "film_image": "https://image.movieglu.com/297614/297614h2.jpg",
+                            "width": 300,
+                            "height": 200
+                        }
+                    }
+                }
+            }
+        }
+    ],
+    "status": {
+        "count": 10,
+        "state": "OK",
+        "method": "filmsNowShowing",
+        "message": null,
+        "request_method": "GET",
+        "version": "TEJA_0v200",
+        "territory": "UK",
+        "device_datetime_sent": "2020-02-18T08:30:17.360Z",
+        "device_datetime_used": "2020-02-18 08:30:17"
+    }
+}

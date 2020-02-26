@@ -1,0 +1,309 @@
+{
+  "film": {
+    "film_id": 285305,
+    "imdb_id": 7713068,
+    "film_name": "Birds of Prey",
+    "version_type": "Standard",
+    "age_rating": [
+      {
+        "rating": "15 ",
+        "age_rating_image": "https://assets.movieglu.com/age_rating_logos/uk/15.png",
+        "age_advisory": "strong violence, injury detail, language, sexual threat"
+      }
+    ],
+    "images": {
+      "poster": {
+        "1": {
+          "image_orientation": "portrait",
+          "region": "UK",
+          "medium": {
+            "film_image": "https://image.movieglu.com/285305/GBR_285305h0.jpg",
+            "width": 202,
+            "height": 300
+          }
+        }
+      },
+      "still": {
+        "1": {
+          "image_orientation": "landscape",
+          "medium": {
+            "film_image": "https://image.movieglu.com/285305/285305h2.jpg",
+            "width": 300,
+            "height": 200
+          }
+        }
+      }
+    }
+  },
+  "cinemas": [
+    {
+      "cinema_id": 8938,
+      "cinema_name": "Vue - Harrow",
+      "distance": 2.6197076210827,
+      "logo_url": "https://assets.movieglu.com/chain_logos/uk/UK-712-sq.jpg",
+      "showings": {
+        "Standard": {
+          "film_id": 285305,
+          "film_name": "Birds of Prey",
+          "times": [
+            {
+              "start_time": "15:10",
+              "end_time": "17:24"
+            },
+            {
+              "start_time": "22:15",
+              "end_time": "00:29"
+            },
+            {
+              "start_time": "00:15",
+              "end_time": "02:29"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "cinema_id": 37270,
+      "cinema_name": "Cineworld Cinema - Wembley",
+      "distance": 3.1036305726377,
+      "logo_url": "https://assets.movieglu.com/chain_logos/uk/UK-868-sq.jpg",
+      "showings": {
+        "Standard": {
+          "film_id": 285305,
+          "film_name": "Birds of Prey",
+          "times": [
+            {
+              "start_time": "12:30",
+              "end_time": "14:44"
+            },
+            {
+              "start_time": "15:10",
+              "end_time": "17:24"
+            },
+            {
+              "start_time": "17:50",
+              "end_time": "20:04"
+            },
+            {
+              "start_time": "20:40",
+              "end_time": "22:54"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "cinema_id": 9489,
+      "cinema_name": "Reel Cinemas - Borehamwood",
+      "distance": 3.7955195868926,
+      "logo_url": "https://assets.movieglu.com/chain_logos/uk/UK-1260-sq.jpg",
+      "showings": {
+        "Standard": {
+          "film_id": 285305,
+          "film_name": "Birds of Prey",
+          "times": [
+            {
+              "start_time": "20:10",
+              "end_time": "22:24"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "cinema_id": 8927,
+      "cinema_name": "Vue - North Finchley",
+      "distance": 4.8265148131482,
+      "logo_url": "https://assets.movieglu.com/chain_logos/uk/UK-712-sq.jpg",
+      "showings": {
+        "Standard": {
+          "film_id": 285305,
+          "film_name": "Birds of Prey",
+          "times": [
+            {
+              "start_time": "15:10",
+              "end_time": "17:24"
+            },
+            {
+              "start_time": "21:30",
+              "end_time": "23:44"
+            },
+            {
+              "start_time": "23:55",
+              "end_time": "02:09"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "cinema_id": 8919,
+      "cinema_name": "Vue - Acton",
+      "distance": 5.1981253948946,
+      "logo_url": "https://assets.movieglu.com/chain_logos/uk/UK-712-sq.jpg",
+      "showings": {
+        "Standard": {
+          "film_id": 285305,
+          "film_name": "Birds of Prey",
+          "times": [
+            {
+              "start_time": "10:45",
+              "end_time": "12:59"
+            },
+            {
+              "start_time": "19:45",
+              "end_time": "21:59"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "cinema_id": 8802,
+      "cinema_name": "Everyman Barnet",
+      "distance": 5.2509206957999,
+      "logo_url": "https://assets.movieglu.com/chain_logos/uk/UK-1077-sq.jpg",
+      "showings": {
+        "Standard": {
+          "film_id": 285305,
+          "film_name": "Birds of Prey",
+          "times": [
+            {
+              "start_time": "14:45",
+              "end_time": "16:59"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "cinema_id": 44358,
+      "cinema_name": "Cineworld Cinema - South Ruislip",
+      "distance": 5.7063131444255,
+      "logo_url": "https://assets.movieglu.com/chain_logos/uk/UK-868-sq.jpg",
+      "showings": {
+        "Standard": {
+          "film_id": 285305,
+          "film_name": "Birds of Prey",
+          "times": [
+            {
+              "start_time": "13:50",
+              "end_time": "16:04"
+            },
+            {
+              "start_time": "18:20",
+              "end_time": "20:34"
+            },
+            {
+              "start_time": "21:00",
+              "end_time": "23:14"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "cinema_id": 8928,
+      "cinema_name": "Vue - Finchley Road / 02 Centre",
+      "distance": 5.7428370911295,
+      "logo_url": "https://assets.movieglu.com/chain_logos/uk/UK-712-sq.jpg",
+      "showings": {
+        "Standard": {
+          "film_id": 285305,
+          "film_name": "Birds of Prey",
+          "times": [
+            {
+              "start_time": "13:00",
+              "end_time": "15:14"
+            },
+            {
+              "start_time": "17:40",
+              "end_time": "19:54"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "cinema_id": 48431,
+      "cinema_name": "Cineworld London - Watford",
+      "distance": 5.9040535706546,
+      "logo_url": "https://assets.movieglu.com/chain_logos/uk/UK-868-sq.jpg",
+      "showings": {
+        "Standard": {
+          "film_id": 285305,
+          "film_name": "Birds of Prey",
+          "times": [
+            {
+              "start_time": "11:00",
+              "end_time": "13:14"
+            },
+            {
+              "start_time": "13:00",
+              "end_time": "15:14"
+            },
+            {
+              "start_time": "15:40",
+              "end_time": "17:54"
+            },
+            {
+              "start_time": "18:20",
+              "end_time": "20:34"
+            },
+            {
+              "start_time": "21:00",
+              "end_time": "23:14"
+            }
+          ]
+        },
+        "IMAX": {
+          "film_id": 304790,
+          "film_name": "Birds of Prey: The IMAX 2D Experience",
+          "times": [
+            {
+              "start_time": "14:10",
+              "end_time": "16:24"
+            },
+            {
+              "start_time": "19:40",
+              "end_time": "21:54"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "cinema_id": 8798,
+      "cinema_name": "ODEON Swiss Cottage",
+      "distance": 6.235828600044,
+      "logo_url": "https://assets.movieglu.com/chain_logos/uk/UK-614-sq.jpg",
+      "showings": {
+        "Standard": {
+          "film_id": 285305,
+          "film_name": "Birds of Prey",
+          "times": [
+            {
+              "start_time": "15:45",
+              "end_time": "17:59"
+            },
+            {
+              "start_time": "21:00",
+              "end_time": "23:14"
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "status": {
+    "count": 10,
+    "state": "OK",
+    "method": "filmShowTimes",
+    "message": null,
+    "request_method": "GET",
+    "version": "TEJA_0v200",
+    "territory": "UK",
+    "device_datetime_sent": "2020-02-25T19:32:02.238Z",
+    "device_datetime_used": "2020-02-25 19:32:02"
+  }
+}
