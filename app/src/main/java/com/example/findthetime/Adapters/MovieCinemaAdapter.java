@@ -11,24 +11,24 @@ import androidx.annotation.NonNull;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.findthetime.Activities.CinemaList;
+import com.example.findthetime.Activities.TimesList;
 import com.example.findthetime.R;
-import com.example.findthetime.Activities.RestaurantDetails;
 
 import java.util.List;
 
-import Models.Domain.Restaurant;
+import Models.Domain.Cinema;
 
-public class RestaurantListAdapter extends RecyclerView.Adapter<RestaurantListAdapter.MyViewHolder> {
+public class MovieCinemaAdapter extends RecyclerView.Adapter<MovieCinemaAdapter.MyViewHolder>{
 
-    List<Restaurant> restaurants;
+    List<Cinema> cinemas;
+
     Context context;
 
-    public RestaurantListAdapter(Context ct, List<Restaurant> restaurantsList) {
+    public MovieCinemaAdapter(Context ct, List<Cinema> cinemaList) {
 
         context = ct;
-
-        restaurants = restaurantsList;
-
+        cinemas = cinemaList;
     }
 
     @NonNull
@@ -36,43 +36,44 @@ public class RestaurantListAdapter extends RecyclerView.Adapter<RestaurantListAd
     public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         LayoutInflater inflater = LayoutInflater.from(context);
         View view = inflater.inflate(R.layout.row_item, parent, false);
-
         return new MyViewHolder(view);
     }
 
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, final int position) {
 
-        holder.restName.setText(restaurants.get(position).getName());
+        holder.cinemaName.setText(cinemas.get(position).getCinemaName());
 
         holder.mainLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(context, RestaurantDetails.class);
+                Intent intent = new Intent(context, TimesList.class);
 
-                intent.putExtra("restName", restaurants.get(position).getName());
-                intent.putExtra("restAddress", restaurants.get(position).getAddress());
-                intent.putExtra("restPhoneNumber", restaurants.get(position).getPhoneNumbers());
-                intent.putExtra("restTimings", restaurants.get(position).getTimings());
-                intent.putExtra("restURL", restaurants.get(position).getUrl());
+                intent.putExtra("cinemaName", cinemas.get(position).getCinemaName());
+                intent.putStringArrayListExtra("times", cinemas.get(position).getTimes());
+
                 context.startActivity(intent);
             }
         });
+
     }
+
+
 
     @Override
     public int getItemCount() {
-        return restaurants.size();
+        return cinemas.size();
     }
 
-    public class MyViewHolder extends RecyclerView.ViewHolder{
+    public class MyViewHolder extends RecyclerView.ViewHolder {
 
-        TextView restName;
+        TextView cinemaName;
         ConstraintLayout mainLayout;
+
 
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
-            restName = itemView.findViewById(R.id.rowName);
+            cinemaName = itemView.findViewById(R.id.rowName);
             mainLayout = itemView.findViewById(R.id.mainLayout);
 
         }

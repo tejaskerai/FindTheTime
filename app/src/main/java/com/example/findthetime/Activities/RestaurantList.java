@@ -40,6 +40,7 @@ public class RestaurantList extends AppCompatActivity {
 
         RestaurantListAdapter restaurantListAdapter = new RestaurantListAdapter(this, restaurants);
 
+        System.out.println("list adapter: " + restaurantListAdapter);
         recyclerView.setAdapter(restaurantListAdapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 

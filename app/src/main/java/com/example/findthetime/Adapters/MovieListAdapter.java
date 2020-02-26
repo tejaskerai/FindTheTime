@@ -11,24 +11,22 @@ import androidx.annotation.NonNull;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.findthetime.Activities.CinemaList;
 import com.example.findthetime.R;
-import com.example.findthetime.Activities.RestaurantDetails;
 
 import java.util.List;
 
-import Models.Domain.Restaurant;
+import Models.Domain.Movie;
 
-public class RestaurantListAdapter extends RecyclerView.Adapter<RestaurantListAdapter.MyViewHolder> {
+public class MovieListAdapter extends RecyclerView.Adapter<MovieListAdapter.MyViewHolder> {
 
-    List<Restaurant> restaurants;
+    List<Movie> movies;
     Context context;
 
-    public RestaurantListAdapter(Context ct, List<Restaurant> restaurantsList) {
+    public MovieListAdapter(Context ct, List<Movie> movieList) {
 
         context = ct;
-
-        restaurants = restaurantsList;
-
+        movies = movieList;
     }
 
     @NonNull
@@ -41,38 +39,37 @@ public class RestaurantListAdapter extends RecyclerView.Adapter<RestaurantListAd
     }
 
     @Override
-    public void onBindViewHolder(@NonNull MyViewHolder holder, final int position) {
+    public void onBindViewHolder(@NonNull MovieListAdapter.MyViewHolder holder, final int position) {
 
-        holder.restName.setText(restaurants.get(position).getName());
+        holder.movieName.setText(movies.get(position).getFilmName());
 
         holder.mainLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(context, RestaurantDetails.class);
-
-                intent.putExtra("restName", restaurants.get(position).getName());
-                intent.putExtra("restAddress", restaurants.get(position).getAddress());
-                intent.putExtra("restPhoneNumber", restaurants.get(position).getPhoneNumbers());
-                intent.putExtra("restTimings", restaurants.get(position).getTimings());
-                intent.putExtra("restURL", restaurants.get(position).getUrl());
+                Intent intent = new Intent(context, CinemaList.class);
+                intent.putExtra("filmName", movies.get(position).getFilmName());
                 context.startActivity(intent);
             }
         });
+
+
     }
 
     @Override
     public int getItemCount() {
-        return restaurants.size();
+        return movies.size();
     }
 
-    public class MyViewHolder extends RecyclerView.ViewHolder{
+    public class MyViewHolder extends RecyclerView.ViewHolder {
 
-        TextView restName;
+
+        TextView movieName;
         ConstraintLayout mainLayout;
+
 
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
-            restName = itemView.findViewById(R.id.rowName);
+            movieName = itemView.findViewById(R.id.rowName);
             mainLayout = itemView.findViewById(R.id.mainLayout);
 
         }

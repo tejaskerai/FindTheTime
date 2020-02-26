@@ -1,14 +1,14 @@
 {
   "film": {
-    "film_id": 285242,
-    "imdb_id": 8579674,
-    "film_name": "1917 ",
+    "film_id": 285305,
+    "imdb_id": 7713068,
+    "film_name": "Birds of Prey",
     "version_type": "Standard",
     "age_rating": [
       {
         "rating": "15 ",
         "age_rating_image": "https://assets.movieglu.com/age_rating_logos/uk/15.png",
-        "age_advisory": "strong injury detail, language"
+        "age_advisory": "strong violence, injury detail, language, sexual threat"
       }
     ],
     "images": {
@@ -17,7 +17,7 @@
           "image_orientation": "portrait",
           "region": "UK",
           "medium": {
-            "film_image": "https://image.movieglu.com/285242/GBR_285242h0.jpg",
+            "film_image": "https://image.movieglu.com/285305/GBR_285305h0.jpg",
             "width": 202,
             "height": 300
           }
@@ -27,7 +27,7 @@
         "1": {
           "image_orientation": "landscape",
           "medium": {
-            "film_image": "https://image.movieglu.com/285242/285242h2.jpg",
+            "film_image": "https://image.movieglu.com/285305/285305h2.jpg",
             "width": 300,
             "height": 200
           }
@@ -43,16 +43,50 @@
       "logo_url": "https://assets.movieglu.com/chain_logos/uk/UK-712-sq.jpg",
       "showings": {
         "Standard": {
-          "film_id": 285242,
-          "film_name": "1917 ",
+          "film_id": 285305,
+          "film_name": "Birds of Prey",
           "times": [
             {
-              "start_time": "13:30",
-              "end_time": "15:54"
+              "start_time": "15:10",
+              "end_time": "17:24"
             },
             {
-              "start_time": "15:30",
-              "end_time": "17:54"
+              "start_time": "22:15",
+              "end_time": "00:29"
+            },
+            {
+              "start_time": "00:15",
+              "end_time": "02:29"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "cinema_id": 37270,
+      "cinema_name": "Cineworld Cinema - Wembley",
+      "distance": 3.1036305726377,
+      "logo_url": "https://assets.movieglu.com/chain_logos/uk/UK-868-sq.jpg",
+      "showings": {
+        "Standard": {
+          "film_id": 285305,
+          "film_name": "Birds of Prey",
+          "times": [
+            {
+              "start_time": "12:30",
+              "end_time": "14:44"
+            },
+            {
+              "start_time": "15:10",
+              "end_time": "17:24"
+            },
+            {
+              "start_time": "17:50",
+              "end_time": "20:04"
+            },
+            {
+              "start_time": "20:40",
+              "end_time": "22:54"
             }
           ]
         }
@@ -65,12 +99,12 @@
       "logo_url": "https://assets.movieglu.com/chain_logos/uk/UK-1260-sq.jpg",
       "showings": {
         "Standard": {
-          "film_id": 285242,
-          "film_name": "1917 ",
+          "film_id": 285305,
+          "film_name": "Birds of Prey",
           "times": [
             {
-              "start_time": "19:40",
-              "end_time": "22:04"
+              "start_time": "20:10",
+              "end_time": "22:24"
             }
           ]
         }
@@ -83,16 +117,20 @@
       "logo_url": "https://assets.movieglu.com/chain_logos/uk/UK-712-sq.jpg",
       "showings": {
         "Standard": {
-          "film_id": 285242,
-          "film_name": "1917 ",
+          "film_id": 285305,
+          "film_name": "Birds of Prey",
           "times": [
             {
-              "start_time": "17:35",
-              "end_time": "19:59"
+              "start_time": "15:10",
+              "end_time": "17:24"
             },
             {
-              "start_time": "19:35",
-              "end_time": "21:59"
+              "start_time": "21:30",
+              "end_time": "23:44"
+            },
+            {
+              "start_time": "23:55",
+              "end_time": "02:09"
             }
           ]
         }
@@ -105,20 +143,16 @@
       "logo_url": "https://assets.movieglu.com/chain_logos/uk/UK-712-sq.jpg",
       "showings": {
         "Standard": {
-          "film_id": 285242,
-          "film_name": "1917 ",
+          "film_id": 285305,
+          "film_name": "Birds of Prey",
           "times": [
             {
-              "start_time": "12:10",
-              "end_time": "14:34"
+              "start_time": "10:45",
+              "end_time": "12:59"
             },
             {
-              "start_time": "14:55",
-              "end_time": "17:19"
-            },
-            {
-              "start_time": "18:55",
-              "end_time": "21:19"
+              "start_time": "19:45",
+              "end_time": "21:59"
             }
           ]
         }
@@ -131,42 +165,12 @@
       "logo_url": "https://assets.movieglu.com/chain_logos/uk/UK-1077-sq.jpg",
       "showings": {
         "Standard": {
-          "film_id": 285242,
-          "film_name": "1917 ",
+          "film_id": 285305,
+          "film_name": "Birds of Prey",
           "times": [
-            {
-              "start_time": "12:45",
-              "end_time": "15:09"
-            },
-            {
-              "start_time": "16:30",
-              "end_time": "18:54"
-            },
-            {
-              "start_time": "19:45",
-              "end_time": "22:09"
-            }
-          ]
-        }
-      }
-    },
-    {
-      "cinema_id": 9068,
-      "cinema_name": "Everyman Hampstead",
-      "distance": 5.5264200997213,
-      "logo_url": "https://assets.movieglu.com/chain_logos/uk/UK-1077-sq.jpg",
-      "showings": {
-        "Standard": {
-          "film_id": 285242,
-          "film_name": "1917 ",
-          "times": [
-            {
-              "start_time": "11:45",
-              "end_time": "14:09"
-            },
             {
               "start_time": "14:45",
-              "end_time": "17:09"
+              "end_time": "16:59"
             }
           ]
         }
@@ -179,20 +183,20 @@
       "logo_url": "https://assets.movieglu.com/chain_logos/uk/UK-868-sq.jpg",
       "showings": {
         "Standard": {
-          "film_id": 285242,
-          "film_name": "1917 ",
+          "film_id": 285305,
+          "film_name": "Birds of Prey",
           "times": [
             {
-              "start_time": "12:00",
-              "end_time": "14:24"
+              "start_time": "13:50",
+              "end_time": "16:04"
             },
             {
-              "start_time": "14:40",
-              "end_time": "17:04"
+              "start_time": "18:20",
+              "end_time": "20:34"
             },
             {
-              "start_time": "17:00",
-              "end_time": "19:24"
+              "start_time": "21:00",
+              "end_time": "23:14"
             }
           ]
         }
@@ -205,24 +209,16 @@
       "logo_url": "https://assets.movieglu.com/chain_logos/uk/UK-712-sq.jpg",
       "showings": {
         "Standard": {
-          "film_id": 285242,
-          "film_name": "1917 ",
+          "film_id": 285305,
+          "film_name": "Birds of Prey",
           "times": [
             {
-              "start_time": "11:55",
-              "end_time": "14:19"
+              "start_time": "13:00",
+              "end_time": "15:14"
             },
             {
-              "start_time": "14:10",
-              "end_time": "16:34"
-            },
-            {
-              "start_time": "18:30",
-              "end_time": "20:54"
-            },
-            {
-              "start_time": "20:15",
-              "end_time": "22:39"
+              "start_time": "17:40",
+              "end_time": "19:54"
             }
           ]
         }
@@ -235,56 +231,64 @@
       "logo_url": "https://assets.movieglu.com/chain_logos/uk/UK-868-sq.jpg",
       "showings": {
         "Standard": {
-          "film_id": 285242,
-          "film_name": "1917 ",
+          "film_id": 285305,
+          "film_name": "Birds of Prey",
           "times": [
             {
-              "start_time": "13:40",
-              "end_time": "16:04"
+              "start_time": "11:00",
+              "end_time": "13:14"
             },
             {
-              "start_time": "19:50",
-              "end_time": "22:14"
+              "start_time": "13:00",
+              "end_time": "15:14"
+            },
+            {
+              "start_time": "15:40",
+              "end_time": "17:54"
+            },
+            {
+              "start_time": "18:20",
+              "end_time": "20:34"
+            },
+            {
+              "start_time": "21:00",
+              "end_time": "23:14"
             }
           ]
         },
         "IMAX": {
-          "film_id": 303549,
-          "film_name": "1917 IMAX 2D",
+          "film_id": 304790,
+          "film_name": "Birds of Prey: The IMAX 2D Experience",
           "times": [
             {
-              "start_time": "11:20",
-              "end_time": "13:44"
+              "start_time": "14:10",
+              "end_time": "16:24"
             },
             {
-              "start_time": "16:50",
-              "end_time": "19:14"
+              "start_time": "19:40",
+              "end_time": "21:54"
             }
           ]
         }
       }
     },
     {
-      "cinema_id": 8807,
-      "cinema_name": "Everyman Muswell Hill",
-      "distance": 6.0510478773816,
-      "logo_url": "https://assets.movieglu.com/chain_logos/uk/UK-1077-sq.jpg",
+      "cinema_id": 8798,
+      "cinema_name": "ODEON Swiss Cottage",
+      "distance": 6.235828600044,
+      "logo_url": "https://assets.movieglu.com/chain_logos/uk/UK-614-sq.jpg",
       "showings": {
         "Standard": {
-          "film_id": 285242,
-          "film_name": "1917 ",
+          "film_id": 285305,
+          "film_name": "Birds of Prey",
           "times": [
             {
-              "start_time": "10:45",
-              "end_time": "13:09"
+              "start_time": "15:45",
+              "end_time": "17:59"
             },
             {
-              "start_time": "16:45",
-              "end_time": "19:09"
-            },
-            {
-              "start_time": "20:00",
-              "end_time": "22:24"
+              "start_time": "21:00",
+              "end_time": "23:14"
             }
           ]
         }
@@ -299,7 +303,7 @@
     "request_method": "GET",
     "version": "TEJA_0v200",
     "territory": "UK",
-    "device_datetime_sent": "2020-02-25T19:31:35.675Z",
-    "device_datetime_used": "2020-02-25 19:31:35"
+    "device_datetime_sent": "2020-02-25T19:32:02.238Z",
+    "device_datetime_used": "2020-02-25 19:32:02"
   }
 }

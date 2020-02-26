@@ -53,11 +53,16 @@ public class Homepage extends AppCompatActivity {
 
         signOutButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
+
+//                MainActivity mainActivity = new MainActivity();
+//                mainActivity.setmSingleAccountApp(null);
+
+                //mainActivity.signOut();
+
                 System.out.println("sign out clicked");
 
                 Intent login = new Intent(Homepage.this, MainActivity.class);
                 startActivity(login);
-
             }
         });
     }
@@ -69,7 +74,9 @@ public class Homepage extends AppCompatActivity {
         System.out.println("Error occurred in sign out");
     }
 
-    private void SignOut() {
+    public void SignOut() {
+
+
 
     }
     public void update(){

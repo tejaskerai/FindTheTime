@@ -32,8 +32,9 @@ import org.json.JSONObject;
 
 import java.util.List;
 
-import JSONService.CalendarJSON;
+import JSONService.EventService;
 import JSONService.UserService;
+import Models.Database.CalendarEvent;
 import Models.Database.User;
 import configurations.BackendlessConfig;
 
@@ -42,9 +43,6 @@ public class MainActivity extends AppCompatActivity {
 
 
     private static final String TAG = MainActivity.class.getSimpleName();
-    public static final String NAME = "com.example.findthetime.NAME";
-    public static final String EMAIL = "com.example.findthetime.EMAIL";
-    CalendarJSON calendarDetails = new CalendarJSON();
 
 
     /* Azure AD v2 Configs */
@@ -177,21 +175,11 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    public void openHomepage(){
+    public void openHomepage() {
         Intent homePage = new Intent(MainActivity.this, Homepage.class);
 
-        //homePage.putExtra(NAME, "tejas");
         startActivity(homePage);
-//
-//        ZomatoAPI zomatoAPI = new ZomatoAPI();
-//
-//        String url = "https://developers.zomato.com/api/v2.1/cuisines?lat=51.600941&lon=-0.285640";
-//
-//        MySingleton.getInstance(this).addToRequestQueue(zomatoAPI.getCuisine(url));
-
-
     }
-
 
 
     /**
@@ -217,10 +205,16 @@ public class MainActivity extends AppCompatActivity {
                 Log.d(TAG, "ID Token: " + authenticationResult.getAccount().getClaims().get("id_token"));
 
                 System.out.println("1 graph");
+
+
+
                 /* call graph */
                 callGraphAPI(authenticationResult, "https://graph.microsoft.com/v1.0/me");
-                callGraphCalendarAPI(authenticationResult, "https://graph.microsoft.com/v1.0/me/events?$select=subject,organizer,start,end");
 
+                String startDate = "2020-02-25T06:00:00.000Z";
+                String endDate = "2020-03-03T06:00:00.000Z";
+
+                callGraphCalendarAPI(authenticationResult, "https://graph.microsoft.com/v1.0/me/calendarview?startdatetime="+ startDate +"&enddatetime=" + endDate);
 
                 System.out.println("finish graph");
                 System.out.println("2 update");
@@ -287,7 +281,7 @@ public class MainActivity extends AppCompatActivity {
     /**
      * Make an HTTP request to obtain MSGraph data
      */
-    private void callGraphAPI(final IAuthenticationResult authenticationResult, final String url)  {
+    private void callGraphAPI(final IAuthenticationResult authenticationResult, final String url) {
         MSGraphRequestWrapper.callGraphAPIUsingVolley(
                 MainActivity.this,
 //                graphResourceTextView.getText().toString()
@@ -303,11 +297,11 @@ public class MainActivity extends AppCompatActivity {
                         List<User> user = userService.getUser(response);
                         String name = user.get(0).getName();
                         String email = user.get(0).getEmail();
+                        String id = user.get(0).getId();
 
-//                        userDetails.parseName(response);
-//                        userDetails.parseEmail(response);
                         System.out.println("name: " + name);
                         System.out.println("email: " + email);
+                        System.out.println("id: " + id);
                     }
                 },
                 new Response.ErrorListener() {
@@ -320,7 +314,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
-    private void callGraphCalendarAPI(final IAuthenticationResult authenticationResult, String url)  {
+    private void callGraphCalendarAPI(final IAuthenticationResult authenticationResult, String url) {
         MSGraphRequestWrapper.callGraphAPIUsingVolley(
                 MainActivity.this,
 //                graphResourceTextView.getText().toString()
@@ -331,12 +325,13 @@ public class MainActivity extends AppCompatActivity {
                     public void onResponse(JSONObject response) {
 
                         /* Successfully called graph, process data and send to UI */
-                        calendarDetails.parseSubject(response);
-                        calendarDetails.parseStart(response);
-                        calendarDetails.parseEnd(response);
-                        System.out.println("Subject: " + calendarDetails.getSubject());
-                        System.out.println("Start: " + calendarDetails.getStartTime());
-                        System.out.println("End: " + calendarDetails.getEndTime());
+                        EventService eventService = new EventService();
+                        List<CalendarEvent> events = eventService.getEvent(response);
+
+                        for (int i = 0; i < events.size(); i++){
+                            System.out.println("Start: " + events.get(i).getStart());
+                            System.out.println("End: " + events.get(i).getEnd());
+                        }
                     }
                 },
                 new Response.ErrorListener() {

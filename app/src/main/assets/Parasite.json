@@ -1,0 +1,299 @@
+{
+  "film": {
+    "film_id": 291495,
+    "imdb_id": 6751668,
+    "film_name": "Parasite",
+    "version_type": "Standard",
+    "age_rating": [
+      {
+        "rating": "15 ",
+        "age_rating_image": "https://assets.movieglu.com/age_rating_logos/uk/15.png",
+        "age_advisory": "strong bloody violence, language, sex, sex references"
+      }
+    ],
+    "images": {
+      "poster": {
+        "1": {
+          "image_orientation": "portrait",
+          "region": "global",
+          "medium": {
+            "film_image": "https://image.movieglu.com/291495/AUS_291495h0.jpg",
+            "width": 210,
+            "height": 300
+          }
+        }
+      },
+      "still": {
+        "1": {
+          "image_orientation": "landscape",
+          "medium": {
+            "film_image": "https://image.movieglu.com/291495/291495h2.jpg",
+            "width": 300,
+            "height": 199
+          }
+        }
+      }
+    }
+  },
+  "cinemas": [
+    {
+      "cinema_id": 8938,
+      "cinema_name": "Vue - Harrow",
+      "distance": 2.6197076210827,
+      "logo_url": "https://assets.movieglu.com/chain_logos/uk/UK-712-sq.jpg",
+      "showings": {
+        "Standard": {
+          "film_id": 291495,
+          "film_name": "Parasite",
+          "times": [
+            {
+              "start_time": "21:15",
+              "end_time": "23:53"
+            },
+            {
+              "start_time": "23:30",
+              "end_time": "02:08"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "cinema_id": 37270,
+      "cinema_name": "Cineworld Cinema - Wembley",
+      "distance": 3.1036305726377,
+      "logo_url": "https://assets.movieglu.com/chain_logos/uk/UK-868-sq.jpg",
+      "showings": {
+        "Standard": {
+          "film_id": 291495,
+          "film_name": "Parasite",
+          "times": [
+            {
+              "start_time": "14:10",
+              "end_time": "16:48"
+            },
+            {
+              "start_time": "17:10",
+              "end_time": "19:48"
+            },
+            {
+              "start_time": "20:10",
+              "end_time": "22:48"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "cinema_id": 8927,
+      "cinema_name": "Vue - North Finchley",
+      "distance": 4.8265148131482,
+      "logo_url": "https://assets.movieglu.com/chain_logos/uk/UK-712-sq.jpg",
+      "showings": {
+        "Standard": {
+          "film_id": 291495,
+          "film_name": "Parasite",
+          "times": [
+            {
+              "start_time": "10:45",
+              "end_time": "13:23"
+            },
+            {
+              "start_time": "14:35",
+              "end_time": "17:13"
+            },
+            {
+              "start_time": "16:50",
+              "end_time": "19:28"
+            },
+            {
+              "start_time": "20:20",
+              "end_time": "22:58"
+            },
+            {
+              "start_time": "22:40",
+              "end_time": "01:18"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "cinema_id": 12336,
+      "cinema_name": "The Lexi Cinema",
+      "distance": 5.1475248116315,
+      "logo_url": "https://assets.movieglu.com/chain_logos/uk/UK-0-sq.jpg",
+      "showings": {
+        "Standard": {
+          "film_id": 291495,
+          "film_name": "Parasite",
+          "times": [
+            {
+              "start_time": "21:00",
+              "end_time": "23:38"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "cinema_id": 8919,
+      "cinema_name": "Vue - Acton",
+      "distance": 5.1981253948946,
+      "logo_url": "https://assets.movieglu.com/chain_logos/uk/UK-712-sq.jpg",
+      "showings": {
+        "Standard": {
+          "film_id": 291495,
+          "film_name": "Parasite",
+          "times": [
+            {
+              "start_time": "13:40",
+              "end_time": "16:18"
+            },
+            {
+              "start_time": "22:20",
+              "end_time": "00:58"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "cinema_id": 8802,
+      "cinema_name": "Everyman Barnet",
+      "distance": 5.2509206957999,
+      "logo_url": "https://assets.movieglu.com/chain_logos/uk/UK-1077-sq.jpg",
+      "showings": {
+        "Standard": {
+          "film_id": 291495,
+          "film_name": "Parasite",
+          "times": [
+            {
+              "start_time": "11:00",
+              "end_time": "13:38"
+            },
+            {
+              "start_time": "13:30",
+              "end_time": "16:08"
+            },
+            {
+              "start_time": "17:30",
+              "end_time": "20:08"
+            },
+            {
+              "start_time": "20:45",
+              "end_time": "23:23"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "cinema_id": 9544,
+      "cinema_name": "Phoenix Cinema -  Finchley",
+      "distance": 5.2930041604549,
+      "logo_url": "https://assets.movieglu.com/chain_logos/uk/UK-0-sq.jpg",
+      "showings": {
+        "Standard": {
+          "film_id": 291495,
+          "film_name": "Parasite",
+          "times": [
+            {
+              "start_time": "14:30",
+              "end_time": "17:08"
+            },
+            {
+              "start_time": "20:00",
+              "end_time": "22:38"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "cinema_id": 9550,
+      "cinema_name": "Kiln Theatre",
+      "distance": 5.4143560997393,
+      "logo_url": "https://assets.movieglu.com/chain_logos/uk/UK-0-sq.jpg",
+      "showings": {
+        "Standard": {
+          "film_id": 291495,
+          "film_name": "Parasite",
+          "times": [
+            {
+              "start_time": "15:00",
+              "end_time": "17:38"
+            },
+            {
+              "start_time": "20:30",
+              "end_time": "23:08"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "cinema_id": 9068,
+      "cinema_name": "Everyman Hampstead",
+      "distance": 5.5264200997213,
+      "logo_url": "https://assets.movieglu.com/chain_logos/uk/UK-1077-sq.jpg",
+      "showings": {
+        "Standard": {
+          "film_id": 291495,
+          "film_name": "Parasite",
+          "times": [
+            {
+              "start_time": "11:00",
+              "end_time": "13:38"
+            },
+            {
+              "start_time": "14:00",
+              "end_time": "16:38"
+            },
+            {
+              "start_time": "17:00",
+              "end_time": "19:38"
+            },
+            {
+              "start_time": "20:00",
+              "end_time": "22:38"
+            },
+            {
+              "start_time": "20:45",
+              "end_time": "23:23"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "cinema_id": 37316,
+      "cinema_name": "JW3",
+      "distance": 5.538872599137,
+      "logo_url": "https://assets.movieglu.com/chain_logos/uk/UK-1567-sq.jpg",
+      "showings": {
+        "Standard": {
+          "film_id": 291495,
+          "film_name": "Parasite",
+          "times": [
+            {
+              "start_time": "16:00",
+              "end_time": "18:38"
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "status": {
+    "count": 10,
+    "state": "OK",
+    "method": "filmShowTimes",
+    "message": null,
+    "request_method": "GET",
+    "version": "TEJA_0v200",
+    "territory": "UK",
+    "device_datetime_sent": "2020-02-25T19:33:31.504Z",
+    "device_datetime_used": "2020-02-25 19:33:31"
+  }
+}
