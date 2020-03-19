@@ -4,7 +4,11 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.example.findthetime.Adapters.RestaurantListAdapter;
 import com.example.findthetime.R;
@@ -19,6 +23,8 @@ import Models.Domain.Restaurant;
 public class RestaurantList extends AppCompatActivity {
 
     RecyclerView recyclerView;
+    ImageView home;
+    TextView title;
 
 
     @Override
@@ -27,6 +33,21 @@ public class RestaurantList extends AppCompatActivity {
         setContentView(R.layout.activity_list_items);
 
         recyclerView = findViewById(R.id.recyclerView);
+
+        home = (ImageView) findViewById(R.id.home_activityList);
+        home.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v) {
+
+                Intent intent = new Intent(RestaurantList.this, Homepage.class);
+                startActivity(intent);
+
+            }
+        });
+
+        title = findViewById(R.id.listTitle);
+        String name = "Restaurants";
+        title.setText(name);
 
         Location location = (Location) getApplicationContext();
 

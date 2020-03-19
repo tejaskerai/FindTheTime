@@ -16,6 +16,8 @@ import android.widget.Toast;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.backendless.Backendless;
+import com.backendless.async.callback.AsyncCallback;
+import com.backendless.exceptions.BackendlessFault;
 import com.example.findthetime.R;
 import com.microsoft.identity.client.AuthenticationCallback;
 import com.microsoft.identity.client.IAccount;
@@ -30,12 +32,19 @@ import com.microsoft.identity.client.exception.MsalServiceException;
 import org.json.JSONObject;
 
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 
+import CalendarService.RoundEvent;
 import JSONService.EventService;
 import JSONService.UserService;
-import Models.Database.CalendarEvent;
+import Models.Database.Activity;
+import Models.Domain.CalendarEvent;
 import Models.Database.User;
+import Backendless.Initialisation;
 import configurations.BackendlessConfig;
 
 
@@ -62,27 +71,11 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         System.out.println("In main activity");
 
-        /// Backless Initialisation (move this away afterwards)
+
+//
 
         Backendless.initApp(this, BackendlessConfig.APPLICATION_ID, BackendlessConfig.API_KEY);
 
-//        User user = new User();
-//        user.name = "mitch";
-//        user.email = "boi@hotmail.com";
-//
-//        Backendless.Data.of( User.class ).save( user, new AsyncCallback<User>() {
-//            public void handleResponse( User response )
-//            {
-//                // new Contact instance has been saved
-//                System.out.println("User has been saved");
-//            }
-//
-//            public void handleFault( BackendlessFault fault )
-//            {
-//                System.out.println("User could not be saved, see the error below");
-//                System.out.println(fault.toString());
-//                // an error has occurred, the error code can be retrieved with fault.getCode()
-//            }});
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
@@ -111,6 +104,7 @@ public class MainActivity extends AppCompatActivity {
                     }
                 });
     }
+
 
     private void initializeUI() {
         signInButton = findViewById(R.id.btn_signIn);
@@ -214,7 +208,7 @@ public class MainActivity extends AppCompatActivity {
                 String startDate = "2020-02-25T06:00:00.000Z";
                 String endDate = "2020-03-03T06:00:00.000Z";
 
-                callGraphCalendarAPI(authenticationResult, "https://graph.microsoft.com/v1.0/me/calendarview?startdatetime="+ startDate +"&enddatetime=" + endDate);
+                callGraphCalendarAPI(authenticationResult, "https://graph.microsoft.com/v1.0/me/calendarview?startdatetime=" + startDate + "&enddatetime=" + endDate);
 
                 System.out.println("finish graph");
                 System.out.println("2 update");
@@ -302,6 +296,16 @@ public class MainActivity extends AppCompatActivity {
                         System.out.println("name: " + name);
                         System.out.println("email: " + email);
                         System.out.println("id: " + id);
+
+//                        Initialisation init = new Initialisation();
+//
+//                        boolean found = init.doesUserExist(id);
+//                        System.out.println("found or not: " + found);
+//                        if (!found){
+//                            init.saveUser(name, email, id);
+//                        }
+
+
                     }
                 },
                 new Response.ErrorListener() {
@@ -328,10 +332,49 @@ public class MainActivity extends AppCompatActivity {
                         EventService eventService = new EventService();
                         List<CalendarEvent> events = eventService.getEvent(response);
 
-                        for (int i = 0; i < events.size(); i++){
+                        for (int i = 0; i < events.size(); i++) {
                             System.out.println("Start: " + events.get(i).getStart());
                             System.out.println("End: " + events.get(i).getEnd());
+
                         }
+
+                        RoundEvent roundEvent = new RoundEvent();
+
+                        // Initialise availTimes array
+                        HashMap<Date, List<Integer>> availTimes = new HashMap<Date, List<Integer>>();
+
+                        for (int i = 0; i < events.size(); i++) {
+
+                            if (availTimes.containsKey(events.get(i).getStartDate()) == false) {
+
+                                System.out.println("not in map");
+
+                                // Initialise start array of times
+                                List<Integer> startarr = new ArrayList<Integer>(Arrays.asList(5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24));
+
+                                List<Integer> hours = roundEvent.subtractHours(startarr, events.get(i).getStart(), events.get(i).getEnd());
+                                availTimes.put(events.get(i).getStartDate(), hours);
+
+                            } else {
+                                if (events.get(i - 1).getStartDate().equals(events.get(i).getStartDate())) {
+
+                                    List<Integer> hours = roundEvent.subtractHours(availTimes.get(events.get(i).getStartDate()), events.get(i).getStart(), events.get(i).getEnd());
+
+                                    availTimes.put(events.get(i).getStartDate(), hours);
+                                } else {
+                                    // Initialise start array of times
+                                    List<Integer> startarr = new ArrayList<Integer>(Arrays.asList(5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24));
+
+                                    List<Integer> hours = roundEvent.subtractHours(startarr, events.get(i).getStart(), events.get(i).getEnd());
+                                    availTimes.put(events.get(i).getStartDate(), hours);
+                                }
+                            }
+                        }
+                        System.out.println(availTimes);
+
+
+
+
                     }
                 },
                 new Response.ErrorListener() {
