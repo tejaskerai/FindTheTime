@@ -7,6 +7,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 
 import com.example.findthetime.R;
 
@@ -33,6 +34,7 @@ public class CreateRestaurantActivity extends AppCompatActivity {
     Button greek;
     Button french;
     Button streetFood;
+    ImageView home;
 
 
     @Override
@@ -46,6 +48,18 @@ public class CreateRestaurantActivity extends AppCompatActivity {
 
 
     private void initializeUI() {
+
+
+        home = (ImageView) findViewById(R.id.home_cuisines);
+        home.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v) {
+
+                Intent intent = new Intent(CreateRestaurantActivity.this, Homepage.class);
+                startActivity(intent);
+
+            }
+        });
 
         italian = findViewById(R.id.btn_italian);
         italian.setOnClickListener(new View.OnClickListener() {

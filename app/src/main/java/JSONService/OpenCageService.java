@@ -24,8 +24,6 @@ public class OpenCageService {
 
 
     public List<Location> getLongLat(String placename) {
-        //String url = "https://api.opencagedata.com/geocode/v1/json?q=" + placename + "&key=" + apiKey;
-        //URL url1 = null;
 
         URL url = null;
 

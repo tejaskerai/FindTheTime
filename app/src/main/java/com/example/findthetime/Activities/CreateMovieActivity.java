@@ -4,10 +4,14 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import com.example.findthetime.Adapters.MovieListAdapter;
 import com.example.findthetime.R;
@@ -26,12 +30,29 @@ public class CreateMovieActivity extends AppCompatActivity {
 
 
     RecyclerView recyclerView;
+    ImageView home;
+    TextView title;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_list_items);
+
+        home = (ImageView) findViewById(R.id.home_activityList);
+        home.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v) {
+
+                Intent intent = new Intent(CreateMovieActivity.this, Homepage.class);
+                startActivity(intent);
+
+            }
+        });
+
+        title = findViewById(R.id.listTitle);
+        String name = "Movies";
+        title.setText(name);
 
         recyclerView = findViewById(R.id.recyclerView);
 

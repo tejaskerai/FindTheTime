@@ -1,4 +1,4 @@
-package Models.Database;
+package Models.Domain;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
