@@ -22,13 +22,15 @@ import Models.Domain.Cinema;
 public class MovieCinemaAdapter extends RecyclerView.Adapter<MovieCinemaAdapter.MyViewHolder>{
 
     List<Cinema> cinemas;
+    String film;
 
     Context context;
 
-    public MovieCinemaAdapter(Context ct, List<Cinema> cinemaList) {
+    public MovieCinemaAdapter(Context ct, List<Cinema> cinemaList, String filmName) {
 
-        context = ct;
-        cinemas = cinemaList;
+        this.context = ct;
+        this.cinemas = cinemaList;
+        this.film = filmName;
     }
 
     @NonNull
@@ -50,6 +52,7 @@ public class MovieCinemaAdapter extends RecyclerView.Adapter<MovieCinemaAdapter.
                 Intent intent = new Intent(context, TimesList.class);
 
                 intent.putExtra("cinemaName", cinemas.get(position).getCinemaName());
+                intent.putExtra("filmName", film);
                 intent.putStringArrayListExtra("times", cinemas.get(position).getTimes());
 
                 context.startActivity(intent);

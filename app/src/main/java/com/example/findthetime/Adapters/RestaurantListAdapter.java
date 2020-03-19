@@ -14,6 +14,8 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.findthetime.R;
 import com.example.findthetime.Activities.RestaurantDetails;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 import Models.Domain.Restaurant;
@@ -45,16 +47,27 @@ public class RestaurantListAdapter extends RecyclerView.Adapter<RestaurantListAd
 
         holder.restName.setText(restaurants.get(position).getName());
 
+
+        final HashMap<String, String> restDetails = new HashMap<String, String>();
+
+        restDetails.put("restName", restaurants.get(position).getName());
+        restDetails.put("restAddress", restaurants.get(position).getAddress());
+        restDetails.put("restPhoneNumber", restaurants.get(position).getPhoneNumbers());
+        restDetails.put("restTimings", restaurants.get(position).getTimings());
+        restDetails.put("restURL", restaurants.get(position).getUrl());
+
         holder.mainLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(context, RestaurantDetails.class);
+//
+//                intent.putExtra("restName", restaurants.get(position).getName());
+//                intent.putExtra("restAddress", restaurants.get(position).getAddress());
+//                intent.putExtra("restPhoneNumber", restaurants.get(position).getPhoneNumbers());
+//                intent.putExtra("restTimings", restaurants.get(position).getTimings());
+//                intent.putExtra("restURL", restaurants.get(position).getUrl());
+                intent.putExtra("restDetails", restDetails);
 
-                intent.putExtra("restName", restaurants.get(position).getName());
-                intent.putExtra("restAddress", restaurants.get(position).getAddress());
-                intent.putExtra("restPhoneNumber", restaurants.get(position).getPhoneNumbers());
-                intent.putExtra("restTimings", restaurants.get(position).getTimings());
-                intent.putExtra("restURL", restaurants.get(position).getUrl());
                 context.startActivity(intent);
             }
         });

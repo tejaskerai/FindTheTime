@@ -10,7 +10,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-import Models.Database.CalendarEvent;
+import Models.Domain.CalendarEvent;
 
 
 public class EventService {

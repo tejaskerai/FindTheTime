@@ -11,6 +11,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import java.util.List;
@@ -26,6 +28,7 @@ public class CreateNewActivity extends AppCompatActivity {
     /* UI & Debugging Variables*/
     Button createMovieActivity;
     Button createRestaurantActivity;
+    ImageView home;
 
 
     @Override
@@ -101,6 +104,19 @@ public class CreateNewActivity extends AppCompatActivity {
                 startActivity(movies);
             }
         });
+
+
+        home = (ImageView) findViewById(R.id.home_createActivity);
+        home.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v) {
+
+                Intent intent = new Intent(CreateNewActivity.this, Homepage.class);
+                startActivity(intent);
+
+            }
+        });
+
 
 
     }

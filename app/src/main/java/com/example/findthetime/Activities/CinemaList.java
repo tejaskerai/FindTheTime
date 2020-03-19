@@ -4,7 +4,10 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -27,13 +30,29 @@ public class CinemaList extends AppCompatActivity {
 
 
     String filmName;
-
     RecyclerView recyclerView;
+    ImageView home;
+    TextView title;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_list_items);
+
+        title = findViewById(R.id.listTitle);
+        String name = "Cinemas";
+        title.setText(name);
+
+        home = (ImageView) findViewById(R.id.home_activityList);
+        home.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v) {
+
+                Intent intent = new Intent(CinemaList.this, Homepage.class);
+                startActivity(intent);
+
+            }
+        });
 
         recyclerView = findViewById(R.id.recyclerView);
 
@@ -41,7 +60,7 @@ public class CinemaList extends AppCompatActivity {
 
         List<Cinema> cinemas = readJsonfile();
 
-        MovieCinemaAdapter movieCinemaAdapter = new MovieCinemaAdapter(this, cinemas);
+        MovieCinemaAdapter movieCinemaAdapter = new MovieCinemaAdapter(this, cinemas, filmName);
 
         recyclerView.setAdapter(movieCinemaAdapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));

@@ -20,8 +20,6 @@ public class Homepage extends AppCompatActivity {
     Button signOutButton;
     Button createActivity;
 
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
