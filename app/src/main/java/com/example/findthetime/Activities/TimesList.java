@@ -47,13 +47,9 @@ public class TimesList extends AppCompatActivity {
         title = findViewById(R.id.listTitle);
         String name = "Show Times";
         title.setText(name);
-
         recyclerView = findViewById(R.id.recyclerView);
-
         getData();
-
         MovieTimesAdapter movieTimesAdapter = new MovieTimesAdapter(this, times, cinemaName, filmName);
-
         recyclerView.setAdapter(movieTimesAdapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 

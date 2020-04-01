@@ -49,7 +49,6 @@ public class RestaurantListAdapter extends RecyclerView.Adapter<RestaurantListAd
 
 
         final HashMap<String, String> restDetails = new HashMap<String, String>();
-
         restDetails.put("restName", restaurants.get(position).getName());
         restDetails.put("restAddress", restaurants.get(position).getAddress());
         restDetails.put("restPhoneNumber", restaurants.get(position).getPhoneNumbers());
@@ -60,12 +59,6 @@ public class RestaurantListAdapter extends RecyclerView.Adapter<RestaurantListAd
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(context, RestaurantDetails.class);
-//
-//                intent.putExtra("restName", restaurants.get(position).getName());
-//                intent.putExtra("restAddress", restaurants.get(position).getAddress());
-//                intent.putExtra("restPhoneNumber", restaurants.get(position).getPhoneNumbers());
-//                intent.putExtra("restTimings", restaurants.get(position).getTimings());
-//                intent.putExtra("restURL", restaurants.get(position).getUrl());
                 intent.putExtra("restDetails", restDetails);
 
                 context.startActivity(intent);

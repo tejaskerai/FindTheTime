@@ -1,18 +1,14 @@
 package com.example.findthetime.Activities;
 
 import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
-
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
-
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.backendless.Backendless;
@@ -46,6 +42,8 @@ import Models.Domain.CalendarEvent;
 import Models.Database.User;
 import Backendless.Initialisation;
 import configurations.BackendlessConfig;
+import com.google.common.collect.Sets;
+
 
 
 public class MainActivity extends AppCompatActivity {
@@ -208,6 +206,7 @@ public class MainActivity extends AppCompatActivity {
                 String startDate = "2020-02-25T06:00:00.000Z";
                 String endDate = "2020-03-03T06:00:00.000Z";
 
+
                 callGraphCalendarAPI(authenticationResult, "https://graph.microsoft.com/v1.0/me/calendarview?startdatetime=" + startDate + "&enddatetime=" + endDate);
 
                 System.out.println("finish graph");
@@ -215,7 +214,6 @@ public class MainActivity extends AppCompatActivity {
                 /* Update account */
                 updateUI(authenticationResult.getAccount());
                 System.out.println("finish update");
-
 
             }
 

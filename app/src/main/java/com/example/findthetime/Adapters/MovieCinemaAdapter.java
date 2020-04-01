@@ -43,22 +43,17 @@ public class MovieCinemaAdapter extends RecyclerView.Adapter<MovieCinemaAdapter.
 
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, final int position) {
-
         holder.cinemaName.setText(cinemas.get(position).getCinemaName());
-
         holder.mainLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(context, TimesList.class);
-
                 intent.putExtra("cinemaName", cinemas.get(position).getCinemaName());
                 intent.putExtra("filmName", film);
                 intent.putStringArrayListExtra("times", cinemas.get(position).getTimes());
-
                 context.startActivity(intent);
             }
         });
-
     }
 
 

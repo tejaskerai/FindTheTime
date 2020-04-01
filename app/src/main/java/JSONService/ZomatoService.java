@@ -12,7 +12,8 @@ import Requests.ZomatoAPIRequest;
 
 public class ZomatoService {
     public List<Restaurant> getRestaurants(int id, String lat, String lon) {
-        String url = "https://developers.zomato.com/api/v2.1/search?entity_type=zone&lat=" + lat + "&lon=" + lon + "&cuisines=" + id + "&sort=real_distance";
+        String url = "https://developers.zomato.com/api/v2.1/search?entity_type=zone&lat=" +
+                lat + "&lon=" + lon + "&cuisines=" + id + "&sort=real_distance";
         URL url1 = null;
         try {
             url1 = new URL(url);
@@ -28,9 +29,7 @@ public class ZomatoService {
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-//        for (int i = 0; i < restaurantList.size(); i++) {
-//            System.out.println(restaurantList.get(i).getName());
-//        }
         return restaurantList;
     }
 }
+

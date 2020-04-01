@@ -45,7 +45,8 @@ public class ZomatoAPIRequest extends AsyncTask<URL, Long, List<Restaurant>> {
                 response += temp;
             }
             object = (JSONObject) new JSONTokener(response).nextValue();
-            array = (JSONArray)  new JSONTokener(object.getString("restaurants")).nextValue();
+            array = (JSONArray)  new JSONTokener(object.getString
+                    ("restaurants")).nextValue();
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -84,3 +85,4 @@ public class ZomatoAPIRequest extends AsyncTask<URL, Long, List<Restaurant>> {
         return restaurantList;
     }
 }
+
