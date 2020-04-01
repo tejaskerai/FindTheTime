@@ -46,14 +46,11 @@ public class MovieTimesAdapter extends RecyclerView.Adapter<MovieTimesAdapter.My
     public void onBindViewHolder(@NonNull MovieTimesAdapter.MyViewHolder holder, final int position) {
 
         holder.time.setText(times.get(position));
-
         holder.mainLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(context, MovieDetails.class);
-
                 final HashMap<String, String> movieDetails = new HashMap<String, String>();
-
                 movieDetails.put("filmName", film);
                 movieDetails.put("cinemaName", cinema);
                 movieDetails.put("filmTime", times.get(position));
@@ -61,7 +58,6 @@ public class MovieTimesAdapter extends RecyclerView.Adapter<MovieTimesAdapter.My
                 context.startActivity(intent);
             }
         });
-
     }
 
     @Override

@@ -65,11 +65,7 @@ public class CreateRestaurantActivity extends AppCompatActivity {
         italian.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //List<Restaurant> restaurantList = zomatoService.getRestaurants(55, lat, lon);
-                //printRest(restaurantList);
-
                 Intent intent = new Intent(CreateRestaurantActivity.this, RestaurantList.class);
-
                 int number = 55;
                 intent.putExtra("id", number);
                 startActivity(intent);

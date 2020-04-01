@@ -4,11 +4,8 @@ import android.content.Intent;
 import android.os.Bundle;
 
 import com.example.findthetime.R;
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.google.android.material.snackbar.Snackbar;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
 
 import android.view.View;
 import android.widget.Button;
@@ -17,11 +14,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.HashMap;
-import java.util.List;
-
-import JSONService.ZomatoService;
-import Models.Domain.Location;
-import Models.Domain.Restaurant;
 
 public class RestaurantDetails extends AppCompatActivity {
 
@@ -66,7 +58,7 @@ public class RestaurantDetails extends AppCompatActivity {
         });
 
 
-        continueButton = findViewById(R.id.continueButton);
+        continueButton = findViewById(R.id.continueButtonRest);
         continueButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
 
@@ -91,22 +83,14 @@ public class RestaurantDetails extends AppCompatActivity {
     }
 
     private void getData() {
-
-
         if (getIntent().hasExtra("restDetails")){
-
             Intent intent = getIntent();
-
-            //System.out.println(getIntent().getSerializableExtra("restDetails").toString());
             HashMap<String, String> restDetails = (HashMap<String, String>) intent.getSerializableExtra("restDetails");
-
             restName = restDetails.get("restName");
             restAddress = restDetails.get("restAddress");
             restPhoneNumber = restDetails.get("restPhoneNumber");
             restTimings = restDetails.get("restTimings");
             restURL = restDetails.get("restURL");
-
-
         } else {
             Toast.makeText(this, "no data", Toast.LENGTH_SHORT).show();
         }

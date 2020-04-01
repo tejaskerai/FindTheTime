@@ -61,7 +61,7 @@ public class OpenCageAPIRequest extends AsyncTask<URL, Long, List<Location>> {
             e.printStackTrace();
         }
         //object = (JSONObject) new JSONTokener(response).nextValue();
-            //array = (JSONArray)  new JSONTokener(object.getString("restaurants")).nextValue();
+        //array = (JSONArray)  new JSONTokener(object.getString("restaurants")).nextValue();
         JSONObject object = null;
         try {
             object = new JSONObject(responseContent.toString());
@@ -73,40 +73,31 @@ public class OpenCageAPIRequest extends AsyncTask<URL, Long, List<Location>> {
         List<Location> longLat = getLongLat(object);
 
 
-       // List<Restaurant> restaurantList = getRestaurants(array);
+        // List<Restaurant> restaurantList = getRestaurants(array);
 
         return longLat;
     }
 
     private List<Location> getLongLat(JSONObject object) {
-
-
         JSONArray resultsArr = null;
         try {
             resultsArr = object.getJSONArray("results");
         } catch (JSONException e) {
             e.printStackTrace();
         }
-
-        //for (int i = 0; i < restaurants.length(); i++) {
-
         List<Location> longLat = new ArrayList<Location>();
-
         try {
-
             JSONObject element = resultsArr.getJSONObject(0);
             JSONObject geometry = element.getJSONObject("geometry");
             Double lon = geometry.getDouble("lng");
             Double lat = geometry.getDouble("lat");
 
-            longLat.add(new Location(lon,lat));
+            longLat.add(new Location(lon, lat));
 
 
         } catch (JSONException e) {
             e.printStackTrace();
         }
-        // }
-
         return longLat;
     }
 }
