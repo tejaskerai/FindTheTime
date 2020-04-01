@@ -31,9 +31,7 @@ public class RestaurantList extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_list_items);
-
         recyclerView = findViewById(R.id.recyclerView);
-
         home = (ImageView) findViewById(R.id.home_activityList);
         home.setOnClickListener(new View.OnClickListener(){
             @Override
@@ -41,27 +39,18 @@ public class RestaurantList extends AppCompatActivity {
 
                 Intent intent = new Intent(RestaurantList.this, Homepage.class);
                 startActivity(intent);
-
             }
         });
-
         title = findViewById(R.id.listTitle);
         String name = "Restaurants";
         title.setText(name);
-
         Location location = (Location) getApplicationContext();
-
         String lat = location.getLat().toString();
         String lon = location.getLon().toString();
-
         int cuisineId = getIntent().getIntExtra("id", 0);
-
         ZomatoService zomatoService = new ZomatoService();
         List<Restaurant> restaurants = zomatoService.getRestaurants(cuisineId, lat, lon);
-
         RestaurantListAdapter restaurantListAdapter = new RestaurantListAdapter(this, restaurants);
-
-        System.out.println("list adapter: " + restaurantListAdapter);
         recyclerView.setAdapter(restaurantListAdapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 

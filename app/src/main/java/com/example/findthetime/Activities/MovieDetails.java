@@ -32,50 +32,50 @@ public class MovieDetails extends AppCompatActivity {
 
         initializeUI();
 
+        getData();
+        setData();
     }
 
 
     private void initializeUI() {
 
-//        filmNameT = findViewById(R.id.restName);
-//        cinemaNameT = findViewById(R.id.restAddress);
-//        timeT = findViewById(R.id.restPhoneNumber);
+        filmNameT = findViewById(R.id.filmName);
+        cinemaNameT = findViewById(R.id.cinemaName);
+        timeT = findViewById(R.id.filmTime);
 
-        getData();
-        //setData();
+        home = findViewById(R.id.home_movieDetails);
+        home.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
 
-        // TODO change home id to match this page
+                Intent intent = new Intent(MovieDetails.this, Homepage.class);
+                startActivity(intent);
 
-//        home = findViewById(R.id.home_restaurantDetails);
-//        home.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//
-//                Intent intent = new Intent(MovieDetails.this, Homepage.class);
-//                startActivity(intent);
-//
-//            }
-//        });
+            }
+        });
 
 
-//        continueButton = findViewById(R.id.continueButton);
-//        continueButton.setOnClickListener(new View.OnClickListener() {
-//            public void onClick(View v) {
-//
-//
-//                HashMap<String, String> movieDetails = new HashMap<String, String>();
-//
-//                movieDetails.put("filmName", filmName);
-//                movieDetails.put("cinemaName", cinemaName);
-//                movieDetails.put("time", time);
-//
-//                System.out.println("details :" + movieDetails);
-//                Intent inviteUsers = new Intent(MovieDetails.this, InviteUsers.class);
-//
-//                startActivity(inviteUsers);
-//
-//            }
-//        });
+        continueButton = findViewById(R.id.continueButtonMovie);
+        continueButton.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+
+
+                HashMap<String, String> movieDetails = new HashMap<String, String>();
+
+                movieDetails.put("filmName", filmName);
+                movieDetails.put("cinemaName", cinemaName);
+                movieDetails.put("time", time);
+
+                System.out.println("details :" + movieDetails);
+
+                Intent inviteUsers = new Intent(MovieDetails.this, InviteUsers.class);
+
+                inviteUsers.putExtra("movieDetails", movieDetails);
+
+                startActivity(inviteUsers);
+
+            }
+        });
 
 
     }

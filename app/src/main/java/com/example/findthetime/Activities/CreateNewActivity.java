@@ -60,23 +60,16 @@ public class CreateNewActivity extends AppCompatActivity {
                             Toast.makeText(CreateNewActivity.this,
                                     "successful",
                                     Toast.LENGTH_SHORT).show();
-
                             String normalisedPC = mPostcode.getText().toString().replaceAll("\\s", "").toLowerCase();
-
                             Location location = (Location) getApplicationContext();
-
                             OpenCageService openCageService = new OpenCageService();
                             List<Location> longLat = openCageService.getLongLat(normalisedPC);
-
                             Double lat = longLat.get(0).getLat();
                             Double lon = longLat.get(0).getLon();
-
                             location.setLat(lat);
                             location.setLon(lon);
-
                             Intent restaurantActivity = new Intent(CreateNewActivity.this, CreateRestaurantActivity.class);
                             startActivity(restaurantActivity);
-
                         }else{
                             Toast.makeText(CreateNewActivity.this,
                                     "Postcode is empty or is invalid",
@@ -95,8 +88,6 @@ public class CreateNewActivity extends AppCompatActivity {
         createMovieActivity.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-
 
                 Intent movies = new Intent(CreateNewActivity.this, CreateMovieActivity.class);
 //                int number = 55;
@@ -124,15 +115,11 @@ public class CreateNewActivity extends AppCompatActivity {
     public boolean postcodeChecker(String postcode){
 
         String normalisedPC = postcode.replaceAll("\\s", "").toLowerCase();
-        //System.out.println("Normalised PC: " + normalisedPC);
-
         String regex = "^[a-z]{1,2}[0-9R][0-9a-z]?[0-9][abd-hjlnp-uw-z]{2}$";
-
         Pattern pattern = Pattern.compile(regex);
-
         Matcher matcher = pattern.matcher(normalisedPC);
-        //System.out.println(matcher.matches());
         return matcher.matches();
     }
 
 }
+

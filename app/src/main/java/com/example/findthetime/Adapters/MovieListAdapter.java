@@ -42,7 +42,6 @@ public class MovieListAdapter extends RecyclerView.Adapter<MovieListAdapter.MyVi
     public void onBindViewHolder(@NonNull MovieListAdapter.MyViewHolder holder, final int position) {
 
         holder.movieName.setText(movies.get(position).getFilmName());
-
         holder.mainLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -51,8 +50,6 @@ public class MovieListAdapter extends RecyclerView.Adapter<MovieListAdapter.MyVi
                 context.startActivity(intent);
             }
         });
-
-
     }
 
     @Override
