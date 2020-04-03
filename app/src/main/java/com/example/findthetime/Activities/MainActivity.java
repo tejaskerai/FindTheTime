@@ -2,6 +2,7 @@ package com.example.findthetime.Activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -15,6 +16,7 @@ import com.backendless.Backendless;
 import com.backendless.async.callback.AsyncCallback;
 import com.backendless.exceptions.BackendlessFault;
 import com.example.findthetime.R;
+import com.google.gson.JsonObject;
 import com.microsoft.identity.client.AuthenticationCallback;
 import com.microsoft.identity.client.IAccount;
 import com.microsoft.identity.client.IAuthenticationResult;
@@ -42,6 +44,8 @@ import Models.Database.Activity;
 import Models.Domain.CalendarEvent;
 import Models.Database.User;
 import Backendless.Initialisation;
+import Backendless.UserRepository;
+
 import configurations.BackendlessConfig;
 import com.google.common.collect.Sets;
 
@@ -299,20 +303,21 @@ public class MainActivity extends AppCompatActivity {
 
                         Initialisation init = new Initialisation();
 
-                        User userFound = init.getUser(id);
+                        UserRepository userRepository = new UserRepository();
+
+                        User userFound = userRepository.getUser(id);
                         if (userFound == null) {
-                            init.saveUser(name, email, id);
-                            userFound = init.getUser(id);
+                            User userCreated = userRepository.saveUser(name, email, id);
                             CurrentUser.setCurrentUser(
-                                    userFound.email,
-                                    userFound.objectId,
-                                    "");
+                                    userCreated.email,
+                                    userCreated.objectId,
+                                    authenticationResult.getAccessToken());
 
                         } else {
                             CurrentUser.setCurrentUser(
                                     userFound.email,
                                     userFound.objectId,
-                                    "");
+                                    authenticationResult.getAccessToken());
                         }
 
 

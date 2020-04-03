@@ -1,5 +1,6 @@
 package Backendless;
 
+import android.annotation.SuppressLint;
 import android.os.AsyncTask;
 import android.util.Log;
 
@@ -21,31 +22,6 @@ import Models.Database.User;
 public class Initialisation {
 
     private static final String TAG = Initialisation.class.getSimpleName();
-
-
-    public void saveUser(String name, String email, String id) {
-
-        final User user = new User();
-        user.setName(name);
-        user.setEmail(email);
-        user.setId(id);
-
-        Backendless.Data.of(User.class).save(user, new AsyncCallback<User>() {
-            @Override
-            public void handleResponse(User savedUser) {
-                Log.i(TAG, "User has been saved");
-                //savedActivities(savedUser);
-                saveEvents(savedUser);
-                System.out.println("Object id: " + user.getObjectId());
-            }
-
-            @Override
-            public void handleFault(BackendlessFault fault) {
-                Log.e(TAG, fault.getMessage());
-            }
-        });
-    }
-
 
 
     // Method - Add Single Activity (bunch of users if u like)
@@ -199,31 +175,5 @@ public class Initialisation {
     }
 
 
-    public User user = null;
-    public User getUser(final String id) {
-        try {
-            return new GetUserTask().execute(id).get();
-        } catch (ExecutionException e) {
-            e.printStackTrace();
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-        return null;
-    }
-}
 
-class GetUserTask extends AsyncTask<String, Void, User> {
-
-    @Override
-    protected User doInBackground(String... ids) {
-        List<User> users = Backendless.Data.of(User.class).find();
-        for (int i = 0; i < users.size(); i++) {
-            if (ids[0].equals(users.get(i).getId())){
-                return users.get(i);
-            } else{
-                return null;
-            }
-        }
-        return null;
-    }
 }

@@ -20,6 +20,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import JSONService.OpenCageService;
+import Models.CurrentUser;
 import Models.Domain.Location;
 
 
@@ -35,6 +36,8 @@ public class CreateNewActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create_new_activity);
+
+        System.out.println(CurrentUser.getCurrentUser().objectId);
 
         initializeUI();
 

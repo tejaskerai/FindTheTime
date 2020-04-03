@@ -12,6 +12,8 @@ import com.example.findthetime.Adapters.CreatedActivitiesAdapter;
 import com.example.findthetime.R;
 import com.microsoft.identity.client.ISingleAccountPublicClientApplication;
 
+import Models.CurrentUser;
+
 public class Homepage extends AppCompatActivity {
 
     private ISingleAccountPublicClientApplication mSingleAccountApp;
@@ -29,6 +31,8 @@ public class Homepage extends AppCompatActivity {
         setContentView(R.layout.activity_homepage);
 
         signOutButton = findViewById(R.id.btn_signOut);
+
+
 
         // TODO: Add sign out function from main activity
         // Use mSingleAccountApp.signOut() to sign the user out
