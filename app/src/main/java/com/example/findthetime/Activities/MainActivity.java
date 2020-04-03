@@ -37,6 +37,7 @@ import java.util.List;
 import CalendarService.RoundEvent;
 import JSONService.EventService;
 import JSONService.UserService;
+import Models.CurrentUser;
 import Models.Database.Activity;
 import Models.Domain.CalendarEvent;
 import Models.Database.User;
@@ -295,13 +296,24 @@ public class MainActivity extends AppCompatActivity {
                         System.out.println("email: " + email);
                         System.out.println("id: " + id);
 
-//                        Initialisation init = new Initialisation();
-//
-//                        boolean found = init.doesUserExist(id);
-//                        System.out.println("found or not: " + found);
-//                        if (!found){
-//                            init.saveUser(name, email, id);
-//                        }
+
+                        Initialisation init = new Initialisation();
+
+                        User userFound = init.getUser(id);
+                        if (userFound == null) {
+                            init.saveUser(name, email, id);
+                            CurrentUser.setCurrentUser(
+                                    userFound.email,
+                                    userFound.objectId,
+                                    "");
+
+                        } else {
+                            CurrentUser.setCurrentUser(
+                                    userFound.email,
+                                    userFound.objectId,
+                                    "");
+                        }
+
 
 
                     }

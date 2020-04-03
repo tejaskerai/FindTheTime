@@ -194,22 +194,18 @@ public class Initialisation {
                 });
     }
 
-    public boolean found = false;
+    public User user = null;
 
-    public boolean doesUserExist(final String id) {
+    public User getUser(final String id) {
         Backendless.Data.of(User.class).find(new AsyncCallback<List<User>>() {
             @Override
             public void handleResponse(List<User> foundUsers) {
                 for (int i = 0; i < foundUsers.size(); i++) {
-
-                    System.out.println(foundUsers.get(i).getId());
-
                     if (id.equals(foundUsers.get(i).getId())){
-                        System.out.println("Given id: " + id + " id from DB: " + foundUsers.get(i).getId());
-                        found = true;
+                        user = foundUsers.get(i);
                         break;
-                    }else{
-                        found = false;
+                    } else{
+                        user = null;
                     }
                 }
             }
@@ -218,7 +214,7 @@ public class Initialisation {
                 Log.e(TAG, fault.getMessage());
             }
         });
-        return found;
+        return user;
     }
 
 
