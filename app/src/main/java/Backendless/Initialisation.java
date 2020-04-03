@@ -1,5 +1,6 @@
 package Backendless;
 
+import android.os.AsyncTask;
 import android.util.Log;
 
 import com.backendless.Backendless;
@@ -11,6 +12,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.concurrent.ExecutionException;
 
 import Models.Database.Activity;
 import Models.Database.Event;
@@ -43,6 +45,8 @@ public class Initialisation {
             }
         });
     }
+
+
 
     // Method - Add Single Activity (bunch of users if u like)
     // Method - Add users to existing activities - (User user, Activity ac) ac.users.add(user)
@@ -194,31 +198,32 @@ public class Initialisation {
                 });
     }
 
+
     public User user = null;
-
     public User getUser(final String id) {
-        Backendless.Data.of(User.class).find(new AsyncCallback<List<User>>() {
-            @Override
-            public void handleResponse(List<User> foundUsers) {
-                for (int i = 0; i < foundUsers.size(); i++) {
-                    if (id.equals(foundUsers.get(i).getId())){
-                        user = foundUsers.get(i);
-                        break;
-                    } else{
-                        user = null;
-                    }
-                }
-            }
-            @Override
-            public void handleFault(BackendlessFault fault) {
-                Log.e(TAG, fault.getMessage());
-            }
-        });
-        return user;
+        try {
+            return new GetUserTask().execute(id).get();
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        return null;
     }
+}
 
+class GetUserTask extends AsyncTask<String, Void, User> {
 
-
-
-
+    @Override
+    protected User doInBackground(String... ids) {
+        List<User> users = Backendless.Data.of(User.class).find();
+        for (int i = 0; i < users.size(); i++) {
+            if (ids[0].equals(users.get(i).getId())){
+                return users.get(i);
+            } else{
+                return null;
+            }
+        }
+        return null;
+    }
 }

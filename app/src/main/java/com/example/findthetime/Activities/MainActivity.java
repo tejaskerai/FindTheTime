@@ -302,6 +302,7 @@ public class MainActivity extends AppCompatActivity {
                         User userFound = init.getUser(id);
                         if (userFound == null) {
                             init.saveUser(name, email, id);
+                            userFound = init.getUser(id);
                             CurrentUser.setCurrentUser(
                                     userFound.email,
                                     userFound.objectId,
