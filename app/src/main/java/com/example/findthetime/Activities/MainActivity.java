@@ -1,15 +1,19 @@
 package com.example.findthetime.Activities;
 
 import androidx.appcompat.app.AppCompatActivity;
+
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
+
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.backendless.Backendless;
@@ -47,8 +51,8 @@ import Backendless.Initialisation;
 import Backendless.UserRepository;
 
 import configurations.BackendlessConfig;
-import com.google.common.collect.Sets;
 
+import com.google.common.collect.Sets;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -211,8 +215,7 @@ public class MainActivity extends AppCompatActivity {
                 String startDate = "2020-02-25T06:00:00.000Z";
                 String endDate = "2020-03-03T06:00:00.000Z";
 
-
-                callGraphCalendarAPI(authenticationResult, "https://graph.microsoft.com/v1.0/me/calendarview?startdatetime=" + startDate + "&enddatetime=" + endDate);
+                //callGraphCalendarAPI(CurrentUser.getCurrentUser().authenticationToken, "https://graph.microsoft.com/v1.0/me/calendarview?startdatetime=" + startDate + "&enddatetime=" + endDate);
 
                 System.out.println("finish graph");
                 System.out.println("2 update");
@@ -305,22 +308,22 @@ public class MainActivity extends AppCompatActivity {
 
                         UserRepository userRepository = new UserRepository();
 
+
                         User userFound = userRepository.getUser(id);
                         if (userFound == null) {
+
                             User userCreated = userRepository.saveUser(name, email, id);
                             CurrentUser.setCurrentUser(
                                     userCreated.email,
                                     userCreated.objectId,
-                                    authenticationResult.getAccessToken());
+                                    authenticationResult);
 
                         } else {
                             CurrentUser.setCurrentUser(
                                     userFound.email,
                                     userFound.objectId,
-                                    authenticationResult.getAccessToken());
+                                    authenticationResult);
                         }
-
-
 
                     }
                 },
@@ -334,7 +337,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
-    private void callGraphCalendarAPI(final IAuthenticationResult authenticationResult, String url) {
+    public void callGraphCalendarAPI(final IAuthenticationResult authenticationResult, String url) {
         MSGraphRequestWrapper.callGraphAPIUsingVolley(
                 MainActivity.this,
 //                graphResourceTextView.getText().toString()
@@ -387,8 +390,6 @@ public class MainActivity extends AppCompatActivity {
                             }
                         }
                         System.out.println(availTimes);
-
-
 
 
                     }

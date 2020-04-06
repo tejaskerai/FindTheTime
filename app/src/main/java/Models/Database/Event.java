@@ -6,9 +6,11 @@ import java.util.List;
 
 public class Event {
 
+
     Date date;
     String availTimes;
     public List<User> users;
+    public String objectId;
 
     public Event() {
     }
@@ -39,5 +41,13 @@ public class Event {
 
     public void setAvailTimes(String availTimes) {
         this.availTimes = availTimes;
+    }
+
+    public String getObjectId() {
+        return objectId;
+    }
+
+    public void setObjectId(String objectId) {
+        this.objectId = objectId;
     }
 }

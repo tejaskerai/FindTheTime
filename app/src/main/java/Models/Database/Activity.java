@@ -9,7 +9,10 @@ public class Activity {
     public String type;
     public String place;
     public String dateAndTime;
+    public String creator;
     public List<User> users;
+    public String objectId;
+
 
     public List getUsers() {
         return users;
@@ -23,11 +26,12 @@ public class Activity {
     public Activity() {
     }
 
-    public Activity(String name, String type, String place, String dateAndTime) {
+    public Activity(String name, String type, String place, String dateAndTime, String creator) {
         this.name = name;
         this.type = type;
         this.place = place;
         this.dateAndTime = dateAndTime;
+        this.creator = creator;
         this.users = new ArrayList<User>();
 
     }
@@ -71,4 +75,22 @@ public class Activity {
     public void setDateAndTime(String dateAndTime) {
         this.dateAndTime = dateAndTime;
     }
+
+
+    public String getCreator() {
+        return creator;
+    }
+
+    public void setCreator(String creator) {
+        this.creator = creator;
+    }
+
+    public String getObjectId() {
+        return objectId;
+    }
+
+    public void setObjectId(String objectId) {
+        this.objectId = objectId;
+    }
+
 }

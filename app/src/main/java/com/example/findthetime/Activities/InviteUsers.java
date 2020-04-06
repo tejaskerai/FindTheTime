@@ -25,6 +25,12 @@ import java.util.HashMap;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import Backendless.ActivityRepository;
+import Backendless.UserActivityRepository;
+import Backendless.UserRepository;
+import Models.Database.Activity;
+import Models.Database.User;
+
 public class InviteUsers extends AppCompatActivity implements View.OnClickListener, AdapterView.OnItemClickListener {
 
     //TextView eventName;
@@ -41,13 +47,18 @@ public class InviteUsers extends AppCompatActivity implements View.OnClickListen
     Button addUserButton;
     ArrayAdapter<String> mAdapter;
 
+    String name;
+    String address;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_list_users);
 
 
+
         initializeUI();
+        getData();
 
         items = FileHelper.readData(this);
         System.out.println(items);
@@ -85,20 +96,21 @@ public class InviteUsers extends AppCompatActivity implements View.OnClickListen
     }
 
 
-    private void initializeUI() {
-
-        itemET = findViewById(R.id.item_edit_text);
-        btn = findViewById(R.id.add_btn);
-        inviteUsers = findViewById(R.id.invitebutton);
-        itemsList = findViewById(R.id.items_list);
+    public void getData(){
 
         Intent intent = getIntent();
-
         if (getIntent().hasExtra("restDetails")) {
 
             //System.out.println(getIntent().getSerializableExtra("restDetails").toString());
             HashMap<String, String> restDetails = (HashMap<String, String>) intent.getSerializableExtra("restDetails");
 
+
+            name = restDetails.get("restName");
+            address = restDetails.get("restAddress");
+            System.out.println("name " + name);
+            System.out.println("address "+address);
+
+            System.out.println(restDetails);
 //            eventName = findViewById(R.id.eventName);
 //            eventName.setText(restDetails.get("restName"));
         }
@@ -107,10 +119,21 @@ public class InviteUsers extends AppCompatActivity implements View.OnClickListen
 
             HashMap<String, String> movieDetails = (HashMap<String, String>) intent.getSerializableExtra("movieDetails");
 
+
+
 //            eventName = findViewById(R.id.eventName);
 //            eventName.setText(movieDetails.get("filmName"));
 
         }
+    }
+    private void initializeUI() {
+
+        itemET = findViewById(R.id.item_edit_text);
+        btn = findViewById(R.id.add_btn);
+        inviteUsers = findViewById(R.id.invitebutton);
+        itemsList = findViewById(R.id.items_list);
+
+
 
         home = (ImageView) findViewById(R.id.home_activityAddUsers);
         home.setOnClickListener(new View.OnClickListener(){
@@ -130,6 +153,26 @@ public class InviteUsers extends AppCompatActivity implements View.OnClickListen
                 //Direct user to home page
                 //Write to database, with invited users and events details
 
+                // Creating activity
+                ActivityRepository activityRepository = new ActivityRepository();
+                Activity activity = activityRepository.createActivity(name, address);
+
+
+                UserActivityRepository userActivityRepository = new UserActivityRepository();
+                items = FileHelper.readData(InviteUsers.this);
+
+
+                UserRepository userRepository = new UserRepository();
+                User user = userRepository.getUserByEmail(items.get(0));
+
+                userActivityRepository.createUserActivity(user.objectId, activity.objectId);
+
+                final String text = "Activity added";
+                Toast.makeText(InviteUsers.this, text, Toast.LENGTH_SHORT)
+                        .show();
+
+                Intent intent = new Intent(InviteUsers.this, Homepage.class);
+                startActivity(intent);
 
             }
         });

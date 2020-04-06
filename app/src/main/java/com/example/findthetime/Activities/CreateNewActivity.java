@@ -37,7 +37,9 @@ public class CreateNewActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create_new_activity);
 
-        System.out.println(CurrentUser.getCurrentUser().objectId);
+//        System.out.println(CurrentUser.getCurrentUser().objectId);
+//        System.out.println(CurrentUser.getCurrentUser().authenticationResult);
+//        System.out.println(CurrentUser.getCurrentUser().email);
 
         initializeUI();
 
@@ -91,6 +93,14 @@ public class CreateNewActivity extends AppCompatActivity {
         createMovieActivity.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+
+
+//                MainActivity mainActivity = new MainActivity();
+//                String startDate = "2020-02-25T06:00:00.000Z";
+//                String endDate = "2020-03-03T06:00:00.000Z";
+//                mainActivity.callGraphCalendarAPI(CurrentUser.getCurrentUser().authenticationResult, "https://graph.microsoft.com/v1.0/me/calendarview?startdatetime=" + startDate + "&enddatetime=" + endDate);
+
 
                 Intent movies = new Intent(CreateNewActivity.this, CreateMovieActivity.class);
 //                int number = 55;

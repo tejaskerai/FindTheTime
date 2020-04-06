@@ -47,8 +47,15 @@ public class AcceptOrDecline extends AppCompatActivity {
 
                 //TODO: If statement
                 //if activity is still pending,
+
+
+
+
                     // Call graph and add calendar details to db
                     // toast saying activity accepted, direct to homepage
+
+
+
                 //else
                     // toast saying sorry too late, activity has started
 

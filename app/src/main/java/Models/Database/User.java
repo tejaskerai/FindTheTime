@@ -15,6 +15,7 @@ public class User {
         return activities;
     }
 
+
     public void setActivities(List activities) {
         this.activities = activities;
     }
