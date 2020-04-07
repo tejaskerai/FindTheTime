@@ -12,7 +12,9 @@ import com.backendless.persistence.DataQueryBuilder;
 import java.util.List;
 import java.util.concurrent.ExecutionException;
 
+import Models.Database.Activity;
 import Models.Database.User;
+import Models.Database.User_Activity;
 
 import static com.backendless.media.rtp.RtpSocket.TAG;
 
@@ -104,4 +106,24 @@ public class UserRepository {
         }
         return null;
     }
+
+    public void setRelation(List<User_Activity> user_activitiesCollection, User user){
+        Backendless.Data.of( User.class ).addRelation( user, "user_activities:User_Activity:n", user_activitiesCollection,
+                new AsyncCallback<Integer>()
+                {
+                    @Override
+                    public void handleResponse( Integer response )
+                    {
+                        Log.i( "MYAPP", "relation has been set");
+                    }
+
+                    @Override
+                    public void handleFault( BackendlessFault fault )
+                    {
+                        Log.e( "MYAPP", "server reported an error - " + fault.getMessage() );
+                    }
+                } );
+    }
+
+
 }

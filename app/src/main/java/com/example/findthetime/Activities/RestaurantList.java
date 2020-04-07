@@ -51,6 +51,7 @@ public class RestaurantList extends AppCompatActivity {
 
         ZomatoService zomatoService = new ZomatoService();
         List<Restaurant> restaurants = zomatoService.getRestaurants(cuisineId, lat, lon);
+
         RestaurantListAdapter restaurantListAdapter = new RestaurantListAdapter(this, restaurants);
         recyclerView.setAdapter(restaurantListAdapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));

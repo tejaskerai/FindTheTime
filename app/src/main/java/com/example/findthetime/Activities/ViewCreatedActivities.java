@@ -13,6 +13,12 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import java.util.List;
+
+import Backendless.ActivityRepository;
+import Models.CurrentUser;
+import Models.Database.Activity;
+
 public class ViewCreatedActivities extends AppCompatActivity {
 
     RecyclerView recyclerView;
@@ -42,7 +48,13 @@ public class ViewCreatedActivities extends AppCompatActivity {
 
         //TODO: Get list of all activities the user has created
 
-        CreatedActivitiesAdapter createdActivitiesAdapter = new CreatedActivitiesAdapter(this);
+
+        ActivityRepository activityRepository = new ActivityRepository();
+        List<Activity> activities = activityRepository.getActivityByCreatorId(CurrentUser.getCurrentUser().objectId);
+
+
+
+        CreatedActivitiesAdapter createdActivitiesAdapter = new CreatedActivitiesAdapter(this, activities);
         recyclerView.setAdapter(createdActivitiesAdapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 

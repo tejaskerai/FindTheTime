@@ -7,6 +7,7 @@ import android.util.Log;
 import com.backendless.Backendless;
 import com.backendless.async.callback.AsyncCallback;
 import com.backendless.exceptions.BackendlessFault;
+import com.backendless.persistence.DataQueryBuilder;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -27,7 +28,8 @@ public class ActivityRepository {
 
         final Activity activity = new Activity();
         activity.setName(name);
-        //activity.setDateAndTime("09/03/2020");
+        activity.setDateAndTime("");
+        activity.setPending(Boolean.TRUE);
         activity.setCreator(CurrentUser.getCurrentUser().objectId);
         activity.setPlace(address);
         //activity.addUser(CurrentUser.getCurrentUser());
@@ -49,22 +51,19 @@ public class ActivityRepository {
     }
 
     @SuppressLint("StaticFieldLeak")
-    public Activity getActivity(final String id) {
+    public List<Activity> getActivityByActivityId(String activityId) {
+
+        String whereClause = "objectId = '" + activityId + "'";
+        final DataQueryBuilder queryBuilder = DataQueryBuilder.create();
+        queryBuilder.setWhereClause(whereClause);
         try {
-            return new AsyncTask<String, Void, Activity>() {
+            return new AsyncTask<String, Void, List<Activity>>() {
                 @Override
-                protected Activity doInBackground(String... ids) {
-                    List<Activity> activities = Backendless.Data.of(Activity.class).find();
-                    for (int i = 0; i < activities.size(); i++) {
-                        if (ids[0].equals(activities.get(i).getObjectId())) {
-                            return activities.get(i);
-                        } else {
-                            return null;
-                        }
-                    }
-                    return null;
+                protected List<Activity> doInBackground(String... ids) {
+                    List<Activity> results = Backendless.Data.of( Activity.class ).find( queryBuilder );
+                    return results;
                 }
-            }.execute(id).get();
+            }.execute(activityId).get();
         } catch (ExecutionException e) {
             e.printStackTrace();
         } catch (InterruptedException e) {
@@ -74,11 +73,34 @@ public class ActivityRepository {
     }
 
 
-    //Todo : need collection of User_Activity
-    public void setRelation(ArrayList<User_Activity> user_activitiesCollection, Activity activity){
+    @SuppressLint("StaticFieldLeak")
+    public List<Activity> getActivityByCreatorId(String userId) {
+
+        String whereClause = "creator = '" + userId + "'";
+        final DataQueryBuilder queryBuilder = DataQueryBuilder.create();
+        queryBuilder.setWhereClause(whereClause);
+
+        try {
+            return new AsyncTask<String, Void, List<Activity>>() {
+                @Override
+                protected List<Activity> doInBackground(String... ids) {
+                    List<Activity> results = Backendless.Data.of( Activity.class ).find( queryBuilder );
+                    return results;
+                }
+            }.execute(userId).get();
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
 
 
-        Backendless.Data.of( Activity.class ).setRelation( activity, "user_activities:Act", user_activitiesCollection,
+    public void setRelation(List<User_Activity> user_activitiesCollection, Activity activity){
+
+
+        Backendless.Data.of( Activity.class ).addRelation( activity, "user_activities:User_Activity:n", user_activitiesCollection,
                 new AsyncCallback<Integer>()
                 {
                     @Override

@@ -22,6 +22,7 @@ import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -30,6 +31,7 @@ import Backendless.UserActivityRepository;
 import Backendless.UserRepository;
 import Models.Database.Activity;
 import Models.Database.User;
+import Models.Database.User_Activity;
 
 public class InviteUsers extends AppCompatActivity implements View.OnClickListener, AdapterView.OnItemClickListener {
 
@@ -149,36 +151,42 @@ public class InviteUsers extends AppCompatActivity implements View.OnClickListen
             @Override
             public void onClick(View v) {
 
-                //TODO
-                //Direct user to home page
-                //Write to database, with invited users and events details
-
                 // Creating activity
                 ActivityRepository activityRepository = new ActivityRepository();
                 Activity activity = activityRepository.createActivity(name, address);
 
-                UserActivityRepository userActivityRepository = new UserActivityRepository();
 
+                // List of all users
                 items = FileHelper.readData(InviteUsers.this);
 
+
+                // Gets list of all users invited
                 UserRepository userRepository = new UserRepository();
-
                 ArrayList<User> users = new ArrayList<User>();
-
                 for (int i = 0; i < items.size(); i++){
                     User user = userRepository.getUserByEmail(items.get(i));
                     users.add(user);
                 }
 
-                //userActivityRepository.createUserActivity(user.objectId, activity.objectId);
-
+                // Create records in User_Activity table with user and activity ID
+                UserActivityRepository userActivityRepository = new UserActivityRepository();
                 for (int i = 0; i< items.size(); i++){
                     userActivityRepository.createUserActivity(users.get(i).objectId, activity.objectId);
                 }
-                System.out.println("List:" + userActivityRepository.getUserActivityByActivityId(activity.objectId));
 
 
+                // Set relation between Activity created and User_Activity
+                List<User_Activity> user_activities = userActivityRepository.getUserActivityByActivityId(activity.objectId);
+                activityRepository.setRelation(user_activities, activity);
 
+
+                // Set relation between User and User_Activity
+                for (int i =0; i < items.size(); i++){
+                    List<User_Activity> user_activities1 = userActivityRepository.getUserActivityByUserId(users.get(i).objectId);
+                    userRepository.setRelation(user_activities1, users.get(i));
+                }
+
+                // Toast message
                 final String text = "Activity added";
                 Toast.makeText(InviteUsers.this, text, Toast.LENGTH_SHORT)
                         .show();

@@ -11,17 +11,22 @@ import androidx.annotation.NonNull;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.findthetime.Activities.InvitedUsers;
+import com.example.findthetime.Activities.Homepage;
 import com.example.findthetime.R;
+
+import java.util.ArrayList;
+
+import Models.Database.Activity;
 
 public class ViewActivitiesListAdapter extends RecyclerView.Adapter<ViewActivitiesListAdapter.MyViewHolder>{
 
 
+    ArrayList<Activity> activities;
     Context context;
 
-    public ViewActivitiesListAdapter(Context ct) {
-
+    public ViewActivitiesListAdapter(Context ct, ArrayList<Activity> activitiesList) {
         context = ct;
+        activities = activitiesList;
     }
 
     @NonNull
@@ -36,43 +41,45 @@ public class ViewActivitiesListAdapter extends RecyclerView.Adapter<ViewActiviti
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
 
-        //holder.movieName.setText(movies.get(position).getFilmName());
-//        holder.mainLayout.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
+        holder.activityName.setText(activities.get(position).getName());
+        holder.mainLayout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
 
         //Todo: If statement to direct user to correct screen
         //if user has not accepted activity
             // direct user to page to accept of decline activity
+
+
         //else
             //if activity is still pending
                 // direct user to page saying they have already accepted/declined
             //else
                 // direct user to activity overview page where they can add to calendar
         
-        Intent intent = new Intent(context, InvitedUsers.class);
+        Intent intent = new Intent(context, Homepage.class);
         //intent.putExtra("filmName", movies.get(position).getFilmName());
         context.startActivity(intent);
-//            }
-//        });
+            }
+        });
     }
 
     @Override
     public int getItemCount() {
-        // return movies.size();
-        return 0;
+         return activities.size();
+
     }
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
 
 
-        TextView movieName;
+        TextView activityName;
         ConstraintLayout mainLayout;
 
 
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
-            movieName = itemView.findViewById(R.id.rowName);
+            activityName = itemView.findViewById(R.id.rowName);
             mainLayout = itemView.findViewById(R.id.mainLayout);
 
         }

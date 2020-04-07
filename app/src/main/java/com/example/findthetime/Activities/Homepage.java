@@ -70,7 +70,7 @@ public class Homepage extends AppCompatActivity {
             public void onClick(View v) {
 
                 //TODO: change intent
-                Intent newActivity = new Intent(Homepage.this, CreateNewActivity.class);
+                Intent newActivity = new Intent(Homepage.this, ViewActivities.class);
                 startActivity(newActivity);
             }
         });
