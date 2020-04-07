@@ -15,6 +15,7 @@ import java.util.concurrent.ExecutionException;
 import Models.CurrentUser;
 import Models.Database.Activity;
 import Models.Database.User;
+import Models.Database.User_Activity;
 
 public class ActivityRepository {
 
@@ -70,6 +71,30 @@ public class ActivityRepository {
             e.printStackTrace();
         }
         return null;
+    }
+
+
+    //Todo : need collection of User_Activity
+    public void setRelation(ArrayList<User_Activity> user_activitiesCollection, Activity activity){
+
+
+        Backendless.Data.of( Activity.class ).setRelation( activity, "user_activities:Act", user_activitiesCollection,
+                new AsyncCallback<Integer>()
+                {
+                    @Override
+                    public void handleResponse( Integer response )
+                    {
+                        Log.i( "MYAPP", "relation has been set");
+                    }
+
+                    @Override
+                    public void handleFault( BackendlessFault fault )
+                    {
+                        Log.e( "MYAPP", "server reported an error - " + fault.getMessage() );
+                    }
+                } );
+
+
     }
 
 }

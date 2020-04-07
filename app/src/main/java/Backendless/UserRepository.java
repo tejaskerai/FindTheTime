@@ -64,7 +64,7 @@ public class UserRepository {
                 protected User doInBackground(String... ids) {
                     List<User> results = Backendless.Data.of( User.class ).find( queryBuilder );
                     for (int i = 0; i < results.size(); i++) {
-                        if (ids[0].equals(results.get(i).getId())) {
+                        if (ids[0].equals(results.get(i).getEmail())) {
                             return results.get(i);
                         } else {
                             return null;
@@ -79,7 +79,6 @@ public class UserRepository {
             e.printStackTrace();
         }
         return null;
-
     }
 
 

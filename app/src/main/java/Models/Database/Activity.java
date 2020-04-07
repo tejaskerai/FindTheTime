@@ -10,17 +10,11 @@ public class Activity {
     public String place;
     public String dateAndTime;
     public String creator;
-    public List<User> users;
+    public List<User_Activity> user_activities;
     public String objectId;
 
 
-    public List getUsers() {
-        return users;
-    }
 
-    public void setUsers(List users) {
-        this.users = users;
-    }
 
 
     public Activity() {
@@ -32,16 +26,16 @@ public class Activity {
         this.place = place;
         this.dateAndTime = dateAndTime;
         this.creator = creator;
-        this.users = new ArrayList<User>();
+        this.user_activities = new ArrayList<User_Activity>();
 
     }
 
 
-    public void addUser(User user){
-        if (users == null)
-            users = new ArrayList<>();
+    public void addUserActivity(User_Activity userActivity){
+        if (user_activities == null)
+            user_activities = new ArrayList<>();
 
-        users.add(user);
+        user_activities.add(userActivity);
     }
 
     public String getName() {

@@ -157,15 +157,27 @@ public class InviteUsers extends AppCompatActivity implements View.OnClickListen
                 ActivityRepository activityRepository = new ActivityRepository();
                 Activity activity = activityRepository.createActivity(name, address);
 
-
                 UserActivityRepository userActivityRepository = new UserActivityRepository();
+
                 items = FileHelper.readData(InviteUsers.this);
 
-
                 UserRepository userRepository = new UserRepository();
-                User user = userRepository.getUserByEmail(items.get(0));
 
-                userActivityRepository.createUserActivity(user.objectId, activity.objectId);
+                ArrayList<User> users = new ArrayList<User>();
+
+                for (int i = 0; i < items.size(); i++){
+                    User user = userRepository.getUserByEmail(items.get(i));
+                    users.add(user);
+                }
+
+                //userActivityRepository.createUserActivity(user.objectId, activity.objectId);
+
+                for (int i = 0; i< items.size(); i++){
+                    userActivityRepository.createUserActivity(users.get(i).objectId, activity.objectId);
+                }
+                System.out.println("List:" + userActivityRepository.getUserActivityByActivityId(activity.objectId));
+
+
 
                 final String text = "Activity added";
                 Toast.makeText(InviteUsers.this, text, Toast.LENGTH_SHORT)
@@ -173,7 +185,6 @@ public class InviteUsers extends AppCompatActivity implements View.OnClickListen
 
                 Intent intent = new Intent(InviteUsers.this, Homepage.class);
                 startActivity(intent);
-
             }
         });
     }

@@ -38,7 +38,7 @@ public class Initialisation {
         activity1.setCreator(CurrentUser.getCurrentUser().objectId);
         activity1.setPlace("London");
         activity1.setType("Movie");
-        activity1.addUser(savedUser);
+        //activity1.addUser(savedUser);
 
         final Activity activity2 = new Activity();
         activity2.setName("Activity 2");
@@ -46,7 +46,7 @@ public class Initialisation {
         activity2.setCreator(CurrentUser.getCurrentUser().objectId);
         activity2.setPlace("Manchester");
         activity2.setType("Restaurant");
-        activity2.addUser(savedUser);
+        //activity2.addUser(savedUser);
 
 
         final List savedActivities = new ArrayList<>();
@@ -66,8 +66,8 @@ public class Initialisation {
                         savedActivities.add(savedActivity2);
 
                         setUserToActivitiesRelation(savedUser, savedActivities);
-                        setActivityToUsersRelation(activity1, activity1.users);
-                        setActivityToUsersRelation(activity2, activity2.users);
+                        //setActivityToUsersRelation(activity1, activity1.users);
+                        //setActivityToUsersRelation(activity2, activity2.users);
                     }
 
                     @Override
@@ -88,9 +88,9 @@ public class Initialisation {
 
 
 
-    private static void setUserToActivitiesRelation(User savedUser, List savedActivites) {
+    private static void setUserToActivitiesRelation(User savedUser, List savedActivities) {
         Backendless.Data.of(User.class).addRelation(savedUser,
-                "activities:Activity:n", savedActivites,
+                "activities:Activity:n", savedActivities,
                 new AsyncCallback() {
 
                     @Override
