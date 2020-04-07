@@ -309,7 +309,7 @@ public class MainActivity extends AppCompatActivity {
                         UserRepository userRepository = new UserRepository();
 
 
-                        User userFound = userRepository.getUser(id);
+                        User userFound = userRepository.getUserByEmail(email);
                         if (userFound == null) {
 
                             User userCreated = userRepository.saveUser(name, email, id);
