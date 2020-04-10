@@ -212,10 +212,10 @@ public class MainActivity extends AppCompatActivity {
                 /* call graph */
                 callGraphAPI(authenticationResult, "https://graph.microsoft.com/v1.0/me");
 
-                String startDate = "2020-02-25T06:00:00.000Z";
-                String endDate = "2020-03-03T06:00:00.000Z";
+                String startDate = "2020-04-10T06:00:00.000Z";
+                String endDate = "2020-04-20T06:00:00.000Z";
 
-                //callGraphCalendarAPI(CurrentUser.getCurrentUser().authenticationToken, "https://graph.microsoft.com/v1.0/me/calendarview?startdatetime=" + startDate + "&enddatetime=" + endDate);
+                callGraphCalendarAPI(authenticationResult, "https://graph.microsoft.com/v1.0/me/calendarview?startdatetime=" + startDate + "&enddatetime=" + endDate);
 
                 System.out.println("finish graph");
                 System.out.println("2 update");
@@ -278,6 +278,7 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
+
     /**
      * Make an HTTP request to obtain MSGraph data
      */
@@ -303,11 +304,7 @@ public class MainActivity extends AppCompatActivity {
                         System.out.println("email: " + email);
                         System.out.println("id: " + id);
 
-
-                        Initialisation init = new Initialisation();
-
                         UserRepository userRepository = new UserRepository();
-
 
                         User userFound = userRepository.getUserByEmail(email);
                         if (userFound == null) {
@@ -336,6 +333,31 @@ public class MainActivity extends AppCompatActivity {
                 });
     }
 
+
+    private void callGraphAPI1(final IAuthenticationResult authenticationResult, final String url) {
+        MSGraphRequestWrapper.callGraphAPIUsingVolley(
+                MainActivity.this,
+//                graphResourceTextView.getText().toString()
+                url,
+                authenticationResult.getAccessToken(),
+                new Response.Listener<JSONObject>() {
+                    @Override
+                    public void onResponse(JSONObject response) {
+
+                        /* Successfully called graph, process data and send to UI */
+
+                        System.out.println(response);
+
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        Log.d(TAG, "Error: " + error.toString());
+                        displayError(error);
+                    }
+                });
+    }
 
     public void callGraphCalendarAPI(final IAuthenticationResult authenticationResult, String url) {
         MSGraphRequestWrapper.callGraphAPIUsingVolley(

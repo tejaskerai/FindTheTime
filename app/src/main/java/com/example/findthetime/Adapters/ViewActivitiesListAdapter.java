@@ -11,12 +11,21 @@ import androidx.annotation.NonNull;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.findthetime.Activities.AcceptOrDecline;
+import com.example.findthetime.Activities.ActivityOverview;
+import com.example.findthetime.Activities.ActivityStatus;
 import com.example.findthetime.Activities.Homepage;
 import com.example.findthetime.R;
 
+import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.List;
 
+import Backendless.ActivityRepository;
+import Backendless.UserActivityRepository;
+import Models.CurrentUser;
 import Models.Database.Activity;
+import Models.Database.User_Activity;
 
 public class ViewActivitiesListAdapter extends RecyclerView.Adapter<ViewActivitiesListAdapter.MyViewHolder>{
 
@@ -39,7 +48,7 @@ public class ViewActivitiesListAdapter extends RecyclerView.Adapter<ViewActiviti
     }
 
     @Override
-    public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull MyViewHolder holder, final int position) {
 
         holder.activityName.setText(activities.get(position).getName());
         holder.mainLayout.setOnClickListener(new View.OnClickListener() {
@@ -47,19 +56,41 @@ public class ViewActivitiesListAdapter extends RecyclerView.Adapter<ViewActiviti
             public void onClick(View v) {
 
         //Todo: If statement to direct user to correct screen
+
+                UserActivityRepository userActivityRepository = new UserActivityRepository();
+                List<User_Activity> user_activities = userActivityRepository.getJoinedUserActivity(activities.get(position).getObjectId(), CurrentUser.getCurrentUser().objectId);
+                System.out.println(user_activities.size());
+                // Goes to accept or decline page if user has not joined
+                if(user_activities.size() >= 1){
+                    Intent intent = new Intent(context, AcceptOrDecline.class);
+                    intent.putExtra("activity", (Serializable) activities.get(position));
+                    context.startActivity(intent);
+                }else{
+                    ActivityRepository activityRepository = new ActivityRepository();
+                    List<Activity> activitiesLst = activityRepository.getActivityPendingStatusByActivityId(activities.get(position).getObjectId());
+                    //if activity is still pending
+                    if (activitiesLst.size() >= 1){
+                        // direct user to page saying they have already accepted/declined
+                        Intent intent = new Intent(context, ActivityStatus.class);
+                        intent.putExtra("activity", (Serializable) activities.get(position));
+                        context.startActivity(intent);
+                    }else{
+                        // direct user to activity overview page where they can add to calendar
+                        Intent intent = new Intent(context, ActivityOverview.class);
+                        intent.putExtra("activity", (Serializable) activities.get(position));
+                        context.startActivity(intent);
+                    }
+                }
+
         //if user has not accepted activity
             // direct user to page to accept of decline activity
-
-
         //else
             //if activity is still pending
                 // direct user to page saying they have already accepted/declined
             //else
                 // direct user to activity overview page where they can add to calendar
-        
-        Intent intent = new Intent(context, Homepage.class);
-        //intent.putExtra("filmName", movies.get(position).getFilmName());
-        context.startActivity(intent);
+
+
             }
         });
     }

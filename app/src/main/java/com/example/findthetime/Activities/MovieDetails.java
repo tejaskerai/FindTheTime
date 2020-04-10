@@ -17,11 +17,8 @@ import java.util.HashMap;
 public class MovieDetails extends AppCompatActivity {
 
     TextView filmNameT, cinemaNameT, timeT;
-
     Button continueButton;
-
     ImageView home;
-
     String filmName, cinemaName, time;
 
 

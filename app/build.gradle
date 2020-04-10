@@ -72,6 +72,7 @@ dependencies {
     } else {
         // Downloads and Builds MSAL from maven central.
         implementation 'com.microsoft.identity.client:msal:1.0.+'
+
     }
 
     implementation 'androidx.appcompat:appcompat:1.1.0'

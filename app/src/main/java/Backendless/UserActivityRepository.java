@@ -71,11 +71,113 @@ public class UserActivityRepository {
     }
 
 
+    @SuppressLint("StaticFieldLeak")
+    public List<User_Activity> getJoinedUsersActivity(String activityId) {
 
+        String whereClause = "activityObjectId = '" + activityId + "' and joined = true";
+        final DataQueryBuilder queryBuilder = DataQueryBuilder.create();
+        queryBuilder.setWhereClause(whereClause);
+
+        try {
+            return new AsyncTask<String, Void, List<User_Activity>>() {
+                @Override
+                protected List<User_Activity> doInBackground(String... ids) {
+                    List<User_Activity> results = Backendless.Data.of( User_Activity.class ).find( queryBuilder );
+                    return results;
+                }
+            }.execute(activityId).get();
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    @SuppressLint("StaticFieldLeak")
+    public List<User_Activity> getJoinedUserActivity(String activityId, String userId) {
+
+        String whereClause = "activityObjectId = '" + activityId + "' and userObjectId = '"+ userId + "' and joined = false";
+        final DataQueryBuilder queryBuilder = DataQueryBuilder.create();
+        queryBuilder.setWhereClause(whereClause);
+
+        try {
+            return new AsyncTask<String, Void, List<User_Activity>>() {
+                @Override
+                protected List<User_Activity> doInBackground(String... ids) {
+                    List<User_Activity> results = Backendless.Data.of( User_Activity.class ).find( queryBuilder );
+                    return results;
+                }
+            }.execute("").get();
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+
+    public void updateUserActivity(final User_Activity user_activity, final Boolean val)
+    {
+        // Create a contact object first. This way (for the sake of the example)
+        // there will be a saved object which will be updated after it is created.
+
+        Backendless.Persistence.save( user_activity, new AsyncCallback<User_Activity>() {
+            public void handleResponse( User_Activity saved_user_activity )
+            {
+                saved_user_activity.setJoined( val );
+
+                Backendless.Persistence.save( saved_user_activity, new AsyncCallback<User_Activity>() {
+                    @Override
+                    public void handleResponse( User_Activity response )
+                    {
+                        System.out.println("updated");
+                    }
+                    @Override
+                    public void handleFault( BackendlessFault fault )
+                    {
+                        System.out.println("an error has occurred, the error code can be retrieved with fault.getCode()");
+                    }
+                } );
+            }
+            @Override
+            public void handleFault( BackendlessFault fault )
+            {
+                System.out.println("an error has occurred, the error code can be retrieved with fault.getCode()");
+            }
+        });
+    }
+
+
+    public void deleteUserActivity(User_Activity user_activity){
+
+        Backendless.Persistence.save( user_activity, new AsyncCallback<User_Activity>()
+        {
+            public void handleResponse( User_Activity savedUserActivity )
+            {
+                Backendless.Persistence.of( User_Activity.class ).remove( savedUserActivity,
+                        new AsyncCallback<Long>()
+                        {
+                            public void handleResponse( Long response )
+                            {
+                                System.out.println("Contact has been deleted");
+                            }
+                            public void handleFault( BackendlessFault fault )
+                            {
+                                System.out.println("an error has occurred");
+                            }
+                        } );
+            }
+            @Override
+            public void handleFault( BackendlessFault fault )
+            {
+                System.out.println("an error has occurred, the error code can be retrieved with fault.getCode()");
+            }
+        });
+    }
 
     public void createUserActivity(String userId, String activityId) {
-
-        //for (int i = 0; i < userId.size(); i++){
 
         final User_Activity user_activity = new User_Activity();
 

@@ -12,6 +12,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -59,20 +60,28 @@ public class ViewActivities extends AppCompatActivity {
 
         // Gets list of Activity objects from activity id
         ActivityRepository activityRepository = new ActivityRepository();
+
+
+        // Get pending activities
+//        ArrayList<Activity> activities = new ArrayList<>();
+//
+//        for (int i = 0; i < userActivities.size(); i++) {
+//            activities.add(activityRepository.getPendingActivityByActivityId(user_activities.get(i).getActivityObjectId()));
+//        }
+
         ArrayList<Activity> activities = new ArrayList<>();
         for (int i = 0; i < userActivities.size(); i++) {
-            System.out.println(activityRepository.getActivityByActivityId(userActivities.get(i)).get(0).name);
-            activities.add(activityRepository.getActivityByActivityId(userActivities.get(i)).get(0));
-
+            activities.add(activityRepository.getActivityByActivityId(user_activities.get(i).getActivityObjectId()));
         }
 
-
-        ViewActivitiesListAdapter viewActivitiesListAdapter = new ViewActivitiesListAdapter(this, activities);
-        recyclerView.setAdapter(viewActivitiesListAdapter);
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
-
-
-
-
+        if (activities.contains(null)){
+            Toast.makeText(ViewActivities.this,
+                    "There are no activities",
+                    Toast.LENGTH_SHORT).show();
+        }else{
+            ViewActivitiesListAdapter viewActivitiesListAdapter = new ViewActivitiesListAdapter(this, activities);
+            recyclerView.setAdapter(viewActivitiesListAdapter);
+            recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        }
     }
 }

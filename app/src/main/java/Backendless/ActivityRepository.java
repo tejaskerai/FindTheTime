@@ -51,17 +51,45 @@ public class ActivityRepository {
     }
 
     @SuppressLint("StaticFieldLeak")
-    public List<Activity> getActivityByActivityId(String activityId) {
+    public Activity getPendingActivityByActivityId(String activityId) {
+
+        String whereClause = "objectId = '" + activityId + "' and pending = true";
+        final DataQueryBuilder queryBuilder = DataQueryBuilder.create();
+        queryBuilder.setWhereClause(whereClause);
+        try {
+            return new AsyncTask<String, Void, Activity>() {
+                @Override
+                protected Activity doInBackground(String... ids) {
+                    List<Activity> results = Backendless.Data.of( Activity.class ).find( queryBuilder );
+                    for (int i = 0; i < results.size(); i++) {
+                        return results.get(i);
+                    }
+                    return null;
+                }
+            }.execute(activityId).get();
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    @SuppressLint("StaticFieldLeak")
+    public Activity getActivityByActivityId(String activityId) {
 
         String whereClause = "objectId = '" + activityId + "'";
         final DataQueryBuilder queryBuilder = DataQueryBuilder.create();
         queryBuilder.setWhereClause(whereClause);
         try {
-            return new AsyncTask<String, Void, List<Activity>>() {
+            return new AsyncTask<String, Void, Activity>() {
                 @Override
-                protected List<Activity> doInBackground(String... ids) {
+                protected Activity doInBackground(String... ids) {
                     List<Activity> results = Backendless.Data.of( Activity.class ).find( queryBuilder );
-                    return results;
+                    for (int i = 0; i < results.size(); i++) {
+                        return results.get(i);
+                    }
+                    return null;
                 }
             }.execute(activityId).get();
         } catch (ExecutionException e) {
@@ -96,10 +124,30 @@ public class ActivityRepository {
         return null;
     }
 
+    @SuppressLint("StaticFieldLeak")
+    public List<Activity> getActivityPendingStatusByActivityId(String activityId) {
+
+        String whereClause = "objectId = '" + activityId + "' and pending = true";
+        final DataQueryBuilder queryBuilder = DataQueryBuilder.create();
+        queryBuilder.setWhereClause(whereClause);
+        try {
+            return new AsyncTask<String, Void, List<Activity>>() {
+                @Override
+                protected List<Activity> doInBackground(String... ids) {
+                    List<Activity> results = Backendless.Data.of( Activity.class ).find( queryBuilder );
+                    return results;
+                }
+            }.execute(activityId).get();
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
 
     public void setRelation(List<User_Activity> user_activitiesCollection, Activity activity){
-
-
         Backendless.Data.of( Activity.class ).addRelation( activity, "user_activities:User_Activity:n", user_activitiesCollection,
                 new AsyncCallback<Integer>()
                 {
@@ -115,8 +163,8 @@ public class ActivityRepository {
                         Log.e( "MYAPP", "server reported an error - " + fault.getMessage() );
                     }
                 } );
-
-
     }
+
+
 
 }

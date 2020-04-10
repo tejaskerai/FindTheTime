@@ -5,6 +5,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.findthetime.Adapters.CreatedActivitiesAdapter;
+import com.example.findthetime.Adapters.ViewActivitiesListAdapter;
 import com.example.findthetime.R;
 
 import android.content.Intent;
@@ -12,6 +13,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.List;
 
@@ -53,10 +55,17 @@ public class ViewCreatedActivities extends AppCompatActivity {
         List<Activity> activities = activityRepository.getActivityByCreatorId(CurrentUser.getCurrentUser().objectId);
 
 
+        if (activities.contains(null)){
+            Toast.makeText(ViewCreatedActivities.this,
+                    "You haven't created any activities",
+                    Toast.LENGTH_SHORT).show();
+        }else{
+            CreatedActivitiesAdapter createdActivitiesAdapter = new CreatedActivitiesAdapter(this, activities);
+            recyclerView.setAdapter(createdActivitiesAdapter);
+            recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        }
 
-        CreatedActivitiesAdapter createdActivitiesAdapter = new CreatedActivitiesAdapter(this, activities);
-        recyclerView.setAdapter(createdActivitiesAdapter);
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+
 
     }
 }

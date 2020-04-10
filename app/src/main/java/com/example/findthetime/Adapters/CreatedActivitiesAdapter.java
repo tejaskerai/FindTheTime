@@ -16,7 +16,9 @@ import com.example.findthetime.Activities.Homepage;
 import com.example.findthetime.Activities.InvitedUsers;
 import com.example.findthetime.R;
 
+import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 import Models.Database.Activity;
@@ -52,8 +54,10 @@ public class CreatedActivitiesAdapter extends RecyclerView.Adapter<CreatedActivi
             public void onClick(View v) {
 
                 //Todo: go to page to see users that have accepted (intent)
-                Intent intent = new Intent(context, Homepage.class);
-                //intent.putExtra("filmName", movies.get(position).getFilmName());
+                Intent intent = new Intent(context, InvitedUsers.class);
+
+                intent.putExtra("activity", (Serializable) activities.get(position));
+
                 context.startActivity(intent);
             }
         });

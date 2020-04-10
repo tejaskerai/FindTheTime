@@ -2,10 +2,11 @@ package Models.Database;
 
 import com.backendless.Backendless;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Activity {
+public class Activity implements Serializable {
 
     public String name;
     public String type;
@@ -19,7 +20,9 @@ public class Activity {
 
 
     public Activity() {
+
     }
+
 
     public Activity(String name, String type, String place, String dateAndTime, String creator, Boolean pending) {
         this.name = name;

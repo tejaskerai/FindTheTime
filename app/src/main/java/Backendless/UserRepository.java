@@ -28,22 +28,23 @@ public class UserRepository {
 
 
     @SuppressLint("StaticFieldLeak")
-    public User getUser(final String id) {
+    public User getUserById(final String userId) {
+
+        String whereClause = "objectId = '" + userId + "'";
+        final DataQueryBuilder queryBuilder = DataQueryBuilder.create();
+        queryBuilder.setWhereClause(whereClause);
+
         try {
             return new AsyncTask<String, Void, User>() {
                 @Override
                 protected User doInBackground(String... ids) {
-                    List<User> users = Backendless.Data.of(User.class).find();
-                    for (int i = 0; i < users.size(); i++) {
-                        if (ids[0].equals(users.get(i).getId())) {
-                            return users.get(i);
-                        } else {
-                            return null;
-                        }
+                    List<User> results = Backendless.Data.of( User.class ).find( queryBuilder );
+                    for (int i = 0; i < results.size(); i++) {
+                        return results.get(i);
                     }
                     return null;
                 }
-            }.execute(id).get();
+            }.execute(userId).get();
         } catch (ExecutionException e) {
             e.printStackTrace();
         } catch (InterruptedException e) {
@@ -66,11 +67,7 @@ public class UserRepository {
                 protected User doInBackground(String... ids) {
                     List<User> results = Backendless.Data.of( User.class ).find( queryBuilder );
                     for (int i = 0; i < results.size(); i++) {
-                        if (ids[0].equals(results.get(i).getEmail())) {
-                            return results.get(i);
-                        } else {
-                            return null;
-                        }
+                        return results.get(i);
                     }
                     return null;
                 }
@@ -83,6 +80,27 @@ public class UserRepository {
         return null;
     }
 
+    @SuppressLint("StaticFieldLeak")
+    public List<User> getAllUsers() {
+
+        try {
+            return new AsyncTask<String, Void, List<User>>() {
+                @Override
+                protected List<User> doInBackground(String... ids) {
+                    List<User> results = Backendless.Data.of( User.class ).find();
+                    for (int i = 0; i < results.size(); i++) {
+                        return results;
+                    }
+                    return null;
+                }
+            }.execute("").get();
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
 
     @SuppressLint("StaticFieldLeak")
     public User saveUser(String name, String email, String id) {
@@ -106,6 +124,10 @@ public class UserRepository {
         }
         return null;
     }
+
+
+
+
 
     public void setRelation(List<User_Activity> user_activitiesCollection, User user){
         Backendless.Data.of( User.class ).addRelation( user, "user_activities:User_Activity:n", user_activitiesCollection,

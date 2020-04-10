@@ -45,7 +45,9 @@ public class InviteUsers extends AppCompatActivity implements View.OnClickListen
 
     private ArrayList<String> items;
     private ArrayAdapter<String> adapter;
-
+    UserRepository userRepository = new UserRepository();
+    List<User> users = userRepository.getAllUsers();
+    List<String> userEmails = new ArrayList<>();
     Button addUserButton;
     ArrayAdapter<String> mAdapter;
 
@@ -56,9 +58,9 @@ public class InviteUsers extends AppCompatActivity implements View.OnClickListen
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_list_users);
-
-
-
+        for(int i = 0; i < users.size(); i++){
+            userEmails.add(users.get(i).getEmail());
+        }
         initializeUI();
         getData();
 
@@ -74,7 +76,9 @@ public class InviteUsers extends AppCompatActivity implements View.OnClickListen
     public void onClick(View v) {
         switch(v.getId()){
             case R.id.add_btn:
-                if (!itemET.getText().toString().isEmpty() && emailChecker(itemET.getText().toString())){
+                String email = itemET.getText().toString().toLowerCase().replaceAll("\\s+","");
+                System.out.println("Email: " + email);
+                if (userEmails.contains(email)){
                     String itemEntered = itemET.getText().toString();
                     adapter.add(itemEntered);
                     itemET.setText("");
@@ -83,7 +87,7 @@ public class InviteUsers extends AppCompatActivity implements View.OnClickListen
                     System.out.println(items);
                     break;
                 }else{
-                    Toast.makeText(this, "Email is empty or invalid", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(this, "Email is empty or doesn't exist", Toast.LENGTH_SHORT).show();
                 }
         }
     }
@@ -121,7 +125,10 @@ public class InviteUsers extends AppCompatActivity implements View.OnClickListen
 
             HashMap<String, String> movieDetails = (HashMap<String, String>) intent.getSerializableExtra("movieDetails");
 
-
+            name = movieDetails.get("filmName");
+            address = movieDetails.get("cinemaName");
+            System.out.println("name " + name);
+            System.out.println("address " + address);
 
 //            eventName = findViewById(R.id.eventName);
 //            eventName.setText(movieDetails.get("filmName"));
@@ -161,7 +168,6 @@ public class InviteUsers extends AppCompatActivity implements View.OnClickListen
 
 
                 // Gets list of all users invited
-                UserRepository userRepository = new UserRepository();
                 ArrayList<User> users = new ArrayList<User>();
                 for (int i = 0; i < items.size(); i++){
                     User user = userRepository.getUserByEmail(items.get(i));
