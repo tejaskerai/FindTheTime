@@ -188,7 +188,7 @@ public class MainActivity extends AppCompatActivity {
      * i.e. from "User.Read User.ReadWrite" to ["user.read", "user.readwrite"]
      */
     private String[] getScopes() {
-        return "user.read".split(" ");
+        return "user.read calendars.readwrite".split(" ");
     }
 
     /**
@@ -215,7 +215,8 @@ public class MainActivity extends AppCompatActivity {
                 String startDate = "2020-04-10T06:00:00.000Z";
                 String endDate = "2020-04-20T06:00:00.000Z";
 
-                callGraphCalendarAPI(authenticationResult, "https://graph.microsoft.com/v1.0/me/calendarview?startdatetime=" + startDate + "&enddatetime=" + endDate);
+                callGraphCalendarAPI(authenticationResult,
+                        "https://graph.microsoft.com/v1.0/me/calendarview?startdatetime=" + startDate + "&enddatetime=" + endDate);
 
                 System.out.println("finish graph");
                 System.out.println("2 update");
