@@ -24,15 +24,12 @@ public class ActivityStatus extends AppCompatActivity {
     }
 
     private void initializeUI() {
-
         home = (ImageView) findViewById(R.id.home_activity_status);
         home.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
-
                 Intent intent = new Intent(ActivityStatus.this, Homepage.class);
                 startActivity(intent);
-
             }
         });
     }

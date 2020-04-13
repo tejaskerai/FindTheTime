@@ -11,10 +11,14 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 
 import Backendless.UserActivityRepository;
+import CalendarService.MSGraph;
 import Models.CurrentUser;
 import Models.Database.Activity;
 import Models.Database.User_Activity;
@@ -61,6 +65,21 @@ public class AcceptOrDecline extends AppCompatActivity {
         });
 
 
+//                String startDate = "2020-04-10T06:00:00.000Z";
+//                String endDate = "2020-04-20T06:00:00.000Z";
+
+        final SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSSSSS");
+        final Date startDate = new Date();
+        System.out.println("start: " + formatter.format(startDate));
+
+
+        // Gets the date 7 days after the start date
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTime(startDate);
+        calendar.add(Calendar.DAY_OF_YEAR, 7);
+        final Date endDate = calendar.getTime();
+        System.out.println("End " + formatter.format(endDate));
+
         accept = findViewById(R.id.btn_accept);
         accept.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -71,6 +90,11 @@ public class AcceptOrDecline extends AppCompatActivity {
                     // Call graph and add calendar details to db
                     // toast saying activity accepted, direct to homepage
                     // change db status
+
+                    MSGraph msGraph = new MSGraph();
+                    msGraph.callGraphCalendarAPI(CurrentUser.getCurrentUser().authenticationResult, "https://graph.microsoft.com/v1.0/me/calendarview?startdatetime=" + formatter.format(startDate) + "&enddatetime=" + formatter.format(endDate), startDate, endDate, AcceptOrDecline.this);
+
+
                     userActivityRepository.updateUserActivity(user_activities.get(0), true);
                     Toast.makeText(AcceptOrDecline.this, "You have accepted the activity", Toast.LENGTH_SHORT).show();
                     Intent intent= new Intent(AcceptOrDecline.this, Homepage.class);

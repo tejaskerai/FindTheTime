@@ -34,5 +34,19 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.081" />
 
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="225dp"
+        android:layout_height="257dp"
+        android:layout_marginTop="80dp"
+        android:fontFamily="@font/segoeui"
+        android:gravity="center"
+        android:text="You have already accepted this activity, and it is still pending"
+        android:textColor="#FFFFFF"
+        android:textSize="25sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textview" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

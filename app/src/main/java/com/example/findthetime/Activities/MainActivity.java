@@ -53,6 +53,7 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
+import CalendarService.MSGraph;
 import CalendarService.RoundEvent;
 import JSONService.EventService;
 import JSONService.UserService;
@@ -73,10 +74,8 @@ public class MainActivity extends AppCompatActivity {
 
     private static final String TAG = MainActivity.class.getSimpleName();
 
-
     /* Azure AD v2 Configs */
     final static String AUTHORITY = "https://login.microsoftonline.com/common";
-
 
     /* UI & Debugging Variables */
     Button signInButton;
@@ -213,33 +212,18 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public void onSuccess(IAuthenticationResult authenticationResult) {
-                /* Successfully got a token, use it to call a protected resource - MSGraph */
+                /* Successfully got a token, use it to call a protected resource - CalendarService.MSGraph */
                 Log.d(TAG, "Successfully authenticated");
                 Log.d(TAG, "ID Token: " + authenticationResult.getAccount().getClaims().get("id_token"));
 
                 System.out.println("1 graph");
 
                 /* call graph */
+
                 callGraphAPI(authenticationResult, "https://graph.microsoft.com/v1.0/me");
 
-//                String startDate = "2020-04-10T06:00:00.000Z";
-//                String endDate = "2020-04-20T06:00:00.000Z";
-
-                SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSSSSS");
-                Date startDate = new Date();
-                System.out.println("start: " + formatter.format(startDate));
-
-
-                // Gets the date 7 days after the start date
-                Calendar calendar = Calendar.getInstance();
-                calendar.setTime(startDate);
-                calendar.add(Calendar.DAY_OF_YEAR, 7);
-                Date endDate = calendar.getTime();
-                System.out.println("End " + formatter.format(endDate));
-
-
-                callGraphCalendarAPI(authenticationResult,
-                        "https://graph.microsoft.com/v1.0/me/calendarview?startdatetime=" + formatter.format(startDate) + "&enddatetime=" + formatter.format(endDate), startDate, endDate);
+                //callGraphCalendarAPI(authenticationResult,
+                //        "https://graph.microsoft.com/v1.0/me/calendarview?startdatetime=" + formatter.format(startDate) + "&enddatetime=" + formatter.format(endDate), startDate, endDate);
 
                 System.out.println("finish graph");
                 System.out.println("2 update");
@@ -304,7 +288,7 @@ public class MainActivity extends AppCompatActivity {
 
 
     /**
-     * Make an HTTP request to obtain MSGraph data
+     * Make an HTTP request to obtain CalendarService.MSGraph data
      */
     private void callGraphAPI(final IAuthenticationResult authenticationResult, final String url) {
         MSGraphRequestWrapper.callGraphAPIUsingVolley(
@@ -356,161 +340,5 @@ public class MainActivity extends AppCompatActivity {
                     }
                 });
     }
-
-
-    private void callGraphAPI1(final IAuthenticationResult authenticationResult, final String url) {
-        MSGraphRequestWrapper.callGraphAPIUsingVolley(
-                MainActivity.this,
-//                graphResourceTextView.getText().toString()
-                url,
-                authenticationResult.getAccessToken(),
-                new Response.Listener<JSONObject>() {
-                    @Override
-                    public void onResponse(JSONObject response) {
-
-                        /* Successfully called graph, process data and send to UI */
-
-                        System.out.println(response);
-
-                    }
-                },
-                new Response.ErrorListener() {
-                    @Override
-                    public void onErrorResponse(VolleyError error) {
-                        Log.d(TAG, "Error: " + error.toString());
-                        displayError(error);
-                    }
-                });
-    }
-
-    public void callGraphCalendarAPI(final IAuthenticationResult authenticationResult, String url, final Date start, final Date end) {
-        MSGraphRequestWrapper.callGraphAPIUsingVolley(
-                MainActivity.this,
-//                graphResourceTextView.getText().toString()
-                url,
-                authenticationResult.getAccessToken(),
-                new Response.Listener<JSONObject>() {
-                    @Override
-                    public void onResponse(JSONObject response) {
-
-                        /* Successfully called graph, process data and send to UI */
-                        EventService eventService = new EventService();
-                        List<CalendarEvent> events = eventService.getEvent(response);
-
-                        for (int i = 0; i < events.size(); i++) {
-                            System.out.println("Start: " + events.get(i).getStart());
-                            System.out.println("End: " + events.get(i).getEnd());
-                        }
-
-                        RoundEvent roundEvent = new RoundEvent();
-
-                        // Initialise availTimes array
-                        HashMap<Date, List<Integer>> availTimes = new HashMap<Date, List<Integer>>();
-
-                        for (int i = 0; i < events.size(); i++) {
-
-                            if (availTimes.containsKey(events.get(i).getStartDate()) == false) {
-
-                                System.out.println("not in map");
-
-                                // Initialise start array of times
-                                List<Integer> startarr = new ArrayList<Integer>(Arrays.asList(5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24));
-
-                                List<Integer> hours = roundEvent.subtractHours(startarr, events.get(i).getStart(), events.get(i).getEnd());
-                                availTimes.put(events.get(i).getStartDate(), hours);
-
-                            } else {
-                                if (events.get(i - 1).getStartDate().equals(events.get(i).getStartDate())) {
-
-                                    List<Integer> hours = roundEvent.subtractHours(availTimes.get(events.get(i).getStartDate()), events.get(i).getStart(), events.get(i).getEnd());
-
-                                    availTimes.put(events.get(i).getStartDate(), hours);
-                                } else {
-                                    // Initialise start array of times
-                                    List<Integer> startarr = new ArrayList<Integer>(Arrays.asList(5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24));
-
-                                    List<Integer> hours = roundEvent.subtractHours(startarr, events.get(i).getStart(), events.get(i).getEnd());
-                                    availTimes.put(events.get(i).getStartDate(), hours);
-                                }
-                            }
-                        }
-
-                        System.out.println(availTimes);
-
-
-                        DateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
-                        try {
-
-                            // Gets the date 1 days after the start date
-                            List<Integer> startarr = new ArrayList<Integer>(Arrays.asList(5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24));
-                            Date endDate = formatter.parse(formatter.format(start));
-                            int count = 0;
-
-                            Date endDateWithNoTime = formatter.parse(formatter.format(end));
-
-                            System.out.println("endDateWithNoTime: " + endDateWithNoTime);
-
-                            System.out.println("enddate not added: " + endDate);
-
-//                            Calendar calendar2 = Calendar.getInstance();
-//                            calendar2.setTime(endDate);
-//                            calendar2.add(Calendar.DAY_OF_YEAR, 1);
-//                            endDate = formatter.parse(formatter.format(calendar2.getTime()));
-
-                            System.out.println("enddate added: " + endDate);
-
-
-                            if (endDateWithNoTime.equals(endDate)) {
-                                System.out.println("dates are equal");
-                            } else {
-                                System.out.println("not equal");
-                            }
-
-                            while (!endDateWithNoTime.equals(endDate)) {
-                                Calendar calendar2 = Calendar.getInstance();
-                                calendar2.setTime(endDate);
-                                calendar2.add(Calendar.DAY_OF_YEAR, 1);
-                                endDate = formatter.parse(formatter.format(calendar2.getTime()));
-                                System.out.println("in loop: " + endDate);
-                                count++;
-                                if (availTimes.containsKey(endDate)){
-                                    System.out.println("already in");
-                                }else{
-                                    availTimes.put(endDate, startarr);
-                                }
-                            }
-                        } catch (ParseException e) {
-                            e.printStackTrace();
-                        }
-
-                        System.out.println("final: " + availTimes);
-
-                        // Getting an iterator
-                        Iterator hmIterator = availTimes.entrySet().iterator();
-                        DateFormat df = new SimpleDateFormat("E dd/MM/yy");
-
-//
-//                        while (hmIterator.hasNext()) {
-//                            Map.Entry mapElement = (Map.Entry)hmIterator.next();
-//                            Date date = (Date)mapElement.getKey();
-//                            List<Integer> times = (List<Integer>)mapElement.getValue();
-//                            //System.out.println("Formatred: " + df.format(date));
-//                            System.out.println("Times list: " + times);
-//                            String joined = TextUtils.join(", ", times);
-//                            System.out.println("String: " + joined);
-//                            //eventRepository.createEvent(CurrentUser.getCurrentUser().objectId, date, joined);
-//                        }
-                    }
-                },
-                new Response.ErrorListener() {
-                    @Override
-                    public void onErrorResponse(VolleyError error) {
-                        Log.d(TAG, "Error: " + error.toString());
-                        displayError(error);
-                    }
-                });
-
-    }
-
 
 }
