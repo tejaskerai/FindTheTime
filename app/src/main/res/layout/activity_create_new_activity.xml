@@ -25,7 +25,7 @@
     <Button
         android:id="@+id/btn_movie_activity"
         android:layout_width="380dp"
-        android:layout_height="120dp"
+        android:layout_height="110dp"
         android:layout_marginStart="8dp"
         android:layout_marginLeft="8dp"
         android:layout_marginTop="48dp"
@@ -36,8 +36,7 @@
         android:text="Create movie activity"
         android:textAllCaps="false"
         android:textColor="#FFFFFF"
-        android:textSize="24sp"
-        android:textStyle="bold"
+        android:textSize="28sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.533"
         app:layout_constraintStart_toStartOf="parent"
@@ -46,9 +45,10 @@
     <Button
         android:id="@+id/btn_restaurant_activity"
         android:layout_width="380dp"
-        android:layout_height="120dp"
+        android:layout_height="110dp"
         android:layout_marginStart="8dp"
         android:layout_marginLeft="8dp"
+        android:layout_marginTop="10dp"
         android:layout_marginEnd="8dp"
         android:layout_marginRight="8dp"
         android:background="@drawable/custom_button"
@@ -56,13 +56,14 @@
         android:text="Create restaurant activity"
         android:textAllCaps="false"
         android:textColor="#FFFFFF"
-        android:textSize="24sp"
-        android:textStyle="bold"
+        android:textSize="28sp"
+
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.466"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/btn_movie_activity"
-        app:layout_constraintVertical_bias="0.077" />
+        app:layout_constraintVertical_bias="0.03" />
 
     <ImageView
         android:id="@+id/home_createActivity"

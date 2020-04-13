@@ -1,6 +1,7 @@
 package CalendarService;
 
 import android.content.Context;
+import android.text.TextUtils;
 import android.util.Log;
 
 import androidx.annotation.NonNull;
@@ -23,7 +24,9 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
 
+import Backendless.EventRepository;
 import Backendless.UserRepository;
 import JSONService.EventService;
 import JSONService.UserService;
@@ -194,17 +197,23 @@ public class MSGraph {
                         Iterator hmIterator = availTimes.entrySet().iterator();
                         DateFormat df = new SimpleDateFormat("E dd/MM/yy");
 
+                        EventRepository eventRepository = new EventRepository();
+
+
+                        eventRepository.deleteEvents(CurrentUser.getCurrentUser().objectId);
+                        System.out.println("events deleted");
 //
-//                        while (hmIterator.hasNext()) {
-//                            Map.Entry mapElement = (Map.Entry)hmIterator.next();
-//                            Date date = (Date)mapElement.getKey();
-//                            List<Integer> times = (List<Integer>)mapElement.getValue();
-//                            //System.out.println("Formatred: " + df.format(date));
-//                            System.out.println("Times list: " + times);
-//                            String joined = TextUtils.join(", ", times);
-//                            System.out.println("String: " + joined);
-//                            //eventRepository.createEvent(CurrentUser.getCurrentUser().objectId, date, joined);
-//                        }
+                        while (hmIterator.hasNext()) {
+                            Map.Entry mapElement = (Map.Entry)hmIterator.next();
+                            Date date = (Date)mapElement.getKey();
+                            List<Integer> times = (List<Integer>)mapElement.getValue();
+                            //System.out.println("Formatred: " + df.format(date));
+                            System.out.println("Times list: " + times);
+                            String joined = TextUtils.join(", ", times);
+                            System.out.println("String: " + joined);
+                            eventRepository.createEvent(CurrentUser.getCurrentUser().objectId, date, joined);
+                        }
+                        System.out.println("new events added");
                     }
                 },
                 new Response.ErrorListener() {
