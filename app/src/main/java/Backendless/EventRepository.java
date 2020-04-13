@@ -1,5 +1,7 @@
 package Backendless;
 
+import android.annotation.SuppressLint;
+import android.os.AsyncTask;
 import android.util.Log;
 
 import com.backendless.Backendless;
@@ -11,7 +13,10 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.concurrent.ExecutionException;
 
+import Models.CurrentUser;
+import Models.Database.Activity;
 import Models.Database.Event;
 import Models.Database.User;
 
@@ -20,45 +25,28 @@ public class EventRepository {
     private static final String TAG = Initialisation.class.getSimpleName();
 
 
-    public void saveEvents(final User savedUser) {
-
+    @SuppressLint("StaticFieldLeak")
+    public Event createEvent(String userId, Date date, String timesLst) {
 
         final Event event = new Event();
-
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSSSSS");
+        event.setUserId(userId);
+        event.setDate(date);
+        event.setAvailTimes(timesLst);
 
         try {
-            Date start1D = sdf.parse("2020-02-13T09:00:00.0000000");
-            event.setDate(start1D);
-            event.setAvailTimes("[5, 6, 7, 8, 9, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24]");
-            event.addUser(savedUser);
-
-        } catch (ParseException e) {
+            return new AsyncTask<Event, Void, Event>() {
+                @Override
+                protected Event doInBackground(Event... events) {
+                    return Backendless.Data.of(Event.class).save(event);
+                }
+            }.execute(event).get();
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        } catch (InterruptedException e) {
             e.printStackTrace();
         }
-
-        final List savedEvents = new ArrayList<>();
-
-
-        Backendless.Data.of(Event.class).save(event, new AsyncCallback<Event>() {
-            @Override
-            public void handleResponse(Event savedEvent) {
-                Log.i(TAG, "User has been saved");
-                //savedActivities(savedUser);
-                savedEvents.add(savedEvent);
-
-                setUserToEventsRelation(savedUser, savedEvents);
-
-            }
-
-            @Override
-            public void handleFault(BackendlessFault fault) {
-                Log.e(TAG, fault.getMessage());
-            }
-        });
+        return null;
     }
-
-
 
     private static void setUserToEventsRelation(User savedUser, List savedEvents) {
         Backendless.Data.of(User.class).addRelation(savedUser,

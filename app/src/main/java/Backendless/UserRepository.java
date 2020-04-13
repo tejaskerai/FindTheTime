@@ -82,7 +82,6 @@ public class UserRepository {
 
     @SuppressLint("StaticFieldLeak")
     public List<User> getAllUsers() {
-
         try {
             return new AsyncTask<String, Void, List<User>>() {
                 @Override

@@ -118,32 +118,23 @@ public class UserActivityRepository {
     }
 
 
-    public void updateUserActivity(final User_Activity user_activity, final Boolean val)
-    {
-        // Create a contact object first. This way (for the sake of the example)
-        // there will be a saved object which will be updated after it is created.
-
+    public void updateUserActivity(final User_Activity user_activity, final Boolean val) {
         Backendless.Persistence.save( user_activity, new AsyncCallback<User_Activity>() {
-            public void handleResponse( User_Activity saved_user_activity )
-            {
+            public void handleResponse( User_Activity saved_user_activity ) {
                 saved_user_activity.setJoined( val );
-
                 Backendless.Persistence.save( saved_user_activity, new AsyncCallback<User_Activity>() {
                     @Override
-                    public void handleResponse( User_Activity response )
-                    {
+                    public void handleResponse( User_Activity response ) {
                         System.out.println("updated");
                     }
                     @Override
-                    public void handleFault( BackendlessFault fault )
-                    {
+                    public void handleFault( BackendlessFault fault ) {
                         System.out.println("an error has occurred, the error code can be retrieved with fault.getCode()");
                     }
                 } );
             }
             @Override
-            public void handleFault( BackendlessFault fault )
-            {
+            public void handleFault( BackendlessFault fault ) {
                 System.out.println("an error has occurred, the error code can be retrieved with fault.getCode()");
             }
         });
@@ -151,27 +142,20 @@ public class UserActivityRepository {
 
 
     public void deleteUserActivity(User_Activity user_activity){
-
-        Backendless.Persistence.save( user_activity, new AsyncCallback<User_Activity>()
-        {
-            public void handleResponse( User_Activity savedUserActivity )
-            {
+        Backendless.Persistence.save( user_activity, new AsyncCallback<User_Activity>() {
+            public void handleResponse( User_Activity savedUserActivity ) {
                 Backendless.Persistence.of( User_Activity.class ).remove( savedUserActivity,
-                        new AsyncCallback<Long>()
-                        {
-                            public void handleResponse( Long response )
-                            {
+                        new AsyncCallback<Long>() {
+                            public void handleResponse( Long response ) {
                                 System.out.println("Contact has been deleted");
                             }
-                            public void handleFault( BackendlessFault fault )
-                            {
+                            public void handleFault( BackendlessFault fault ) {
                                 System.out.println("an error has occurred");
                             }
                         } );
             }
             @Override
-            public void handleFault( BackendlessFault fault )
-            {
+            public void handleFault( BackendlessFault fault ) {
                 System.out.println("an error has occurred, the error code can be retrieved with fault.getCode()");
             }
         });

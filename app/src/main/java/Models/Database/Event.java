@@ -9,6 +9,7 @@ public class Event {
 
     Date date;
     String availTimes;
+    String userId;
     public List<User> users;
     public String objectId;
 
@@ -49,5 +50,21 @@ public class Event {
 
     public void setObjectId(String objectId) {
         this.objectId = objectId;
+    }
+
+    public String getUserId() {
+        return userId;
+    }
+
+    public void setUserId(String userId) {
+        this.userId = userId;
+    }
+
+    public List<User> getUsers() {
+        return users;
+    }
+
+    public void setUsers(List<User> users) {
+        this.users = users;
     }
 }

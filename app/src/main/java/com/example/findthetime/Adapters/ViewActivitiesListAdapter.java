@@ -55,10 +55,9 @@ public class ViewActivitiesListAdapter extends RecyclerView.Adapter<ViewActiviti
             @Override
             public void onClick(View v) {
 
-        //Todo: If statement to direct user to correct screen
-
                 UserActivityRepository userActivityRepository = new UserActivityRepository();
-                List<User_Activity> user_activities = userActivityRepository.getJoinedUserActivity(activities.get(position).getObjectId(), CurrentUser.getCurrentUser().objectId);
+                List<User_Activity> user_activities =
+                        userActivityRepository.getJoinedUserActivity(activities.get(position).getObjectId(), CurrentUser.getCurrentUser().objectId);
                 System.out.println(user_activities.size());
                 // Goes to accept or decline page if user has not joined
                 if(user_activities.size() >= 1){

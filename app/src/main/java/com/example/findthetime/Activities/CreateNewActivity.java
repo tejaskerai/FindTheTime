@@ -37,10 +37,6 @@ public class CreateNewActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create_new_activity);
 
-//        System.out.println(CurrentUser.getCurrentUser().objectId);
-//        System.out.println(CurrentUser.getCurrentUser().authenticationResult);
-//        System.out.println(CurrentUser.getCurrentUser().email);
-
         initializeUI();
 
 

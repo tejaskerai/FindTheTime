@@ -71,10 +71,7 @@ public class AcceptOrDecline extends AppCompatActivity {
                     // Call graph and add calendar details to db
                     // toast saying activity accepted, direct to homepage
                     // change db status
-
-
                     userActivityRepository.updateUserActivity(user_activities.get(0), true);
-
                     Toast.makeText(AcceptOrDecline.this, "You have accepted the activity", Toast.LENGTH_SHORT).show();
                     Intent intent= new Intent(AcceptOrDecline.this, Homepage.class);
                     startActivity(intent);

@@ -37,12 +37,10 @@ public class EventService {
             for (int i = 0; i < value.length(); i++){
 
                 JSONObject element = value.getJSONObject(i);
-
                 JSONObject start = element.getJSONObject("start");
                 String startDateTime = start.getString("dateTime");
                 JSONObject end = element.getJSONObject("end");
                 String endDateTime = end.getString("dateTime");
-
                 try {
                     Date start1D = sdf.parse(startDateTime);
                     Date end1D = sdf.parse(endDateTime);
@@ -52,7 +50,6 @@ public class EventService {
                     e.printStackTrace();
                 }
             }
-
 
         } catch (JSONException e) {
             e.printStackTrace();
