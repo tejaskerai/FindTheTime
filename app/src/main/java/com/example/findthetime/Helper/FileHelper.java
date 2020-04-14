@@ -26,9 +26,7 @@ public class FileHelper {
         } catch (IOException e) {
             e.printStackTrace();
         }
-
     }
-
 
     public static ArrayList<String> readData(Context context){
         ArrayList<String> itemsList = null;
@@ -47,9 +45,6 @@ public class FileHelper {
         }
 
         return itemsList;
-
     }
-
-
 
 }

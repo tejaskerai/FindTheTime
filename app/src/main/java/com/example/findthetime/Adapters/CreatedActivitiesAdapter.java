@@ -69,7 +69,6 @@ public class CreatedActivitiesAdapter extends RecyclerView.Adapter<CreatedActivi
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
 
-
         TextView activityName;
         ConstraintLayout mainLayout;
 

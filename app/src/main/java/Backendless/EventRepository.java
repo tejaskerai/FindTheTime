@@ -93,4 +93,53 @@ public class EventRepository {
         }
         return -1;
     }
+
+
+    @SuppressLint("StaticFieldLeak")
+    public List<Event> getEventsByUserId(String userId) {
+
+        String whereClause = "userId = '" + userId + "'";
+        final DataQueryBuilder queryBuilder = DataQueryBuilder.create();
+        queryBuilder.setWhereClause(whereClause);
+
+        try {
+            return new AsyncTask<String, Void, List<Event>>() {
+                @Override
+                protected List<Event> doInBackground(String... ids) {
+                    List<Event> results = Backendless.Data.of( Event.class ).find( queryBuilder );
+                    return results;
+                }
+            }.execute("userId").get();
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+
+    @SuppressLint("StaticFieldLeak")
+    public List<Event> getEventByUserIdandDate(String userId, String date ) {
+
+        String whereClause = "userId = '" + userId + "' and date = '" + date + "'";
+        final DataQueryBuilder queryBuilder = DataQueryBuilder.create();
+        queryBuilder.setWhereClause(whereClause);
+
+        try {
+            return new AsyncTask<String, Void, List<Event>>() {
+                @Override
+                protected List<Event> doInBackground(String... ids) {
+                    List<Event> results = Backendless.Data.of( Event.class ).find( queryBuilder );
+                    return results;
+                }
+            }.execute("userId").get();
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
 }

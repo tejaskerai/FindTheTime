@@ -3,6 +3,8 @@ package com.example.findthetime.Activities;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.findthetime.R;
+import com.google.common.collect.Lists;
+import com.google.common.collect.Sets;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -13,12 +15,18 @@ import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Date;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
+import Backendless.EventRepository;
 import Backendless.UserActivityRepository;
 import Backendless.UserRepository;
 import Models.Database.Activity;
+import Models.Database.Event;
 import Models.Database.User;
 import Models.Database.User_Activity;
 
@@ -27,6 +35,10 @@ public class InvitedUsers extends AppCompatActivity {
     Button viewTimes;
     ImageView home;
     Activity activity;
+
+
+
+
 
     ArrayList<User> users = new ArrayList<>();
     ArrayList<String> userEmails = new ArrayList<>();
@@ -41,7 +53,6 @@ public class InvitedUsers extends AppCompatActivity {
 
         getData();
         dataRetrieval();
-
         initializeUI();
 
     }
@@ -52,11 +63,10 @@ public class InvitedUsers extends AppCompatActivity {
         UserActivityRepository userActivityRepository = new UserActivityRepository();
         List<User_Activity> user_activities = userActivityRepository.getJoinedUsersActivity(activity.getObjectId());
 
-
         UserRepository userRepository = new UserRepository();
 
         for (int i = 0; i < user_activities.size(); i++) {
-            users.add(userRepository.getUserById(user_activities.get(0).userObjectId));
+            users.add(userRepository.getUserById(user_activities.get(i).userObjectId));
             userEmails.add(users.get(i).getEmail());
         }
         System.out.println(userEmails);
@@ -86,13 +96,62 @@ public class InvitedUsers extends AppCompatActivity {
 
                 //TODO: change intent to view list of dates available
                 //TODO: Use calendar combining algorithm here with the users that have accepted and use that hashmap
-                Intent intent = new Intent(InvitedUsers.this, CreateMovieActivity.class);
+
+
+                List<Date> dates = lists();
+
+                Intent intent = new Intent(InvitedUsers.this, DatesList.class);
+
+                intent.putExtra("dates", (Serializable) dates);
+                intent.putExtra("users", (Serializable) users);
 
                 startActivity(intent);
 
             }
         });
     }
+
+    public List<Date> lists(){
+
+        EventRepository eventRepository = new EventRepository();
+        List<Set<Date>> listOfListOfdates = new ArrayList<Set<Date>>();
+
+        List<Event> temp;
+
+        // Loop through all accepted users
+        for (int i = 0; i < userEmails.size(); i++){
+
+            Set<Date> listOfDates = new HashSet<>();
+
+            //Get dates for user
+            temp = eventRepository.getEventsByUserId(users.get(i).getObjectId());
+            System.out.println(temp);
+
+            // Adds users dates to a list
+            for(int j = 0; j < temp.size(); j++){
+                listOfDates.add(temp.get(j).getDate());
+                System.out.println("List of dates: " + listOfDates);
+            }
+
+            // Adds list of dates to a list
+            listOfListOfdates.add(listOfDates);
+
+            System.out.println("List of list of dates" + listOfListOfdates);
+        }
+
+
+        // Intersecting list of dates
+        Set<Date> intersection = listOfListOfdates.get(0);
+        for (Set<Date> scan : listOfListOfdates.subList(1, listOfListOfdates.size())) {
+            intersection = Sets.intersection(intersection, scan);
+        }
+        List<Date> dates = Lists.newArrayList(intersection);
+
+        System.out.println("Intersected dates: "+dates);
+
+        return  dates;
+    }
+
 
     public void getData() {
 
