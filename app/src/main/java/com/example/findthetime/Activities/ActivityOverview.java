@@ -105,10 +105,11 @@ public class ActivityOverview extends AppCompatActivity {
 
                 try {
                     PostRequest postRequest =
-                            new PostRequest("https://graph.microsoft.com/v1.0/me/events", event.toString(), new TypeToken<Object>(){}.getType())
+                            new PostRequest("https://graph.microsoft.com/v1.0/me/events", event.toString())
                                     .setBearerToken(CurrentUser.getCurrentUser().authenticationResult.getAccessToken());
 
                     postRequest.execute().get();
+                    Toast.makeText(ActivityOverview.this, "Event added", Toast.LENGTH_SHORT).show();
 
                 } catch (IOException | ExecutionException | InterruptedException e) {
                     e.printStackTrace();
