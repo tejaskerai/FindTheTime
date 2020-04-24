@@ -20,17 +20,16 @@ import java.net.ProtocolException;
 import java.net.URL;
 import java.nio.charset.StandardCharsets;
 
-public class PostRequest<TReturn> extends AsyncTask<String, Void, TReturn> {
+public class PostRequest extends AsyncTask<String, Void, Void> {
 
     String endpoint;
     String jsonBody;
     Type typeOfReturn;
     HttpURLConnection con;
 
-    public PostRequest(String endpoint, String jsonBody, Type typeOfReturn) throws IOException {
+    public PostRequest(String endpoint, String jsonBody) throws IOException {
         this.endpoint = endpoint;
         this.jsonBody = jsonBody;
-        this.typeOfReturn = typeOfReturn;
         URL url = null;
         try {
             url = new URL(endpoint);
@@ -42,7 +41,7 @@ public class PostRequest<TReturn> extends AsyncTask<String, Void, TReturn> {
 
     @RequiresApi(api = Build.VERSION_CODES.KITKAT)
     @Override
-    protected TReturn doInBackground(String... data) {
+    protected Void doInBackground(String... data) {
         Gson gson = new Gson();
 
         try {
@@ -51,22 +50,8 @@ public class PostRequest<TReturn> extends AsyncTask<String, Void, TReturn> {
                 byte[] input = jsonBody.getBytes(StandardCharsets.UTF_8);
                 os.write(input, 0, input.length);
             }
-
             int code = con.getResponseCode();
             System.out.println("response code: " + code);
-            try(BufferedReader br = new BufferedReader(
-                    new InputStreamReader(con.getInputStream(), StandardCharsets.UTF_8))) {
-                StringBuilder response = new StringBuilder();
-                String responseLine = null;
-                while ((responseLine = br.readLine()) != null) {
-                    response.append(responseLine.trim());
-                }
-
-                JSONObject jsonObj = new JSONObject(response.toString());
-                return gson.fromJson(jsonObj.toString(), typeOfReturn);
-            } catch (JSONException e) {
-                e.printStackTrace();
-            }
         } catch (IOException e) {
             e.printStackTrace();
         }
