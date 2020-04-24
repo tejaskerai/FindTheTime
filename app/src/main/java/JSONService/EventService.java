@@ -22,20 +22,12 @@ public class EventService {
     Date endDate;
 
     SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSSSSS");
-
-
     public List<CalendarEvent> getEvent (JSONObject response) {
-
-
         List<CalendarEvent> events = new ArrayList<>();
-
-
-
         try {
             JSONArray value = response.getJSONArray("value");
 
             for (int i = 0; i < value.length(); i++){
-
                 JSONObject element = value.getJSONObject(i);
                 JSONObject start = element.getJSONObject("start");
                 String startDateTime = start.getString("dateTime");
@@ -44,17 +36,14 @@ public class EventService {
                 try {
                     Date start1D = sdf.parse(startDateTime);
                     Date end1D = sdf.parse(endDateTime);
-
                     events.add(new CalendarEvent(start1D, end1D));
                 } catch (ParseException e) {
                     e.printStackTrace();
                 }
             }
-
         } catch (JSONException e) {
             e.printStackTrace();
         }
-
         return events;
     }
 

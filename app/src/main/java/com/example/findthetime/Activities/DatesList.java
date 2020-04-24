@@ -28,6 +28,7 @@ public class DatesList extends AppCompatActivity {
     RecyclerView recyclerView;
     ImageView home;
     TextView title;
+    Activity activity;
 
     List<Date> dates;
     ArrayList<User> users = new ArrayList<>();
@@ -57,7 +58,7 @@ public class DatesList extends AppCompatActivity {
         // TODO: change parameters to a hashmap times available
 
 
-        DatesListAdapter datesListAdapter = new DatesListAdapter(this, dates, users);
+        DatesListAdapter datesListAdapter = new DatesListAdapter(this, dates, users, activity);
         recyclerView.setAdapter(datesListAdapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
     }
@@ -67,10 +68,11 @@ public class DatesList extends AppCompatActivity {
     public void getData() {
 
         Intent intent = getIntent();
-        if (getIntent().hasExtra("dates") && getIntent().hasExtra("users")) {
+        if (getIntent().hasExtra("dates") && getIntent().hasExtra("users") && getIntent().hasExtra("activity")) {
             dates = (List<Date>) intent.getSerializableExtra("dates");
             users = (ArrayList<User>) intent.getSerializableExtra("users");
 
+            activity = (Activity) intent.getSerializableExtra("activity");
             System.out.println("Users: " + users);
             System.out.println("Dates: " + dates);
         } else {

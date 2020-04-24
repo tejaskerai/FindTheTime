@@ -104,45 +104,37 @@ public class MSGraph {
                         /* Successfully called graph, process data and send to UI */
                         EventService eventService = new EventService();
                         List<CalendarEvent> events = eventService.getEvent(response);
-
                         for (int i = 0; i < events.size(); i++) {
                             System.out.println("Start: " + events.get(i).getStart());
                             System.out.println("End: " + events.get(i).getEnd());
                         }
-
                         RoundEvent roundEvent = new RoundEvent();
-
                         // Initialise availTimes array
                         HashMap<Date, List<Integer>> availTimes = new HashMap<Date, List<Integer>>();
-
                         for (int i = 0; i < events.size(); i++) {
 
                             if (availTimes.containsKey(events.get(i).getStartDate()) == false) {
-
                                 System.out.println("not in map");
-
                                 // Initialise start array of times
-                                List<Integer> startarr = new ArrayList<Integer>(Arrays.asList(5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24));
-
+                                List<Integer> startarr = new ArrayList<Integer>(Arrays.asList
+                                        (5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24));
                                 List<Integer> hours = roundEvent.subtractHours(startarr, events.get(i).getStart(), events.get(i).getEnd());
                                 availTimes.put(events.get(i).getStartDate(), hours);
 
                             } else {
                                 if (events.get(i - 1).getStartDate().equals(events.get(i).getStartDate())) {
-
-                                    List<Integer> hours = roundEvent.subtractHours(availTimes.get(events.get(i).getStartDate()), events.get(i).getStart(), events.get(i).getEnd());
-
+                                    List<Integer> hours = roundEvent.subtractHours
+                                            (availTimes.get(events.get(i).getStartDate()), events.get(i).getStart(), events.get(i).getEnd());
                                     availTimes.put(events.get(i).getStartDate(), hours);
                                 } else {
                                     // Initialise start array of times
-                                    List<Integer> startarr = new ArrayList<Integer>(Arrays.asList(5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24));
-
+                                    List<Integer> startarr = new ArrayList<Integer>(Arrays.asList
+                                            (5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24));
                                     List<Integer> hours = roundEvent.subtractHours(startarr, events.get(i).getStart(), events.get(i).getEnd());
                                     availTimes.put(events.get(i).getStartDate(), hours);
                                 }
                             }
                         }
-
                         System.out.println(availTimes);
 
 

@@ -11,20 +11,29 @@ import androidx.annotation.NonNull;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.findthetime.Activities.ActivityOverview;
 import com.example.findthetime.Activities.InvitedUsers;
 import com.example.findthetime.R;
 
+import java.io.Serializable;
+import java.util.Date;
 import java.util.List;
+
+import Models.Database.Activity;
 
 public class AvailTimesListAdapter extends RecyclerView.Adapter<AvailTimesListAdapter.MyViewHolder> {
 
 
     Context context;
+    Date date;
     List<Integer> times;
+    Activity activity;
 
-    public AvailTimesListAdapter(Context ct, List<Integer> timesLst) {
+    public AvailTimesListAdapter(Context ct, List<Integer> timesLst, Date chosenDate, Activity chosenActivity) {
         context = ct;
         times = timesLst;
+        date = chosenDate;
+        activity = chosenActivity;
     }
 
     @NonNull
@@ -37,11 +46,11 @@ public class AvailTimesListAdapter extends RecyclerView.Adapter<AvailTimesListAd
     }
 
     @Override
-    public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull MyViewHolder holder, final int position) {
 
 
 
-        holder.time.setText(times.get(position).toString());
+        holder.time.setText(times.get(position).toString() + ":00");
         holder.mainLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -49,8 +58,10 @@ public class AvailTimesListAdapter extends RecyclerView.Adapter<AvailTimesListAd
         //Todo: go to page to see activity details and add to calendar
 
 
-        Intent intent = new Intent(context, InvitedUsers.class);
-        //intent.putExtra("filmName", movies.get(position).getFilmName());
+        Intent intent = new Intent(context, ActivityOverview.class);
+        intent.putExtra("date", date);
+        intent.putExtra("time", times.get(position));
+        intent.putExtra("activity", (Serializable) activity);
         context.startActivity(intent);
 
             }

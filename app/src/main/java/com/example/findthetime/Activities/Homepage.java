@@ -12,6 +12,11 @@ import com.example.findthetime.Adapters.CreatedActivitiesAdapter;
 import com.example.findthetime.R;
 import com.microsoft.identity.client.ISingleAccountPublicClientApplication;
 
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
+
+import CalendarService.MSGraph;
 import Models.CurrentUser;
 
 public class Homepage extends AppCompatActivity {
@@ -59,6 +64,23 @@ public class Homepage extends AppCompatActivity {
             public void onClick(View v) {
 
                 //TODO: change intent
+
+                final SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSSSSS");
+                final Date startDate = new Date();
+                System.out.println("start: " + formatter.format(startDate));
+
+
+                // Gets the date 7 days after the start date
+                Calendar calendar = Calendar.getInstance();
+                calendar.setTime(startDate);
+                calendar.add(Calendar.DAY_OF_YEAR, 7);
+                final Date endDate = calendar.getTime();
+
+
+                // Get creators calendar events
+//                MSGraph msGraph = new MSGraph();
+//                msGraph.callGraphCalendarAPI(CurrentUser.getCurrentUser().authenticationResult, "https://graph.microsoft.com/v1.0/me/calendarview?startdatetime=" + formatter.format(startDate) + "&enddatetime=" + formatter.format(endDate), startDate, endDate, Homepage.this);
+
                 Intent newActivity = new Intent(Homepage.this, ViewCreatedActivities.class);
                 startActivity(newActivity);
             }

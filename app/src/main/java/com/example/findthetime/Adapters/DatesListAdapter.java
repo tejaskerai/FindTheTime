@@ -20,6 +20,7 @@ import com.google.common.collect.Lists;
 import com.google.common.collect.Sets;
 
 import java.io.Serializable;
+import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -30,6 +31,8 @@ import java.util.Scanner;
 import java.util.Set;
 
 import Backendless.EventRepository;
+import Models.CurrentUser;
+import Models.Database.Activity;
 import Models.Database.Event;
 import Models.Database.User;
 
@@ -40,12 +43,14 @@ public class DatesListAdapter extends RecyclerView.Adapter<DatesListAdapter.MyVi
     List<Date> dates;
     ArrayList<User> users;
     Context context;
+    Activity activity;
 
 
-    public DatesListAdapter(Context ct, List<Date> datesLst, ArrayList<User> usersLst) {
+    public DatesListAdapter(Context ct, List<Date> datesLst, ArrayList<User> usersLst, Activity activitychosen) {
         context = ct;
         dates = datesLst;
         users = usersLst;
+        activity = activitychosen;
     }
 
     @NonNull
@@ -60,14 +65,17 @@ public class DatesListAdapter extends RecyclerView.Adapter<DatesListAdapter.MyVi
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, final int position) {
 
-        holder.date.setText(dates.get(position).toString());
+
+        DateFormat df = new SimpleDateFormat("E dd/MM/yy");
+        String formattedDate = df.format(dates.get(position));
+        holder.date.setText(formattedDate);
+        final long epochTime = dates.get(position).getTime();
+        final String date = String.valueOf(epochTime);
         holder.mainLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 List<Set<Integer>> listsOfListofTimes = new ArrayList<>();
                 for (int i = 0; i < users.size(); i++) {
-                    long epochTime = dates.get(position).getTime();
-                    String date = String.valueOf(epochTime);
                     System.out.println("Current Time in Epoch: " + epochTime);
                     List<Event> events = eventRepository.getEventByUserIdandDate(users.get(i).getObjectId(), date);
                     // This will run only once, as there will only be one element
@@ -82,7 +90,23 @@ public class DatesListAdapter extends RecyclerView.Adapter<DatesListAdapter.MyVi
                         listsOfListofTimes.add(listOfTimes);
                     }
                 }
+
+
                 System.out.println("List of list of times: "+ listsOfListofTimes);
+
+                List<Event> events1 = eventRepository.getEventByUserIdandDate(CurrentUser.getCurrentUser().objectId, date);
+
+                // This will run only once, as there will only be one element
+                for (int i = 0; i < events1.size(); i++) {
+                    String numbers = events1.get(i).getAvailTimes();
+                    System.out.println("Numbers: " + numbers);
+                    // Converts string to list
+                    Set<Integer> listOfTimes = new HashSet<>();
+                    for (String field : numbers.split(", "))
+                        listOfTimes.add(Integer.parseInt(field));
+                    System.out.println("ListL " + listOfTimes);
+                    listsOfListofTimes.add(listOfTimes);
+                }
 
                 // Intersecting list of dates
                 Set<Integer> intersection = listsOfListofTimes.get(0);
@@ -95,6 +119,9 @@ public class DatesListAdapter extends RecyclerView.Adapter<DatesListAdapter.MyVi
                 Intent intent = new Intent(context, AvailTimesList.class);
 
                 intent.putExtra("times", (Serializable) times);
+                intent.putExtra("date",  dates.get(position));
+                intent.putExtra("activity", (Serializable) activity);
+
                 context.startActivity(intent);
             }
         });

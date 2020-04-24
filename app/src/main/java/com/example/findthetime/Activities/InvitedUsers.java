@@ -16,7 +16,9 @@ import android.widget.ListView;
 import android.widget.Toast;
 
 import java.io.Serializable;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.List;
@@ -25,6 +27,8 @@ import java.util.Set;
 import Backendless.EventRepository;
 import Backendless.UserActivityRepository;
 import Backendless.UserRepository;
+import CalendarService.MSGraph;
+import Models.CurrentUser;
 import Models.Database.Activity;
 import Models.Database.Event;
 import Models.Database.User;
@@ -94,52 +98,62 @@ public class InvitedUsers extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                //TODO: change intent to view list of dates available
-                //TODO: Use calendar combining algorithm here with the users that have accepted and use that hashmap
+                if (users.size() == 0){
+
+                    Toast.makeText(InvitedUsers.this, "No friends have joined", Toast.LENGTH_SHORT).show();
+
+                }else {
 
 
-                List<Date> dates = lists();
+                    List<Date> dates = lists();
 
-                Intent intent = new Intent(InvitedUsers.this, DatesList.class);
+                    Intent intent = new Intent(InvitedUsers.this, DatesList.class);
 
-                intent.putExtra("dates", (Serializable) dates);
-                intent.putExtra("users", (Serializable) users);
+                    intent.putExtra("dates", (Serializable) dates);
+                    intent.putExtra("users", (Serializable) users);
+                    intent.putExtra("activity", (Serializable) activity);
 
-                startActivity(intent);
+                    startActivity(intent);
+                }
 
             }
         });
     }
 
-    public List<Date> lists(){
 
+    public List<Date> lists(){
         EventRepository eventRepository = new EventRepository();
         List<Set<Date>> listOfListOfdates = new ArrayList<Set<Date>>();
-
         List<Event> temp;
 
         // Loop through all accepted users
         for (int i = 0; i < userEmails.size(); i++){
-
             Set<Date> listOfDates = new HashSet<>();
-
             //Get dates for user
             temp = eventRepository.getEventsByUserId(users.get(i).getObjectId());
             System.out.println(temp);
-
             // Adds users dates to a list
             for(int j = 0; j < temp.size(); j++){
                 listOfDates.add(temp.get(j).getDate());
                 System.out.println("List of dates: " + listOfDates);
             }
-
             // Adds list of dates to a list
             listOfListOfdates.add(listOfDates);
-
-            System.out.println("List of list of dates" + listOfListOfdates);
         }
 
+        // Adds Creators calendar events to list
+        List<Event> events = eventRepository.getEventsByUserId(CurrentUser.getCurrentUser().objectId);
+        System.out.println("Creator: " + events);
+        Set<Date> listOfDates1 = new HashSet<>();
+        // Adds users dates to a list
+        for(int i = 0; i < events.size(); i++){
+            listOfDates1.add(events.get(i).getDate());
+            System.out.println("List of dates: " + listOfDates1);
+        }
 
+        listOfListOfdates.add(listOfDates1);
+
+        System.out.println("Here: " + listOfListOfdates);
         // Intersecting list of dates
         Set<Date> intersection = listOfListOfdates.get(0);
         for (Set<Date> scan : listOfListOfdates.subList(1, listOfListOfdates.size())) {
@@ -151,7 +165,6 @@ public class InvitedUsers extends AppCompatActivity {
 
         return  dates;
     }
-
 
     public void getData() {
 
