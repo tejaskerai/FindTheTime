@@ -65,7 +65,7 @@ public class PostRequest extends AsyncTask<String, Void, Void> {
 
     private void setConnectionProperties() throws ProtocolException {
         con.setRequestMethod("POST");
-        con.setRequestProperty("Content-Type", "application/json; utf-8");
+        con.setRequestProperty("Content-Type", "application/json");
         con.setRequestProperty("Accept", "application/json");
         con.setDoOutput(true);
     }

@@ -102,6 +102,7 @@ public class ActivityOverview extends AppCompatActivity {
 
 
                 System.out.println(CurrentUser.getCurrentUser().authenticationResult.getAccessToken());
+                String eventJson = event.toString();
 
                 try {
                     PostRequest postRequest =
