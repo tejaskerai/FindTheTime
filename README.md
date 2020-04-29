@@ -12,5 +12,5 @@ git@github.com:tejaskerai/FindTheTime.git
 
 You will need Android Studio to run the application, all dependancies are included and downloaded from the gradle files.
 
-You can download the APK from the link below
+You can download the APK from the link
 [Find-The-Time](https://1drv.ms/u/s!Aq-oVUnBq_M7kFvCzxMmXk0uH4g_?e=asl3wp)
