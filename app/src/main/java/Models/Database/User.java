@@ -1,22 +1,22 @@
 package Models.Database;
 
-import java.util.ArrayList;
+import java.io.Serializable;
 import java.util.List;
 
-public class User {
+public class User implements Serializable {
 
     public String name;
     public String email;
     public String id;
-    public List activities;
+    public List<User_Activity> user_activities;
     public String objectId;
 
-    public List getActivities() {
-        return activities;
+    public List<User_Activity> getUser_activities() {
+        return user_activities;
     }
 
-    public void setActivities(List activities) {
-        this.activities = activities;
+    public void setUser_activities(List<User_Activity> user_activities) {
+        this.user_activities = user_activities;
     }
 
     public User() {
@@ -27,13 +27,6 @@ public class User {
         this.name = name;
         this.email = email;
         this.id = id;
-    }
-
-    public void addActivity(Activity activity){
-        if (activities == null)
-            activities = new ArrayList<>();
-
-        activities.add(activity);
     }
 
     public String getName() {

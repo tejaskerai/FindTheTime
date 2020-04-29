@@ -23,12 +23,8 @@ import java.util.List;
 
 import JSONService.MovieJSON;
 import Models.Domain.Cinema;
-import Models.Domain.Movie;
 
 public class CinemaList extends AppCompatActivity {
-
-
-
     String filmName;
     RecyclerView recyclerView;
     ImageView home;
@@ -42,7 +38,7 @@ public class CinemaList extends AppCompatActivity {
         String name = "Cinemas";
         title.setText(name);
         home = (ImageView) findViewById(R.id.home_activityList);
-        home.setOnClickListener(new View.OnClickListener(){
+        home.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(CinemaList.this, Homepage.class);
@@ -58,10 +54,10 @@ public class CinemaList extends AppCompatActivity {
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
     }
 
-    public String getData(){
-        if(getIntent().hasExtra("filmName")){
+    public String getData() {
+        if (getIntent().hasExtra("filmName")) {
             filmName = getIntent().getStringExtra("filmName");
-        }else{
+        } else {
             Toast.makeText(this, "no data", Toast.LENGTH_SHORT).show();
         }
         return filmName;
@@ -69,9 +65,9 @@ public class CinemaList extends AppCompatActivity {
 
     public List<Cinema> readJsonfile() {
         String json = null;
-        try{
+        try {
             String filmName = getData();
-            InputStream is = getAssets().open(filmName+ ".json");
+            InputStream is = getAssets().open(filmName + ".json");
             int size = is.available();
             byte[] buffer = new byte[size];
             is.read(buffer);
@@ -82,10 +78,9 @@ public class CinemaList extends AppCompatActivity {
             System.out.println(movieJSON.getCinemas(object));
             List<Cinema> cinemas = movieJSON.getCinemas(object);
             return cinemas;
-        }catch (IOException | JSONException e){
+        } catch (IOException | JSONException e) {
             e.printStackTrace();
         }
         return null;
     }
-
 }

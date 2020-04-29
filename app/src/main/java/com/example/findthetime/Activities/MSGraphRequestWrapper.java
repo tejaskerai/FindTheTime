@@ -45,9 +45,9 @@ public class MSGraphRequestWrapper {
 
     /**
      * Use Volley to make an HTTP request with
-     *   1) a given MSGraph resource URL
+     *   1) a given CalendarService.MSGraph resource URL
      *   2) an access token
-     * to obtain MSGraph data.
+     * to obtain CalendarService.MSGraph data.
      **/
     public static void callGraphAPIUsingVolley(@NonNull final Context context,
                                                @NonNull final String graphResourceUrl,

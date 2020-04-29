@@ -1,43 +1,48 @@
 package Models.Database;
 
+import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
-public class Activity {
+public class Activity implements Serializable {
 
     public String name;
     public String type;
     public String place;
-    public String dateAndTime;
-    public List<User> users;
-
-    public List getUsers() {
-        return users;
-    }
-
-    public void setUsers(List users) {
-        this.users = users;
-    }
-
+    public Date dateAndTime;
+    public String creator;
+    public Boolean pending;
+    public List<User_Activity> user_activities;
+    public String objectId;
 
     public Activity() {
+
     }
 
-    public Activity(String name, String type, String place, String dateAndTime) {
+    public Activity(String name, String type, String place, Date dateAndTime, String creator, Boolean pending) {
         this.name = name;
         this.type = type;
         this.place = place;
         this.dateAndTime = dateAndTime;
-        this.users = new ArrayList<User>();
-
+        this.creator = creator;
+        this.pending = pending;
+        this.user_activities = new ArrayList<User_Activity>();
     }
 
+    public void addUserActivity(User_Activity userActivity){
+        if (user_activities == null)
+            user_activities = new ArrayList<>();
 
-    public void addUser(User user){
-        if (users == null)
-            users = new ArrayList<>();
+        user_activities.add(userActivity);
+    }
 
-        users.add(user);
+    public Boolean getPending() {
+        return pending;
+    }
+
+    public void setPending(Boolean pending) {
+        this.pending = pending;
     }
 
     public String getName() {
@@ -64,11 +69,29 @@ public class Activity {
         this.place = place;
     }
 
-    public String getDateAndTime() {
+    public Date getDateAndTime() {
         return dateAndTime;
     }
 
-    public void setDateAndTime(String dateAndTime) {
+    public void setDateAndTime(Date dateAndTime) {
         this.dateAndTime = dateAndTime;
     }
+
+
+    public String getCreator() {
+        return creator;
+    }
+
+    public void setCreator(String creator) {
+        this.creator = creator;
+    }
+
+    public String getObjectId() {
+        return objectId;
+    }
+
+    public void setObjectId(String objectId) {
+        this.objectId = objectId;
+    }
+
 }

@@ -3,7 +3,6 @@ package com.example.findthetime.Activities;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.findthetime.R;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -17,13 +16,9 @@ import java.util.HashMap;
 public class MovieDetails extends AppCompatActivity {
 
     TextView filmNameT, cinemaNameT, timeT;
-
     Button continueButton;
-
     ImageView home;
-
     String filmName, cinemaName, time;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,7 +26,6 @@ public class MovieDetails extends AppCompatActivity {
         setContentView(R.layout.activity_movie_details);
 
         initializeUI();
-
         getData();
         setData();
     }
@@ -77,11 +71,9 @@ public class MovieDetails extends AppCompatActivity {
             }
         });
 
-
     }
 
     private void getData() {
-
 
         if (getIntent().hasExtra("movieDetails")){
 

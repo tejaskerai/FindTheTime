@@ -6,11 +6,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-
 import androidx.annotation.NonNull;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.RecyclerView;
-
 import com.example.findthetime.Activities.MovieDetails;
 import com.example.findthetime.R;
 
@@ -67,12 +65,8 @@ public class MovieTimesAdapter extends RecyclerView.Adapter<MovieTimesAdapter.My
 
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
-
-
         TextView time;
         ConstraintLayout mainLayout;
-
-
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
             time = itemView.findViewById(R.id.rowName);

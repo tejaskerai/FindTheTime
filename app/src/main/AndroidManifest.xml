@@ -10,7 +10,16 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".Activities.MovieDetails"></activity>
+        <activity android:name=".Activities.ActivityOverview"></activity>
+        <activity android:name=".Activities.ActivityOverviewInvitee" />
+        <activity android:name=".Activities.ActivityStatus" />
+        <activity android:name=".Activities.AcceptOrDecline" />
+        <activity android:name=".Activities.AvailTimesList" />
+        <activity android:name=".Activities.DatesList" />
+        <activity android:name=".Activities.InvitedUsers" />
+        <activity android:name=".Activities.ViewActivities" />
+        <activity android:name=".Activities.ViewCreatedActivities" />
+        <activity android:name=".Activities.MovieDetails" />
         <activity android:name=".Activities.InviteUsers" />
         <activity android:name=".Activities.TimesList" />
         <activity android:name=".Activities.CinemaList" />
@@ -34,11 +43,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".Activities.Homepage" />
-        <activity
-            android:name=".Activities.MainActivity1"
-            android:label="@string/app_name"
-            android:theme="@style/AppTheme.NoActionBar" /> <!-- Intent filter to catch Microsoft's callback after Sign In -->
+        <activity android:name=".Activities.Homepage" /> <!-- Intent filter to catch Microsoft's callback after Sign In -->
         <activity android:name="com.microsoft.identity.client.BrowserTabActivity">
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />

@@ -53,9 +53,7 @@ public class TimesList extends AppCompatActivity {
         recyclerView.setAdapter(movieTimesAdapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
-
     }
-
 
     public void getData(){
 
@@ -69,6 +67,5 @@ public class TimesList extends AppCompatActivity {
             Toast.makeText(this, "no data", Toast.LENGTH_SHORT).show();
         }
     }
-
 
 }

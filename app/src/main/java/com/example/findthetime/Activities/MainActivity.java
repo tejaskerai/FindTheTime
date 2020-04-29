@@ -12,8 +12,7 @@ import android.widget.Toast;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.backendless.Backendless;
-import com.backendless.async.callback.AsyncCallback;
-import com.backendless.exceptions.BackendlessFault;
+import Backendless.EventRepository;
 import com.example.findthetime.R;
 import com.microsoft.identity.client.AuthenticationCallback;
 import com.microsoft.identity.client.IAccount;
@@ -24,37 +23,20 @@ import com.microsoft.identity.client.PublicClientApplication;
 import com.microsoft.identity.client.exception.MsalClientException;
 import com.microsoft.identity.client.exception.MsalException;
 import com.microsoft.identity.client.exception.MsalServiceException;
-
 import org.json.JSONObject;
-
-
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Date;
-import java.util.HashMap;
 import java.util.List;
-
-import CalendarService.RoundEvent;
-import JSONService.EventService;
 import JSONService.UserService;
-import Models.Database.Activity;
-import Models.Domain.CalendarEvent;
+import Models.CurrentUser;
 import Models.Database.User;
-import Backendless.Initialisation;
+import Backendless.UserRepository;
 import configurations.BackendlessConfig;
-import com.google.common.collect.Sets;
-
-
 
 public class MainActivity extends AppCompatActivity {
 
-
     private static final String TAG = MainActivity.class.getSimpleName();
-
 
     /* Azure AD v2 Configs */
     final static String AUTHORITY = "https://login.microsoftonline.com/common";
-
 
     /* UI & Debugging Variables */
     Button signInButton;
@@ -62,22 +44,16 @@ public class MainActivity extends AppCompatActivity {
     /* Azure AD Variables */
     private ISingleAccountPublicClientApplication mSingleAccountApp;
 
-
-    //private RequestQueue mQueue;
+    EventRepository eventRepository = new EventRepository();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         System.out.println("In main activity");
 
-
-//
-
         Backendless.initApp(this, BackendlessConfig.APPLICATION_ID, BackendlessConfig.API_KEY);
-
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-        //mQueue = Volley.newRequestQueue(this);
         initializeUI();
 
         // Creates a PublicClientApplication object with res/raw/auth_config_single_account.json
@@ -179,7 +155,7 @@ public class MainActivity extends AppCompatActivity {
      * i.e. from "User.Read User.ReadWrite" to ["user.read", "user.readwrite"]
      */
     private String[] getScopes() {
-        return "user.read".split(" ");
+        return "user.read calendars.readwrite".split(" ");
     }
 
     /**
@@ -192,22 +168,18 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public void onSuccess(IAuthenticationResult authenticationResult) {
-                /* Successfully got a token, use it to call a protected resource - MSGraph */
+                /* Successfully got a token, use it to call a protected resource - CalendarService.MSGraph */
                 Log.d(TAG, "Successfully authenticated");
                 Log.d(TAG, "ID Token: " + authenticationResult.getAccount().getClaims().get("id_token"));
 
                 System.out.println("1 graph");
 
-
-
                 /* call graph */
+
                 callGraphAPI(authenticationResult, "https://graph.microsoft.com/v1.0/me");
 
-                String startDate = "2020-02-25T06:00:00.000Z";
-                String endDate = "2020-03-03T06:00:00.000Z";
-
-
-                callGraphCalendarAPI(authenticationResult, "https://graph.microsoft.com/v1.0/me/calendarview?startdatetime=" + startDate + "&enddatetime=" + endDate);
+                //callGraphCalendarAPI(authenticationResult,
+                //        "https://graph.microsoft.com/v1.0/me/calendarview?startdatetime=" + formatter.format(startDate) + "&enddatetime=" + formatter.format(endDate), startDate, endDate);
 
                 System.out.println("finish graph");
                 System.out.println("2 update");
@@ -270,8 +242,9 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
+
     /**
-     * Make an HTTP request to obtain MSGraph data
+     * Make an HTTP request to obtain CalendarService.MSGraph data
      */
     private void callGraphAPI(final IAuthenticationResult authenticationResult, final String url) {
         MSGraphRequestWrapper.callGraphAPIUsingVolley(
@@ -295,14 +268,23 @@ public class MainActivity extends AppCompatActivity {
                         System.out.println("email: " + email);
                         System.out.println("id: " + id);
 
-//                        Initialisation init = new Initialisation();
-//
-//                        boolean found = init.doesUserExist(id);
-//                        System.out.println("found or not: " + found);
-//                        if (!found){
-//                            init.saveUser(name, email, id);
-//                        }
+                        UserRepository userRepository = new UserRepository();
 
+                        User userFound = userRepository.getUserByEmail(email);
+                        if (userFound == null) {
+
+                            User userCreated = userRepository.saveUser(name, email, id);
+                            CurrentUser.setCurrentUser(
+                                    userCreated.email,
+                                    userCreated.objectId,
+                                    authenticationResult);
+
+                        } else {
+                            CurrentUser.setCurrentUser(
+                                    userFound.email,
+                                    userFound.objectId,
+                                    authenticationResult);
+                        }
 
                     }
                 },
@@ -314,76 +296,5 @@ public class MainActivity extends AppCompatActivity {
                     }
                 });
     }
-
-
-    private void callGraphCalendarAPI(final IAuthenticationResult authenticationResult, String url) {
-        MSGraphRequestWrapper.callGraphAPIUsingVolley(
-                MainActivity.this,
-//                graphResourceTextView.getText().toString()
-                url,
-                authenticationResult.getAccessToken(),
-                new Response.Listener<JSONObject>() {
-                    @Override
-                    public void onResponse(JSONObject response) {
-
-                        /* Successfully called graph, process data and send to UI */
-                        EventService eventService = new EventService();
-                        List<CalendarEvent> events = eventService.getEvent(response);
-
-                        for (int i = 0; i < events.size(); i++) {
-                            System.out.println("Start: " + events.get(i).getStart());
-                            System.out.println("End: " + events.get(i).getEnd());
-
-                        }
-
-                        RoundEvent roundEvent = new RoundEvent();
-
-                        // Initialise availTimes array
-                        HashMap<Date, List<Integer>> availTimes = new HashMap<Date, List<Integer>>();
-
-                        for (int i = 0; i < events.size(); i++) {
-
-                            if (availTimes.containsKey(events.get(i).getStartDate()) == false) {
-
-                                System.out.println("not in map");
-
-                                // Initialise start array of times
-                                List<Integer> startarr = new ArrayList<Integer>(Arrays.asList(5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24));
-
-                                List<Integer> hours = roundEvent.subtractHours(startarr, events.get(i).getStart(), events.get(i).getEnd());
-                                availTimes.put(events.get(i).getStartDate(), hours);
-
-                            } else {
-                                if (events.get(i - 1).getStartDate().equals(events.get(i).getStartDate())) {
-
-                                    List<Integer> hours = roundEvent.subtractHours(availTimes.get(events.get(i).getStartDate()), events.get(i).getStart(), events.get(i).getEnd());
-
-                                    availTimes.put(events.get(i).getStartDate(), hours);
-                                } else {
-                                    // Initialise start array of times
-                                    List<Integer> startarr = new ArrayList<Integer>(Arrays.asList(5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24));
-
-                                    List<Integer> hours = roundEvent.subtractHours(startarr, events.get(i).getStart(), events.get(i).getEnd());
-                                    availTimes.put(events.get(i).getStartDate(), hours);
-                                }
-                            }
-                        }
-                        System.out.println(availTimes);
-
-
-
-
-                    }
-                },
-                new Response.ErrorListener() {
-                    @Override
-                    public void onErrorResponse(VolleyError error) {
-                        Log.d(TAG, "Error: " + error.toString());
-                        displayError(error);
-                    }
-                });
-
-    }
-
 
 }

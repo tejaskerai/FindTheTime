@@ -13,7 +13,6 @@ import android.widget.TextView;
 import com.example.findthetime.Adapters.RestaurantListAdapter;
 import com.example.findthetime.R;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import JSONService.ZomatoService;
@@ -25,7 +24,6 @@ public class RestaurantList extends AppCompatActivity {
     RecyclerView recyclerView;
     ImageView home;
     TextView title;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,12 +42,15 @@ public class RestaurantList extends AppCompatActivity {
         title = findViewById(R.id.listTitle);
         String name = "Restaurants";
         title.setText(name);
+
         Location location = (Location) getApplicationContext();
         String lat = location.getLat().toString();
         String lon = location.getLon().toString();
         int cuisineId = getIntent().getIntExtra("id", 0);
+
         ZomatoService zomatoService = new ZomatoService();
         List<Restaurant> restaurants = zomatoService.getRestaurants(cuisineId, lat, lon);
+
         RestaurantListAdapter restaurantListAdapter = new RestaurantListAdapter(this, restaurants);
         recyclerView.setAdapter(restaurantListAdapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
