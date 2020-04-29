@@ -5,18 +5,14 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.findthetime.Adapters.CreatedActivitiesAdapter;
-import com.example.findthetime.Adapters.ViewActivitiesListAdapter;
 import com.example.findthetime.R;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import java.util.List;
-
 import Backendless.ActivityRepository;
 import Models.CurrentUser;
 import Models.Database.Activity;
@@ -64,8 +60,6 @@ public class ViewCreatedActivities extends AppCompatActivity {
             recyclerView.setAdapter(createdActivitiesAdapter);
             recyclerView.setLayoutManager(new LinearLayoutManager(this));
         }
-
-
 
     }
 }

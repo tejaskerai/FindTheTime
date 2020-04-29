@@ -11,6 +11,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".Activities.ActivityOverview"></activity>
+        <activity android:name=".Activities.ActivityOverviewInvitee" />
         <activity android:name=".Activities.ActivityStatus" />
         <activity android:name=".Activities.AcceptOrDecline" />
         <activity android:name=".Activities.AvailTimesList" />

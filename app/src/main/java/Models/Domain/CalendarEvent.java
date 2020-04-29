@@ -8,8 +8,6 @@ public class CalendarEvent {
 
     Date start;
     Date end;
-    Date startDate;
-    Date endDate;
 
     public CalendarEvent(Date start, Date end) {
         this.start = start;

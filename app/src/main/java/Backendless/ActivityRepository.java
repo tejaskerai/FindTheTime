@@ -9,26 +9,24 @@ import com.backendless.async.callback.AsyncCallback;
 import com.backendless.exceptions.BackendlessFault;
 import com.backendless.persistence.DataQueryBuilder;
 
-import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.concurrent.ExecutionException;
 
 import Models.CurrentUser;
 import Models.Database.Activity;
-import Models.Database.User;
 import Models.Database.User_Activity;
 
 public class ActivityRepository {
 
     private static final String TAG = Initialisation.class.getSimpleName();
 
-
     @SuppressLint("StaticFieldLeak")
     public Activity createActivity(String name, String address) {
 
         final Activity activity = new Activity();
         activity.setName(name);
-        activity.setDateAndTime("");
+        activity.setDateAndTime(null);
         activity.setPending(Boolean.TRUE);
         activity.setCreator(CurrentUser.getCurrentUser().objectId);
         activity.setPlace(address);
@@ -60,7 +58,7 @@ public class ActivityRepository {
             return new AsyncTask<String, Void, Activity>() {
                 @Override
                 protected Activity doInBackground(String... ids) {
-                    List<Activity> results = Backendless.Data.of( Activity.class ).find( queryBuilder );
+                    List<Activity> results = Backendless.Data.of(Activity.class).find(queryBuilder);
                     for (int i = 0; i < results.size(); i++) {
                         return results.get(i);
                     }
@@ -85,7 +83,7 @@ public class ActivityRepository {
             return new AsyncTask<String, Void, Activity>() {
                 @Override
                 protected Activity doInBackground(String... ids) {
-                    List<Activity> results = Backendless.Data.of( Activity.class ).find( queryBuilder );
+                    List<Activity> results = Backendless.Data.of(Activity.class).find(queryBuilder);
                     for (int i = 0; i < results.size(); i++) {
                         return results.get(i);
                     }
@@ -112,7 +110,7 @@ public class ActivityRepository {
             return new AsyncTask<String, Void, List<Activity>>() {
                 @Override
                 protected List<Activity> doInBackground(String... ids) {
-                    List<Activity> results = Backendless.Data.of( Activity.class ).find( queryBuilder );
+                    List<Activity> results = Backendless.Data.of(Activity.class).find(queryBuilder);
                     return results;
                 }
             }.execute(userId).get();
@@ -134,7 +132,7 @@ public class ActivityRepository {
             return new AsyncTask<String, Void, List<Activity>>() {
                 @Override
                 protected List<Activity> doInBackground(String... ids) {
-                    List<Activity> results = Backendless.Data.of( Activity.class ).find( queryBuilder );
+                    List<Activity> results = Backendless.Data.of(Activity.class).find(queryBuilder);
                     return results;
                 }
             }.execute(activityId).get();
@@ -147,24 +145,68 @@ public class ActivityRepository {
     }
 
 
-    public void setRelation(List<User_Activity> user_activitiesCollection, Activity activity){
-        Backendless.Data.of( Activity.class ).addRelation( activity, "user_activities:User_Activity:n", user_activitiesCollection,
-                new AsyncCallback<Integer>()
-                {
+    public void setRelation(List<User_Activity> user_activitiesCollection, Activity activity) {
+        Backendless.Data.of(Activity.class).addRelation(activity, "user_activities:User_Activity:n", user_activitiesCollection,
+                new AsyncCallback<Integer>() {
                     @Override
-                    public void handleResponse( Integer response )
-                    {
-                        Log.i( "MYAPP", "relation has been set");
+                    public void handleResponse(Integer response) {
+                        Log.i("MYAPP", "relation has been set");
                     }
 
                     @Override
-                    public void handleFault( BackendlessFault fault )
-                    {
-                        Log.e( "MYAPP", "server reported an error - " + fault.getMessage() );
+                    public void handleFault(BackendlessFault fault) {
+                        Log.e("MYAPP", "server reported an error - " + fault.getMessage());
                     }
-                } );
+                });
     }
 
 
+    public void updatePendingStatus(final Activity activity, final Boolean val) {
+        Backendless.Persistence.save(activity, new AsyncCallback<Activity>() {
+            public void handleResponse(Activity saved_activity) {
+                saved_activity.setPending(val);
+                Backendless.Persistence.save(saved_activity, new AsyncCallback<Activity>() {
+                    @Override
+                    public void handleResponse(Activity response) {
+                        System.out.println("updated");
+                    }
 
+                    @Override
+                    public void handleFault(BackendlessFault fault) {
+                        System.out.println("an error has occurred, the error code can be retrieved with fault.getCode()");
+                    }
+                });
+            }
+
+            @Override
+            public void handleFault(BackendlessFault fault) {
+                System.out.println("an error has occurred, the error code can be retrieved with fault.getCode()");
+            }
+        });
+    }
+
+
+    public void setDateTime(final Activity activity, final Date date) {
+        Backendless.Persistence.save(activity, new AsyncCallback<Activity>() {
+            public void handleResponse(Activity saved_activity) {
+                saved_activity.setDateAndTime(date);
+                Backendless.Persistence.save(saved_activity, new AsyncCallback<Activity>() {
+                    @Override
+                    public void handleResponse(Activity response) {
+                        System.out.println("updated");
+                    }
+
+                    @Override
+                    public void handleFault(BackendlessFault fault) {
+                        System.out.println("an error has occurred, the error code can be retrieved with fault.getCode()");
+                    }
+                });
+            }
+
+            @Override
+            public void handleFault(BackendlessFault fault) {
+                System.out.println("an error has occurred, the error code can be retrieved with fault.getCode()");
+            }
+        });
+    }
 }

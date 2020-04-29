@@ -10,20 +10,15 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import com.example.findthetime.Adapters.DatesListAdapter;
-import com.example.findthetime.Adapters.RestaurantListAdapter;
 import com.example.findthetime.R;
-
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-
 import Models.Database.Activity;
 import Models.Database.User;
 
 public class DatesList extends AppCompatActivity {
-
 
     RecyclerView recyclerView;
     ImageView home;
@@ -32,7 +27,6 @@ public class DatesList extends AppCompatActivity {
 
     List<Date> dates;
     ArrayList<User> users = new ArrayList<>();
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,15 +49,10 @@ public class DatesList extends AppCompatActivity {
 
         getData();
 
-        // TODO: change parameters to a hashmap times available
-
-
         DatesListAdapter datesListAdapter = new DatesListAdapter(this, dates, users, activity);
         recyclerView.setAdapter(datesListAdapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
     }
-
-
 
     public void getData() {
 

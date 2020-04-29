@@ -6,21 +6,16 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-
 import androidx.annotation.NonNull;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.RecyclerView;
-
 import com.example.findthetime.Activities.AcceptOrDecline;
-import com.example.findthetime.Activities.ActivityOverview;
+import com.example.findthetime.Activities.ActivityOverviewInvitee;
 import com.example.findthetime.Activities.ActivityStatus;
-import com.example.findthetime.Activities.Homepage;
 import com.example.findthetime.R;
-
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
-
 import Backendless.ActivityRepository;
 import Backendless.UserActivityRepository;
 import Models.CurrentUser;
@@ -28,8 +23,6 @@ import Models.Database.Activity;
 import Models.Database.User_Activity;
 
 public class ViewActivitiesListAdapter extends RecyclerView.Adapter<ViewActivitiesListAdapter.MyViewHolder>{
-
-
     ArrayList<Activity> activities;
     Context context;
 
@@ -75,20 +68,11 @@ public class ViewActivitiesListAdapter extends RecyclerView.Adapter<ViewActiviti
                         context.startActivity(intent);
                     }else{
                         // direct user to activity overview page where they can add to calendar
-                        Intent intent = new Intent(context, ActivityOverview.class);
+                        Intent intent = new Intent(context, ActivityOverviewInvitee.class);
                         intent.putExtra("activity", (Serializable) activities.get(position));
                         context.startActivity(intent);
                     }
                 }
-
-        //if user has not accepted activity
-            // direct user to page to accept of decline activity
-        //else
-            //if activity is still pending
-                // direct user to page saying they have already accepted/declined
-            //else
-                // direct user to activity overview page where they can add to calendar
-
 
             }
         });
@@ -97,16 +81,10 @@ public class ViewActivitiesListAdapter extends RecyclerView.Adapter<ViewActiviti
     @Override
     public int getItemCount() {
          return activities.size();
-
     }
-
     public class MyViewHolder extends RecyclerView.ViewHolder {
-
-
         TextView activityName;
         ConstraintLayout mainLayout;
-
-
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
             activityName = itemView.findViewById(R.id.rowName);

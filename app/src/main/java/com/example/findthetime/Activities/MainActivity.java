@@ -1,30 +1,19 @@
 package com.example.findthetime.Activities;
 
 import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
-import android.os.AsyncTask;
 import android.os.Bundle;
-
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-
-import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
-
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.backendless.Backendless;
-
 import Backendless.EventRepository;
-
-import com.backendless.async.callback.AsyncCallback;
-import com.backendless.exceptions.BackendlessFault;
 import com.example.findthetime.R;
-import com.google.gson.JsonObject;
 import com.microsoft.identity.client.AuthenticationCallback;
 import com.microsoft.identity.client.IAccount;
 import com.microsoft.identity.client.IAuthenticationResult;
@@ -34,43 +23,15 @@ import com.microsoft.identity.client.PublicClientApplication;
 import com.microsoft.identity.client.exception.MsalClientException;
 import com.microsoft.identity.client.exception.MsalException;
 import com.microsoft.identity.client.exception.MsalServiceException;
-
-import org.joda.time.DateTimeComparator;
 import org.json.JSONObject;
-
-
-import java.text.DateFormat;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.Iterator;
 import java.util.List;
-import java.util.Map;
-
-import CalendarService.MSGraph;
-import CalendarService.RoundEvent;
-import JSONService.EventService;
 import JSONService.UserService;
 import Models.CurrentUser;
-import Models.Database.Activity;
-import Models.Domain.CalendarEvent;
 import Models.Database.User;
-import Backendless.Initialisation;
 import Backendless.UserRepository;
-
 import configurations.BackendlessConfig;
 
-import com.google.common.collect.Sets;
-
-
 public class MainActivity extends AppCompatActivity {
-
 
     private static final String TAG = MainActivity.class.getSimpleName();
 
@@ -89,15 +50,10 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         System.out.println("In main activity");
 
-
-//
-
         Backendless.initApp(this, BackendlessConfig.APPLICATION_ID, BackendlessConfig.API_KEY);
-
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-        //mQueue = Volley.newRequestQueue(this);
         initializeUI();
 
         // Creates a PublicClientApplication object with res/raw/auth_config_single_account.json

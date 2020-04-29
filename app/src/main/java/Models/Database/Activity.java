@@ -1,9 +1,8 @@
 package Models.Database;
 
-import com.backendless.Backendless;
-
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 public class Activity implements Serializable {
@@ -11,20 +10,17 @@ public class Activity implements Serializable {
     public String name;
     public String type;
     public String place;
-    public String dateAndTime;
+    public Date dateAndTime;
     public String creator;
     public Boolean pending;
     public List<User_Activity> user_activities;
     public String objectId;
 
-
-
     public Activity() {
 
     }
 
-
-    public Activity(String name, String type, String place, String dateAndTime, String creator, Boolean pending) {
+    public Activity(String name, String type, String place, Date dateAndTime, String creator, Boolean pending) {
         this.name = name;
         this.type = type;
         this.place = place;
@@ -73,11 +69,11 @@ public class Activity implements Serializable {
         this.place = place;
     }
 
-    public String getDateAndTime() {
+    public Date getDateAndTime() {
         return dateAndTime;
     }
 
-    public void setDateAndTime(String dateAndTime) {
+    public void setDateAndTime(Date dateAndTime) {
         this.dateAndTime = dateAndTime;
     }
 

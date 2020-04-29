@@ -6,25 +6,19 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-
 import androidx.annotation.NonNull;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.RecyclerView;
-
 import com.example.findthetime.Activities.CinemaList;
 import com.example.findthetime.R;
-
 import java.util.List;
-
 import Models.Domain.Movie;
-
 public class MovieListAdapter extends RecyclerView.Adapter<MovieListAdapter.MyViewHolder> {
 
     List<Movie> movies;
     Context context;
 
     public MovieListAdapter(Context ct, List<Movie> movieList) {
-
         context = ct;
         movies = movieList;
     }
@@ -58,11 +52,8 @@ public class MovieListAdapter extends RecyclerView.Adapter<MovieListAdapter.MyVi
     }
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
-
-
         TextView movieName;
         ConstraintLayout mainLayout;
-
 
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);

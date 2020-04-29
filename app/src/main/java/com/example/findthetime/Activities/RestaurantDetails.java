@@ -17,20 +17,15 @@ import java.util.HashMap;
 
 public class RestaurantDetails extends AppCompatActivity {
 
-
     TextView restNameT, restAddressT, restPhoneNumberT, restTimingsT, restURLT;
-
     Button continueButton;
-
     ImageView home;
-
     String restName, restAddress, restPhoneNumber, restTimings, restURL;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_restaurant_details);
-
         initializeUI();
 
         getData();

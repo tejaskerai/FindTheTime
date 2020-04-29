@@ -7,17 +7,12 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
-
-import com.example.findthetime.Adapters.CreatedActivitiesAdapter;
 import com.example.findthetime.R;
 import com.microsoft.identity.client.ISingleAccountPublicClientApplication;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
-
-import CalendarService.MSGraph;
-import Models.CurrentUser;
 
 public class Homepage extends AppCompatActivity {
 
@@ -36,14 +31,6 @@ public class Homepage extends AppCompatActivity {
         setContentView(R.layout.activity_homepage);
 
         signOutButton = findViewById(R.id.btn_signOut);
-
-
-
-        // TODO: Add sign out function from main activity
-        // Use mSingleAccountApp.signOut() to sign the user out
-        // You may also be required to redirect user back to the signin page manually
-        // Call mSingleAccountApp.signOut() from a separate thread
-
         initializeUI();
     }
 
@@ -69,18 +56,11 @@ public class Homepage extends AppCompatActivity {
                 final Date startDate = new Date();
                 System.out.println("start: " + formatter.format(startDate));
 
-
                 // Gets the date 7 days after the start date
                 Calendar calendar = Calendar.getInstance();
                 calendar.setTime(startDate);
                 calendar.add(Calendar.DAY_OF_YEAR, 7);
                 final Date endDate = calendar.getTime();
-
-
-                // Get creators calendar events
-//                MSGraph msGraph = new MSGraph();
-//                msGraph.callGraphCalendarAPI(CurrentUser.getCurrentUser().authenticationResult, "https://graph.microsoft.com/v1.0/me/calendarview?startdatetime=" + formatter.format(startDate) + "&enddatetime=" + formatter.format(endDate), startDate, endDate, Homepage.this);
-
                 Intent newActivity = new Intent(Homepage.this, ViewCreatedActivities.class);
                 startActivity(newActivity);
             }
@@ -97,13 +77,9 @@ public class Homepage extends AppCompatActivity {
             }
         });
 
-
-
         signOutButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-//                MainActivity mainActivity = new MainActivity();
-//                mainActivity.setmSingleAccountApp(null);
-                //mainActivity.signOut();
+//
                 System.out.println("sign out clicked");
                 Intent login = new Intent(Homepage.this, MainActivity.class);
                 startActivity(login);
@@ -111,19 +87,4 @@ public class Homepage extends AppCompatActivity {
         });
     }
 
-    /**
-     * Display the error message
-     */
-    private void displayError(@NonNull final Exception exception) {
-        System.out.println("Error occurred in sign out");
-    }
-
-    public void SignOut() {
-
-
-
-    }
-    public void update(){
-        System.out.println("sign out from update");
-    }
 }

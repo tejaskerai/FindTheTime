@@ -6,10 +6,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.example.findthetime.Helper.FileHelper;
 import com.example.findthetime.R;
 
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -17,9 +15,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ListView;
-import android.widget.TextView;
 import android.widget.Toast;
-
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -28,7 +24,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-
 import Backendless.ActivityRepository;
 import Backendless.UserActivityRepository;
 import Backendless.UserRepository;
@@ -53,7 +48,6 @@ public class InviteUsers extends AppCompatActivity implements View.OnClickListen
     UserRepository userRepository = new UserRepository();
     List<User> users = userRepository.getAllUsers();
     List<String> userEmails = new ArrayList<>();
-    Button addUserButton;
     ArrayAdapter<String> mAdapter;
 
     String name;
@@ -122,8 +116,6 @@ public class InviteUsers extends AppCompatActivity implements View.OnClickListen
             System.out.println("address " + address);
 
             System.out.println(restDetails);
-//            eventName = findViewById(R.id.eventName);
-//            eventName.setText(restDetails.get("restName"));
         }
 
         if (getIntent().hasExtra("movieDetails")) {
@@ -134,9 +126,6 @@ public class InviteUsers extends AppCompatActivity implements View.OnClickListen
             address = movieDetails.get("cinemaName");
             System.out.println("name " + name);
             System.out.println("address " + address);
-
-//            eventName = findViewById(R.id.eventName);
-//            eventName.setText(movieDetails.get("filmName"));
 
         }
     }

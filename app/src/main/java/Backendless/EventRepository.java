@@ -6,28 +6,18 @@ import android.util.Log;
 
 import com.backendless.Backendless;
 import com.backendless.async.callback.AsyncCallback;
-import com.backendless.exceptions.BackendlessException;
 import com.backendless.exceptions.BackendlessFault;
 import com.backendless.persistence.DataQueryBuilder;
 
-import java.io.Serializable;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.concurrent.ExecutionException;
 
-import Models.CurrentUser;
-import Models.Database.Activity;
 import Models.Database.Event;
 import Models.Database.User;
-import Models.Database.User_Activity;
 
 public class EventRepository {
-
     private static final String TAG = Initialisation.class.getSimpleName();
-
 
     @SuppressLint("StaticFieldLeak")
     public Event createEvent(String userId, Date date, String timesLst) {
@@ -36,7 +26,6 @@ public class EventRepository {
         event.setUserId(userId);
         event.setDate(date);
         event.setAvailTimes(timesLst);
-
         try {
 
             return new AsyncTask<Event, Void, Event>() {
@@ -71,9 +60,8 @@ public class EventRepository {
                 });
     }
 
-
     @SuppressLint("StaticFieldLeak")
-    public int deleteEvents(String userId){
+    public int deleteEvents(String userId) {
         final String whereClause = "userId = '" + userId + "'";
         final DataQueryBuilder queryBuilder = DataQueryBuilder.create();
         queryBuilder.setWhereClause(whereClause);
@@ -82,7 +70,7 @@ public class EventRepository {
             return new AsyncTask<String, Void, Integer>() {
                 @Override
                 protected Integer doInBackground(String... ids) {
-                    int number = Backendless.Data.of( Event.class ).remove(whereClause);
+                    int number = Backendless.Data.of(Event.class).remove(whereClause);
                     return number;
                 }
             }.execute("").get();
@@ -93,7 +81,6 @@ public class EventRepository {
         }
         return -1;
     }
-
 
     @SuppressLint("StaticFieldLeak")
     public List<Event> getEventsByUserId(String userId) {
@@ -106,7 +93,7 @@ public class EventRepository {
             return new AsyncTask<String, Void, List<Event>>() {
                 @Override
                 protected List<Event> doInBackground(String... ids) {
-                    List<Event> results = Backendless.Data.of( Event.class ).find( queryBuilder );
+                    List<Event> results = Backendless.Data.of(Event.class).find(queryBuilder);
                     return results;
                 }
             }.execute("userId").get();
@@ -120,7 +107,7 @@ public class EventRepository {
 
 
     @SuppressLint("StaticFieldLeak")
-    public List<Event> getEventByUserIdandDate(String userId, String date ) {
+    public List<Event> getEventByUserIdandDate(String userId, String date) {
 
         String whereClause = "userId = '" + userId + "' and date = '" + date + "'";
         final DataQueryBuilder queryBuilder = DataQueryBuilder.create();
@@ -130,7 +117,7 @@ public class EventRepository {
             return new AsyncTask<String, Void, List<Event>>() {
                 @Override
                 protected List<Event> doInBackground(String... ids) {
-                    List<Event> results = Backendless.Data.of( Event.class ).find( queryBuilder );
+                    List<Event> results = Backendless.Data.of(Event.class).find(queryBuilder);
                     return results;
                 }
             }.execute("userId").get();

@@ -1,7 +1,6 @@
 package Models.Database;
 
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.List;
 
 public class User implements Serializable {
@@ -11,7 +10,6 @@ public class User implements Serializable {
     public String id;
     public List<User_Activity> user_activities;
     public String objectId;
-
 
     public List<User_Activity> getUser_activities() {
         return user_activities;
@@ -30,13 +28,6 @@ public class User implements Serializable {
         this.email = email;
         this.id = id;
     }
-
-//    public void addActivity(Activity activity){
-//        if (activities == null)
-//            activities = new ArrayList<>();
-//
-//        activities.add(activity);
-//    }
 
     public String getName() {
         return name;

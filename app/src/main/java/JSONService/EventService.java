@@ -3,7 +3,6 @@ package JSONService;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -14,12 +13,6 @@ import Models.Domain.CalendarEvent;
 
 
 public class EventService {
-
-
-    Date start;
-    Date end;
-    Date startDate;
-    Date endDate;
 
     SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSSSSS");
     public List<CalendarEvent> getEvent (JSONObject response) {
@@ -46,7 +39,5 @@ public class EventService {
         }
         return events;
     }
-
-
 
 }

@@ -3,20 +3,16 @@ package com.example.findthetime.Activities;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-
 import com.example.findthetime.Adapters.ViewActivitiesListAdapter;
 import com.example.findthetime.R;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import java.util.ArrayList;
 import java.util.List;
-
 import Backendless.ActivityRepository;
 import Backendless.UserActivityRepository;
 import Backendless.UserRepository;

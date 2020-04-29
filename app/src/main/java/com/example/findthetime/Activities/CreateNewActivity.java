@@ -11,7 +11,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.Toast;
 
@@ -20,9 +19,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import JSONService.OpenCageService;
-import Models.CurrentUser;
 import Models.Domain.Location;
-
 
 public class CreateNewActivity extends AppCompatActivity {
 
@@ -31,19 +28,15 @@ public class CreateNewActivity extends AppCompatActivity {
     Button createRestaurantActivity;
     ImageView home;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create_new_activity);
-
         initializeUI();
-
-
 
     }
 
-    private void initializeUI(){
+    private void initializeUI() {
 
         createRestaurantActivity = findViewById(R.id.btn_restaurant_activity);
         createRestaurantActivity.setOnClickListener(new View.OnClickListener() {
@@ -57,7 +50,7 @@ public class CreateNewActivity extends AppCompatActivity {
                 mDone.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        if((!mPostcode.getText().toString().isEmpty()) && (postcodeChecker(mPostcode.getText().toString()))){
+                        if ((!mPostcode.getText().toString().isEmpty()) && (postcodeChecker(mPostcode.getText().toString()))) {
                             Toast.makeText(CreateNewActivity.this,
                                     "successful",
                                     Toast.LENGTH_SHORT).show();
@@ -71,7 +64,7 @@ public class CreateNewActivity extends AppCompatActivity {
                             location.setLon(lon);
                             Intent restaurantActivity = new Intent(CreateNewActivity.this, CreateRestaurantActivity.class);
                             startActivity(restaurantActivity);
-                        }else{
+                        } else {
                             Toast.makeText(CreateNewActivity.this,
                                     "Postcode is empty or is invalid",
                                     Toast.LENGTH_SHORT).show();
@@ -90,24 +83,13 @@ public class CreateNewActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-
-
-//                MainActivity mainActivity = new MainActivity();
-//                String startDate = "2020-02-25T06:00:00.000Z";
-//                String endDate = "2020-03-03T06:00:00.000Z";
-//                mainActivity.callGraphCalendarAPI(CurrentUser.getCurrentUser().authenticationResult, "https://graph.microsoft.com/v1.0/me/calendarview?startdatetime=" + startDate + "&enddatetime=" + endDate);
-
-
                 Intent movies = new Intent(CreateNewActivity.this, CreateMovieActivity.class);
-//                int number = 55;
-//                movies.putExtra("id", number);
                 startActivity(movies);
             }
         });
 
-
         home = (ImageView) findViewById(R.id.home_createActivity);
-        home.setOnClickListener(new View.OnClickListener(){
+        home.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
@@ -117,11 +99,9 @@ public class CreateNewActivity extends AppCompatActivity {
             }
         });
 
-
-
     }
 
-    public boolean postcodeChecker(String postcode){
+    public boolean postcodeChecker(String postcode) {
 
         String normalisedPC = postcode.replaceAll("\\s", "").toLowerCase();
         String regex = "^[a-z]{1,2}[0-9R][0-9a-z]?[0-9][abd-hjlnp-uw-z]{2}$";

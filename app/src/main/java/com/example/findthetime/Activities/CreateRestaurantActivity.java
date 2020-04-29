@@ -2,26 +2,17 @@ package com.example.findthetime.Activities;
 
 import android.content.Intent;
 import android.os.Bundle;
-
 import androidx.appcompat.app.AppCompatActivity;
-
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
-
 import com.example.findthetime.R;
-
 import java.util.List;
-
 import Models.Domain.Restaurant;
 
 public class CreateRestaurantActivity extends AppCompatActivity {
 
-
-
     public static final String id = "id";
-
-
 
     /* UI & Debugging Variables */
     Button italian;
@@ -36,7 +27,6 @@ public class CreateRestaurantActivity extends AppCompatActivity {
     Button streetFood;
     ImageView home;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -46,9 +36,7 @@ public class CreateRestaurantActivity extends AppCompatActivity {
 
     }
 
-
     private void initializeUI() {
-
 
         home = (ImageView) findViewById(R.id.home_cuisines);
         home.setOnClickListener(new View.OnClickListener(){
@@ -205,6 +193,5 @@ public class CreateRestaurantActivity extends AppCompatActivity {
             System.out.println(restaurants.get(i).getTimings());
         }
     }
-
 
 }

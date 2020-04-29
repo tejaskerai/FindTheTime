@@ -1,6 +1,7 @@
 package com.example.findthetime.Activities;
 
 import androidx.appcompat.app.AppCompatActivity;
+
 import com.example.findthetime.R;
 
 import android.content.Intent;
@@ -31,7 +32,7 @@ public class AcceptOrDecline extends AppCompatActivity {
     Button decline;
     Activity activity;
     TextView nameT, placeT;
-    UserActivityRepository userActivityRepository =new UserActivityRepository();
+    UserActivityRepository userActivityRepository = new UserActivityRepository();
     List<User_Activity> user_activities;
 
 
@@ -42,10 +43,6 @@ public class AcceptOrDecline extends AppCompatActivity {
         initializeUI();
         getData();
         setData();
-
-
-
-
     }
 
     private void initializeUI() {
@@ -54,7 +51,7 @@ public class AcceptOrDecline extends AppCompatActivity {
         placeT = findViewById(R.id.acceptDeclinePlace);
 
         home = (ImageView) findViewById(R.id.home_accept_decline);
-        home.setOnClickListener(new View.OnClickListener(){
+        home.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
@@ -63,10 +60,6 @@ public class AcceptOrDecline extends AppCompatActivity {
 
             }
         });
-
-
-//                String startDate = "2020-04-10T06:00:00.000Z";
-//                String endDate = "2020-04-20T06:00:00.000Z";
 
         final SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSSSSS");
         final Date startDate = new Date();
@@ -85,11 +78,8 @@ public class AcceptOrDecline extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 //if activity is still pending,
-                if (activity.getPending() == true){
+                if (activity.getPending() == true) {
                     System.out.println("still pending");
-                    // Call graph and add calendar details to db
-                    // toast saying activity accepted, direct to homepage
-                    // change db status
 
                     MSGraph msGraph = new MSGraph();
                     msGraph.callGraphCalendarAPI(CurrentUser.getCurrentUser().authenticationResult, "https://graph.microsoft.com/v1.0/me/calendarview?startdatetime=" + formatter.format(startDate) + "&enddatetime=" + formatter.format(endDate), startDate, endDate, AcceptOrDecline.this);
@@ -97,12 +87,12 @@ public class AcceptOrDecline extends AppCompatActivity {
 
                     userActivityRepository.updateUserActivity(user_activities.get(0), true);
                     Toast.makeText(AcceptOrDecline.this, "You have accepted the activity", Toast.LENGTH_SHORT).show();
-                    Intent intent= new Intent(AcceptOrDecline.this, Homepage.class);
+                    Intent intent = new Intent(AcceptOrDecline.this, Homepage.class);
                     startActivity(intent);
 
-                }else{
+                } else {
                     Toast.makeText(AcceptOrDecline.this, "Activity has already started", Toast.LENGTH_SHORT).show();
-                    Intent intent= new Intent(AcceptOrDecline.this, Homepage.class);
+                    Intent intent = new Intent(AcceptOrDecline.this, Homepage.class);
                     startActivity(intent);
                 }
             }
@@ -112,20 +102,15 @@ public class AcceptOrDecline extends AppCompatActivity {
         decline.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-                //TODO: remove user from table 'users invited'
-                // direct user to home page
-
                 userActivityRepository.deleteUserActivity(user_activities.get(0));
 
-                Intent intent= new Intent(AcceptOrDecline.this, Homepage.class);
+                Intent intent = new Intent(AcceptOrDecline.this, Homepage.class);
 
                 startActivity(intent);
             }
         });
 
     }
-
     public void getData() {
         Intent intent = getIntent();
         if (getIntent().hasExtra("activity")) {

@@ -6,15 +6,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-
 import androidx.annotation.NonNull;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.RecyclerView;
-
-import com.example.findthetime.Activities.CinemaList;
 import com.example.findthetime.Activities.TimesList;
 import com.example.findthetime.R;
-
 import java.util.List;
 
 import Models.Domain.Cinema;
@@ -56,8 +52,6 @@ public class MovieCinemaAdapter extends RecyclerView.Adapter<MovieCinemaAdapter.
         });
     }
 
-
-
     @Override
     public int getItemCount() {
         return cinemas.size();
@@ -73,7 +67,6 @@ public class MovieCinemaAdapter extends RecyclerView.Adapter<MovieCinemaAdapter.
             super(itemView);
             cinemaName = itemView.findViewById(R.id.rowName);
             mainLayout = itemView.findViewById(R.id.mainLayout);
-
         }
     }
 }

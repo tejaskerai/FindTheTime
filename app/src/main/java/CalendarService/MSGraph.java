@@ -88,9 +88,6 @@ public class MSGraph {
                 });
     }
 
-
-
-
     public void callGraphCalendarAPI(final IAuthenticationResult authenticationResult, String url, final Date start, final Date end, Context ct) {
         MSGraphRequestWrapper.callGraphAPIUsingVolley(
                 ct,

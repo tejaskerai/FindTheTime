@@ -2,19 +2,13 @@ package JSONService;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-
 import java.util.ArrayList;
 import java.util.List;
-
 import Models.Domain.Cinema;
 import Models.Domain.Movie;
-
 public class MovieJSON {
-
     public List<Movie> getMovies(JSONObject object){
-
         List<Movie> movieList = new ArrayList<Movie>();
-
         try {
 
             JSONArray films = object.getJSONArray("films");
@@ -34,7 +28,6 @@ public class MovieJSON {
                 String plot = element.getString("synopsis_long");
 
                 movieList.add(new Movie(filmId, filmName, releaseDate, ageRating, trailer, plot));
-
             }
 
 
@@ -42,13 +35,11 @@ public class MovieJSON {
             e.printStackTrace();
         }
         return movieList;
-
     }
 
     public List<Cinema> getCinemas(JSONObject object){
 
         List<Cinema> cinemaList = new ArrayList<Cinema>();
-
         try {
             JSONArray cinemas = object.getJSONArray("cinemas");
 

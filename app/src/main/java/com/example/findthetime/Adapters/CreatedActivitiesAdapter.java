@@ -10,23 +10,15 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.RecyclerView;
-
-import com.example.findthetime.Activities.CinemaList;
-import com.example.findthetime.Activities.Homepage;
 import com.example.findthetime.Activities.InvitedUsers;
 import com.example.findthetime.R;
-
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 
 import Models.Database.Activity;
 
 public class CreatedActivitiesAdapter extends RecyclerView.Adapter<CreatedActivitiesAdapter.MyViewHolder> {
 
-
-    //TODO: add list of activities created by user
     List<Activity> activities;
     Context context;
 
@@ -34,7 +26,6 @@ public class CreatedActivitiesAdapter extends RecyclerView.Adapter<CreatedActivi
         context = ct;
         activities = activityList;
     }
-
 
     @NonNull
     @Override

@@ -14,20 +14,15 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.Toast;
-
 import java.io.Serializable;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
-
 import Backendless.EventRepository;
 import Backendless.UserActivityRepository;
 import Backendless.UserRepository;
-import CalendarService.MSGraph;
 import Models.CurrentUser;
 import Models.Database.Activity;
 import Models.Database.Event;
@@ -39,10 +34,6 @@ public class InvitedUsers extends AppCompatActivity {
     Button viewTimes;
     ImageView home;
     Activity activity;
-
-
-
-
 
     ArrayList<User> users = new ArrayList<>();
     ArrayList<String> userEmails = new ArrayList<>();
@@ -62,7 +53,6 @@ public class InvitedUsers extends AppCompatActivity {
     }
 
     private void dataRetrieval() {
-
 
         UserActivityRepository userActivityRepository = new UserActivityRepository();
         List<User_Activity> user_activities = userActivityRepository.getJoinedUsersActivity(activity.getObjectId());
@@ -101,10 +91,7 @@ public class InvitedUsers extends AppCompatActivity {
                 if (users.size() == 0){
 
                     Toast.makeText(InvitedUsers.this, "No friends have joined", Toast.LENGTH_SHORT).show();
-
                 }else {
-
-
                     List<Date> dates = lists();
 
                     Intent intent = new Intent(InvitedUsers.this, DatesList.class);

@@ -10,26 +10,18 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.RecyclerView;
-
 import com.example.findthetime.Activities.AvailTimesList;
-import com.example.findthetime.Activities.DatesList;
-import com.example.findthetime.Activities.InviteUsers;
-import com.example.findthetime.Activities.InvitedUsers;
 import com.example.findthetime.R;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Sets;
-
 import java.io.Serializable;
 import java.text.DateFormat;
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.List;
-import java.util.Scanner;
 import java.util.Set;
-
 import Backendless.EventRepository;
 import Models.CurrentUser;
 import Models.Database.Activity;
@@ -37,7 +29,6 @@ import Models.Database.Event;
 import Models.Database.User;
 
 public class DatesListAdapter extends RecyclerView.Adapter<DatesListAdapter.MyViewHolder> {
-
 
     EventRepository eventRepository = new EventRepository();
     List<Date> dates;

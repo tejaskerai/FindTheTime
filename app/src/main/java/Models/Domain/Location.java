@@ -3,8 +3,6 @@ package Models.Domain;
 import android.app.Application;
 
 public class Location extends Application {
-
-
     public void setLon(Double lon) {
         this.lon = lon;
     }

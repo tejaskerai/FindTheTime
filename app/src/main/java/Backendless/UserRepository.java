@@ -12,20 +12,10 @@ import com.backendless.persistence.DataQueryBuilder;
 import java.util.List;
 import java.util.concurrent.ExecutionException;
 
-import Models.Database.Activity;
 import Models.Database.User;
 import Models.Database.User_Activity;
 
-import static com.backendless.media.rtp.RtpSocket.TAG;
-
 public class UserRepository {
-
-
-    public void createTable() {
-
-
-    }
-
 
     @SuppressLint("StaticFieldLeak")
     public User getUserById(final String userId) {
@@ -38,7 +28,7 @@ public class UserRepository {
             return new AsyncTask<String, Void, User>() {
                 @Override
                 protected User doInBackground(String... ids) {
-                    List<User> results = Backendless.Data.of( User.class ).find( queryBuilder );
+                    List<User> results = Backendless.Data.of(User.class).find(queryBuilder);
                     for (int i = 0; i < results.size(); i++) {
                         return results.get(i);
                     }
@@ -65,7 +55,7 @@ public class UserRepository {
             return new AsyncTask<String, Void, User>() {
                 @Override
                 protected User doInBackground(String... ids) {
-                    List<User> results = Backendless.Data.of( User.class ).find( queryBuilder );
+                    List<User> results = Backendless.Data.of(User.class).find(queryBuilder);
                     for (int i = 0; i < results.size(); i++) {
                         return results.get(i);
                     }
@@ -86,7 +76,7 @@ public class UserRepository {
             return new AsyncTask<String, Void, List<User>>() {
                 @Override
                 protected List<User> doInBackground(String... ids) {
-                    List<User> results = Backendless.Data.of( User.class ).find();
+                    List<User> results = Backendless.Data.of(User.class).find();
                     for (int i = 0; i < results.size(); i++) {
                         return results;
                     }
@@ -124,27 +114,19 @@ public class UserRepository {
         return null;
     }
 
-
-
-
-
-    public void setRelation(List<User_Activity> user_activitiesCollection, User user){
-        Backendless.Data.of( User.class ).addRelation( user, "user_activities:User_Activity:n", user_activitiesCollection,
-                new AsyncCallback<Integer>()
-                {
+    public void setRelation(List<User_Activity> user_activitiesCollection, User user) {
+        Backendless.Data.of(User.class).addRelation(user, "user_activities:User_Activity:n", user_activitiesCollection,
+                new AsyncCallback<Integer>() {
                     @Override
-                    public void handleResponse( Integer response )
-                    {
-                        Log.i( "MYAPP", "relation has been set");
+                    public void handleResponse(Integer response) {
+                        Log.i("MYAPP", "relation has been set");
                     }
 
                     @Override
-                    public void handleFault( BackendlessFault fault )
-                    {
-                        Log.e( "MYAPP", "server reported an error - " + fault.getMessage() );
+                    public void handleFault(BackendlessFault fault) {
+                        Log.e("MYAPP", "server reported an error - " + fault.getMessage());
                     }
-                } );
+                });
     }
-
 
 }

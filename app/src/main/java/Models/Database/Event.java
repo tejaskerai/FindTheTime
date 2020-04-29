@@ -6,7 +6,6 @@ import java.util.List;
 
 public class Event {
 
-
     Date date;
     String availTimes;
     String userId;

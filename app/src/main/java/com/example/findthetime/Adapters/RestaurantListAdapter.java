@@ -13,8 +13,6 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.findthetime.R;
 import com.example.findthetime.Activities.RestaurantDetails;
-
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
@@ -26,11 +24,8 @@ public class RestaurantListAdapter extends RecyclerView.Adapter<RestaurantListAd
     Context context;
 
     public RestaurantListAdapter(Context ct, List<Restaurant> restaurantsList) {
-
         context = ct;
-
         restaurants = restaurantsList;
-
     }
 
     @NonNull

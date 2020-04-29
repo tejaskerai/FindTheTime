@@ -13,15 +13,11 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.ExecutionException;
 
-import Models.CurrentUser;
-import Models.Database.Activity;
-import Models.Database.User;
 import Models.Database.User_Activity;
 
 public class UserActivityRepository {
 
     private static final String TAG = Initialisation.class.getSimpleName();
-
 
     @SuppressLint("StaticFieldLeak")
     public List<User_Activity> getUserActivityByActivityId(String activityId) {
@@ -34,7 +30,7 @@ public class UserActivityRepository {
             return new AsyncTask<String, Void, List<User_Activity>>() {
                 @Override
                 protected List<User_Activity> doInBackground(String... ids) {
-                    List<User_Activity> results = Backendless.Data.of( User_Activity.class ).find( queryBuilder );
+                    List<User_Activity> results = Backendless.Data.of(User_Activity.class).find(queryBuilder);
 
                     return results;
                 }
@@ -58,7 +54,7 @@ public class UserActivityRepository {
             return new AsyncTask<String, Void, List<User_Activity>>() {
                 @Override
                 protected List<User_Activity> doInBackground(String... ids) {
-                    List<User_Activity> results = Backendless.Data.of( User_Activity.class ).find( queryBuilder );
+                    List<User_Activity> results = Backendless.Data.of(User_Activity.class).find(queryBuilder);
                     return results;
                 }
             }.execute(userId).get();
@@ -82,7 +78,7 @@ public class UserActivityRepository {
             return new AsyncTask<String, Void, List<User_Activity>>() {
                 @Override
                 protected List<User_Activity> doInBackground(String... ids) {
-                    List<User_Activity> results = Backendless.Data.of( User_Activity.class ).find( queryBuilder );
+                    List<User_Activity> results = Backendless.Data.of(User_Activity.class).find(queryBuilder);
                     return results;
                 }
             }.execute(activityId).get();
@@ -97,7 +93,7 @@ public class UserActivityRepository {
     @SuppressLint("StaticFieldLeak")
     public List<User_Activity> getJoinedUserActivity(String activityId, String userId) {
 
-        String whereClause = "activityObjectId = '" + activityId + "' and userObjectId = '"+ userId + "' and joined = false";
+        String whereClause = "activityObjectId = '" + activityId + "' and userObjectId = '" + userId + "' and joined = false";
         final DataQueryBuilder queryBuilder = DataQueryBuilder.create();
         queryBuilder.setWhereClause(whereClause);
 
@@ -105,7 +101,7 @@ public class UserActivityRepository {
             return new AsyncTask<String, Void, List<User_Activity>>() {
                 @Override
                 protected List<User_Activity> doInBackground(String... ids) {
-                    List<User_Activity> results = Backendless.Data.of( User_Activity.class ).find( queryBuilder );
+                    List<User_Activity> results = Backendless.Data.of(User_Activity.class).find(queryBuilder);
                     return results;
                 }
             }.execute("").get();
@@ -119,43 +115,47 @@ public class UserActivityRepository {
 
 
     public void updateUserActivity(final User_Activity user_activity, final Boolean val) {
-        Backendless.Persistence.save( user_activity, new AsyncCallback<User_Activity>() {
-            public void handleResponse( User_Activity saved_user_activity ) {
-                saved_user_activity.setJoined( val );
-                Backendless.Persistence.save( saved_user_activity, new AsyncCallback<User_Activity>() {
+        Backendless.Persistence.save(user_activity, new AsyncCallback<User_Activity>() {
+            public void handleResponse(User_Activity saved_user_activity) {
+                saved_user_activity.setJoined(val);
+                Backendless.Persistence.save(saved_user_activity, new AsyncCallback<User_Activity>() {
                     @Override
-                    public void handleResponse( User_Activity response ) {
+                    public void handleResponse(User_Activity response) {
                         System.out.println("updated");
                     }
+
                     @Override
-                    public void handleFault( BackendlessFault fault ) {
+                    public void handleFault(BackendlessFault fault) {
                         System.out.println("an error has occurred, the error code can be retrieved with fault.getCode()");
                     }
-                } );
+                });
             }
+
             @Override
-            public void handleFault( BackendlessFault fault ) {
+            public void handleFault(BackendlessFault fault) {
                 System.out.println("an error has occurred, the error code can be retrieved with fault.getCode()");
             }
         });
     }
 
 
-    public void deleteUserActivity(User_Activity user_activity){
-        Backendless.Persistence.save( user_activity, new AsyncCallback<User_Activity>() {
-            public void handleResponse( User_Activity savedUserActivity ) {
-                Backendless.Persistence.of( User_Activity.class ).remove( savedUserActivity,
+    public void deleteUserActivity(User_Activity user_activity) {
+        Backendless.Persistence.save(user_activity, new AsyncCallback<User_Activity>() {
+            public void handleResponse(User_Activity savedUserActivity) {
+                Backendless.Persistence.of(User_Activity.class).remove(savedUserActivity,
                         new AsyncCallback<Long>() {
-                            public void handleResponse( Long response ) {
+                            public void handleResponse(Long response) {
                                 System.out.println("Contact has been deleted");
                             }
-                            public void handleFault( BackendlessFault fault ) {
+
+                            public void handleFault(BackendlessFault fault) {
                                 System.out.println("an error has occurred");
                             }
-                        } );
+                        });
             }
+
             @Override
-            public void handleFault( BackendlessFault fault ) {
+            public void handleFault(BackendlessFault fault) {
                 System.out.println("an error has occurred, the error code can be retrieved with fault.getCode()");
             }
         });
@@ -169,7 +169,6 @@ public class UserActivityRepository {
         user_activity.setActivityObjectId(activityId);
         user_activity.setJoined(Boolean.FALSE);
 
-        //}
 
         final List saveInvitedPeople = new ArrayList<>();
 

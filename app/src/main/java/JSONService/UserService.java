@@ -2,7 +2,6 @@ package JSONService;
 
 import org.json.JSONException;
 import org.json.JSONObject;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -15,8 +14,6 @@ public class UserService {
     String id;
 
     public List<User> getUser(JSONObject response){
-
-
         List<User> userDetail = new ArrayList<User>();
 
         try {
@@ -31,6 +28,4 @@ public class UserService {
         }
         return userDetail;
     }
-
-
 }

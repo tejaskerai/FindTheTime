@@ -19,10 +19,7 @@ import java.util.List;
 
 import Models.Database.Activity;
 
-
 public class AvailTimesList extends AppCompatActivity {
-
-
     RecyclerView recyclerView;
     ImageView home;
     TextView title;
@@ -40,7 +37,7 @@ public class AvailTimesList extends AppCompatActivity {
 
         recyclerView = findViewById(R.id.recyclerView);
         home = (ImageView) findViewById(R.id.home_activityList);
-        home.setOnClickListener(new View.OnClickListener(){
+        home.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
@@ -56,7 +53,6 @@ public class AvailTimesList extends AppCompatActivity {
         recyclerView.setAdapter(availTimesListAdapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
     }
-
 
     public void getData() {
         Intent intent = getIntent();

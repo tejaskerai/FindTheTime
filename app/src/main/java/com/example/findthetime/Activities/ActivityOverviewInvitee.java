@@ -28,17 +28,11 @@ import CalendarService.PostRequest;
 import Models.CurrentUser;
 import Models.Database.Activity;
 
-public class ActivityOverview extends AppCompatActivity {
-
-
+public class ActivityOverviewInvitee extends AppCompatActivity {
     ImageView home;
     Button addToCalendar;
-    Integer time;
-    Date date;
     Activity activity;
     TextView activityName, activityDate, activityTime;
-
-    Date startDateFormat;
     String startDate;
     String endDate;
 
@@ -49,11 +43,20 @@ public class ActivityOverview extends AppCompatActivity {
         initializeUI();
         getData();
         setData();
-        getDates();
         addToCalendar();
     }
 
+    public void getData() {
+        Intent intent = getIntent();
+        if (getIntent().hasExtra("activity")) {
+            activity = (Activity) intent.getSerializableExtra("activity");
+        } else {
+            Toast.makeText(this, "no data", Toast.LENGTH_SHORT).show();
+        }
+    }
+
     private void initializeUI() {
+
         activityName = findViewById(R.id.activityName);
         activityDate = findViewById(R.id.activityDate);
         activityTime = findViewById(R.id.activityTime);
@@ -62,58 +65,27 @@ public class ActivityOverview extends AppCompatActivity {
         home.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(ActivityOverview.this, Homepage.class);
+
+                Intent intent = new Intent(ActivityOverviewInvitee.this, Homepage.class);
                 startActivity(intent);
             }
         });
     }
 
-    public void getData() {
-        Intent intent = getIntent();
-        if (getIntent().hasExtra("time") && getIntent().hasExtra("date") && getIntent().hasExtra("activity")) {
-            time = (Integer) intent.getSerializableExtra("time");
-            date = (Date) intent.getSerializableExtra("date");
-            activity = (Activity) intent.getSerializableExtra("activity");
-            System.out.println(time);
-            System.out.println("Date picked activity overview: " + date);
-            System.out.println("Activity picked activity overview: " + activity);
-            System.out.println("Test: " + activity.getName());
-        } else {
-            Toast.makeText(this, "no data", Toast.LENGTH_SHORT).show();
-        }
-    }
-
     private void setData() {
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS");
         activityName.setText(activity.getName());
         DateFormat df = new SimpleDateFormat("E dd/MM/yy");
-        String formattedDate = df.format(date);
-        activityDate.setText(formattedDate);
-        activityTime.setText(time + ":00");
-    }
-
-    public void getDates() {
-
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS");
-
+        String formattedDate = df.format(activity.getDateAndTime());
+        String formattedStart = sdf.format(activity.getDateAndTime());
+        startDate = formattedStart;
+        System.out.println("Start date: " + startDate);
         Calendar calendar = Calendar.getInstance();
-        calendar.setTime(date);
+        calendar.setTime(activity.getDateAndTime());
         int day = calendar.get(Calendar.DAY_OF_MONTH);
         int month = calendar.get(Calendar.MONTH);
         int year = calendar.get(Calendar.YEAR);
-
-        Calendar start = Calendar.getInstance();
-        start.set(Calendar.DAY_OF_MONTH, day);
-        start.set(Calendar.MONTH, month);
-        start.set(Calendar.YEAR, year);
-        start.set(Calendar.HOUR_OF_DAY, time);
-        start.set(Calendar.MINUTE, 0);
-        start.set(Calendar.SECOND, 0);
-        start.set(Calendar.MILLISECOND, 0);
-
-        startDateFormat = start.getTime();
-        String formattedStart = sdf.format(startDateFormat);
-        System.out.println("Start date: " + formattedStart);
-        startDate = formattedStart;
+        int time = calendar.get(Calendar.HOUR_OF_DAY);
 
         //
         Calendar end = Calendar.getInstance();
@@ -128,7 +100,13 @@ public class ActivityOverview extends AppCompatActivity {
         Date e = end.getTime();
         String formattedEnd = sdf.format(e);
         endDate = formattedEnd;
-        System.out.println("End date: " + formattedEnd);
+        System.out.println("End date: " + endDate);
+
+        String stringTime = Integer.toString(time);
+        System.out.println("Time: " + stringTime);
+        activityDate.setText(formattedDate);
+        activityTime.setText(stringTime + ":00");
+
     }
 
     public void addToCalendar() {
@@ -139,7 +117,11 @@ public class ActivityOverview extends AppCompatActivity {
 
                 JSONObject event = new JSONObject();
                 JSONObject start = new JSONObject();
+
                 JSONObject end = new JSONObject();
+                System.out.println("Start: " + startDate);
+                System.out.println("end: " + endDate);
+
                 try {
                     start.put("dateTime", startDate);
                     start.put("timeZone", "UTC");
@@ -150,6 +132,7 @@ public class ActivityOverview extends AppCompatActivity {
                     event.put("subject", activity.getName());
                     event.put("start", start);
                     event.put("end", end);
+
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
@@ -160,8 +143,9 @@ public class ActivityOverview extends AppCompatActivity {
                     PostRequest postRequest =
                             new PostRequest("https://graph.microsoft.com/v1.0/me/events", event.toString())
                                     .setBearerToken(CurrentUser.getCurrentUser().authenticationResult.getAccessToken());
+
                     postRequest.execute().get();
-                    Toast.makeText(ActivityOverview.this, "Event added", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(ActivityOverviewInvitee.this, "Event added", Toast.LENGTH_SHORT).show();
 
                 } catch (IOException | ExecutionException | InterruptedException e) {
                     e.printStackTrace();
@@ -170,13 +154,11 @@ public class ActivityOverview extends AppCompatActivity {
                 ActivityRepository activityRepository = new ActivityRepository();
                 activityRepository.updatePendingStatus(activity, false);
 
-                activityRepository.setDateTime(activity, startDateFormat);
-
-                Intent intent = new Intent(ActivityOverview.this, Homepage.class);
+                Intent intent = new Intent(ActivityOverviewInvitee.this, Homepage.class);
 
                 startActivity(intent);
-
             }
         });
+
     }
 }

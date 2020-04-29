@@ -13,7 +13,6 @@ import android.widget.TextView;
 import com.example.findthetime.Adapters.RestaurantListAdapter;
 import com.example.findthetime.R;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import JSONService.ZomatoService;

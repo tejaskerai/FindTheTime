@@ -4,16 +4,8 @@ import android.os.AsyncTask;
 import android.os.Build;
 
 import androidx.annotation.RequiresApi;
-
-import com.google.gson.Gson;
-import com.google.gson.reflect.TypeToken;
-import org.json.JSONException;
-import org.json.JSONObject;
-import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStreamReader;
 import java.io.OutputStream;
-import java.lang.reflect.Type;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.ProtocolException;
@@ -24,9 +16,7 @@ public class PostRequest extends AsyncTask<String, Void, Void> {
 
     String endpoint;
     String jsonBody;
-    Type typeOfReturn;
     HttpURLConnection con;
-
     public PostRequest(String endpoint, String jsonBody) throws IOException {
         this.endpoint = endpoint;
         this.jsonBody = jsonBody;
@@ -38,12 +28,9 @@ public class PostRequest extends AsyncTask<String, Void, Void> {
         }
         this.con = (HttpURLConnection)url.openConnection();
     }
-
     @RequiresApi(api = Build.VERSION_CODES.KITKAT)
     @Override
     protected Void doInBackground(String... data) {
-        Gson gson = new Gson();
-
         try {
             setConnectionProperties();
             try(OutputStream os = con.getOutputStream()) {

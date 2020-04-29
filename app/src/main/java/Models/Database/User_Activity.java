@@ -2,7 +2,6 @@ package Models.Database;
 
 public class User_Activity {
 
-
     public String objectId;
     public String userObjectId;
     public String activityObjectId;
