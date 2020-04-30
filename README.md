@@ -14,3 +14,6 @@ You will need Android Studio to run the application, all dependancies are includ
 
 You can download the APK from the link
 [Find-The-Time](https://1drv.ms/u/s!Aq-oVUnBq_M7kFvCzxMmXk0uH4g_?e=asl3wp)
+
+You can see the application running from the link 
+[Find-The-Time Demo](https://youtu.be/P_TkvWJhVd4)
